@@ -33,6 +33,9 @@ export function Logo({
       width={width}
       priority={priority}
       className={clsx(styles.logo, className)}
+      // Pin the rendered height (width auto-scales) so the raw PNG can't render at its
+      // intrinsic 2051×557 size under `images.unoptimized` (the GitHub Pages export).
+      style={{ height, width: "auto" }}
     />
   );
 }

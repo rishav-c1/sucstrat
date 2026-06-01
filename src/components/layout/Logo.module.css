@@ -1,5 +1,5 @@
+/* Sizing is set inline on the <Image> (height pinned, width auto) so it holds under
+   `images.unoptimized` too; this just sets the box model. */
 .logo {
   display: block;
-  width: auto;
-  height: auto;
 }
