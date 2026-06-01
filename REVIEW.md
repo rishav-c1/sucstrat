@@ -6,7 +6,7 @@ Built across the phased plan in `PLAN.md`. All six content pages + `/get-in-touc
 
 | Gate | Command | Result |
 |---|---|---|
-| Build | `pnpm build` | ✅ clean — all routes prerendered static; `/get-in-touch` adds a Server Action endpoint; `/pitch-us` 308-redirects to it |
+| Build | `pnpm build` | ✅ clean — all routes prerendered static. Also builds as a static export (`STATIC_EXPORT=1`) for GitHub Pages; `/pitch-us` 308-redirects to `/get-in-touch` on a Node host |
 | Types | `pnpm typecheck` | ✅ 0 errors (`strict` + `noUncheckedIndexedAccess`) |
 | Lint | `pnpm lint` | ✅ 0 errors / 0 warnings |
 | Unit | `pnpm test` | ✅ 10 passed (vitest) |
@@ -49,13 +49,13 @@ Built across the phased plan in `PLAN.md`. All six content pages + `/get-in-touc
 ## 4. Outstanding `TODO(seo-copy)`
 
 - **Meta descriptions** (every route) — drafted in each `page.tsx`; human review.
-- **`/get-in-touch`** — now built from `get_in_touch_mockup.html` (hero + 6-card "Reach us" grid + "Let's talk" form). Copy is verbatim from the mockup; the expanded form (inquiry type, first/last name, email, phone, company, country, message, consent) validates via the Server Action. `/pitch-us` 308-redirects here.
+- **`/get-in-touch`** — now built from `get_in_touch_mockup.html` (hero + 6-card "Reach us" grid + "Let's talk" form). Copy is verbatim from the mockup; the expanded form (inquiry type, first/last name, email, phone, company, country, message, consent) composes a prefilled `mailto:` on submit (static-host friendly). `/pitch-us` 308-redirects here.
 - **OG image** — shared brand card via `app/opengraph-image.tsx`; customise if desired.
 - **`Organization` `sameAs` / `logo`** — ✅ both wired: `logo`/`image` → `/sucstrat-logo.png`; `sameAs` → the LinkedIn company page (`https://www.linkedin.com/company/sucstrat`, from the Get in Touch mockup). Add any further authority profiles (Crunchbase, etc.) to `SOCIAL_PROFILES` in `content/site.ts` as they exist.
 
-## 5. `TODO(provider)` — email
+## 5. Contact form
 
-`/get-in-touch` posts to a zod-validated **Server Action** → `EmailTransport` interface. The default `ConsoleEmailTransport` logs the enquiry in dev. **Intended provider: Resend** (per sign-off). To go live: implement `ResendEmailTransport`, return it from `createEmailTransport()` behind `RESEND_API_KEY`, and set the env var. Honeypot anti-spam is in place; consider rate-limiting.
+`/get-in-touch` is a **static `mailto:` form** (`ContactForm.tsx`): it composes a prefilled email on submit, so it needs no backend and deploys to any static host (incl. GitHub Pages). Native HTML5 validation enforces the required fields + consent. To take submissions **without** the mail-app handoff, point the `<form>` at a static form provider (Web3Forms / Formspree — add their access-key hidden input). For a Node host, the earlier zod-validated **Server Action + `EmailTransport`** (Resend-ready, honeypot) is preserved in git history (commit `d17ede7`).
 
 ## 6. Assumptions still worth confirming
 
@@ -64,14 +64,15 @@ Built across the phased plan in `PLAN.md`. All six content pages + `/get-in-touc
 3. **Stat figures are carried verbatim per page and intentionally differ** across pages (e.g. founder tiles: "225+ Industry Awards" on Home vs "300+ Brand solutions" on Know Us; "21 sectors" vs 12 industry tiles vs 21 cloud chips). Not reconciled — flag if a single source of truth is wanted.
 4. Reference files were clean semantic mockups (not Wix exports) — `CLAUDE.md` corrected (approved).
 
-## 7. Deploy notes (Vercel)
+## 7. Deploy notes
 
-- **Framework:** Next.js 16 (App Router), auto-detected. Output is static SSG + one Server Action; no extra config needed.
-- **Node:** `engines.node >= 20.9` + `.nvmrc` (20). Vercel will use Node 20.
-- **Build:** `pnpm build` (Vercel runs it via the detected `packageManager: pnpm@9`). `experimental.inlineCss` is on.
-- **Domain / canonicals:** `metadataBase` + JSON-LD use `https://sucstrat.com` (`src/content/site.ts`). Update if the production domain differs, then redeploy (canonicals/sitemap/OG derive from it).
-- **Env vars:** none required to build today. Add `RESEND_API_KEY` (+ wire the transport) before the contact form sends real email.
-- **Assets:** brand/portrait assets in `/static` are imported (bundled & optimized) — no manual upload step.
+**GitHub Pages (configured, default target).** [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml) builds a static export (`STATIC_EXPORT=1` → `output: export`, `/sucstrat` basePath, `images.unoptimized`, mailto form, metadata routes forced static) and publishes to **https://rishav-c1.github.io/sucstrat/** on every push to `main`. `actions/configure-pages` enables Pages on first run (fallback: Settings → Pages → Source: GitHub Actions). For a custom domain, add `public/CNAME` + drop the basePath (README has details).
+
+**Node host (Vercel / Netlify / Cloudflare).** A plain `pnpm build` (no `STATIC_EXPORT`) keeps `next/image` optimization + the `/pitch-us → /get-in-touch` redirect.
+- **Node:** `engines.node >= 20.9` + `.nvmrc` (20).
+- **Build:** `pnpm build` (detected `packageManager: pnpm@9`); `experimental.inlineCss` is on.
+- **Domain / canonicals:** `metadataBase` + JSON-LD use `https://sucstrat.com` (`src/content/site.ts`) — the intended production domain; update if it differs.
+- **Assets:** `/static` (imported, optimized) + `/public` (served logo, `.nojekyll`).
 
 ---
 *Final audit. Verbatim copy: `content-extraction/*.md`. Plan & decisions: `PLAN.md`.*

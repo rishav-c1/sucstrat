@@ -3,6 +3,8 @@ import { ImageResponse } from "next/og";
 export const alt = "SucStrat — Strategy to Scale, execution built in";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+// Render at build time so it exports to a static file (`output: export`).
+export const dynamic = "force-static";
 
 // Shared Open Graph image (1200×630). Inline styles are required by the next/og
 // renderer (this is not the site DOM).

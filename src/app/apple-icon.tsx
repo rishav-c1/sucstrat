@@ -4,6 +4,8 @@ import { ImageResponse } from "next/og";
 // Mirrors the brand monogram in app/icon.svg. Inline styles are required by next/og.
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
+// Render at build time so it exports to a static file (`output: export`).
+export const dynamic = "force-static";
 
 export default function AppleIcon() {
   return new ImageResponse(

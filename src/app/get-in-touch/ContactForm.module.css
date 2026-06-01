@@ -127,6 +127,13 @@ textarea.input {
 .success p {
   color: var(--muted);
 }
+.leadLinkInline {
+  color: var(--blue-700);
+  font-weight: 600;
+}
+.leadLinkInline:hover {
+  color: var(--navy-800);
+}
 
 @media (max-width: 600px) {
   .row {

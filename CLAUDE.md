@@ -12,7 +12,7 @@ Canonical production domain: **https://sucstrat.com**
 
 - Brand + portrait assets live in `/static/` (imported via the `@static/*` alias; served through `next/image`). Logos: **`logo_white.png` (default — for dark/navy backgrounds)**, `logo_navy.png` / `logo_black.png` (for light backgrounds), `logo_wordmark_navy.png` (tagline-free wordmark), plus `logo_preview_on_navy.png` / `logo_preview_on_white.png` (usage comps, not for direct use). Founder portrait: `static/Vinay-Maheshwari.jpg` (1400×936).
 - Public contact email: **ashley@v3consultant.com** (resolves the mockups' `[confirm contact details]` placeholder; supersedes the mockups' `connect@sucstrat.com`). Careers applications: `careers@sucstrat.com` (verbatim from the Careers mockup).
-- `/get-in-touch` email transport: provider **TBD — intended Resend** (free tier). Not yet integrated; stub behind the `EmailTransport` interface and log in dev until then.
+- `/get-in-touch` contact form: a **static `mailto:` form** (no backend) so the site deploys to **GitHub Pages**. The earlier zod-validated Server Action + `EmailTransport` (Resend-ready) is preserved in git history (commit `d17ede7`) for a Node host.
 - Runtime: **Node 20** (nvm default set to 20; Next 16 requires ≥20.9). pnpm via corepack.
 
 ## Stack (do not substitute without sign-off)
@@ -38,7 +38,7 @@ Routes:
 - `/knowledge` — Knowledge
 
 Referenced by the mockups but **not provided** (handle, don't 404):
-- `/get-in-touch` — contact page. **Mockup later provided** (`get_in_touch_mockup.html`) and built from it: hero + "Reach us" grid + a "Let's talk" form posting to a **Server Action** that validates (zod) and sends email (provider TBD — transport stubbed behind an interface, logs in dev). This is the ONLY backend in the project. (`/pitch-us` 308-redirects here — the route was renamed to match the mockup.)
+- `/get-in-touch` — contact page. **Mockup later provided** (`get_in_touch_mockup.html`) and built from it: hero + "Reach us" grid + a "Let's talk" form. To allow **static (GitHub Pages)** hosting, it submits via a prefilled **`mailto:`** (no server); a zod-validated Server Action + email-transport version is preserved in git history for a Node host. (`/pitch-us` 308-redirects here — renamed to match the mockup.)
 - `/case-studies` and `/case-studies/[slug]` (sakshi-media-group, mohan-babu-university, valmar, dainik-bhaskar) — out of scope for content, but create placeholder routes with proper metadata so nav/links don't 404. Flag as stubs in PLAN.md.
 
 ## Design tokens (from reference extraction — refine against the files)
