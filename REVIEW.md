@@ -66,7 +66,7 @@ Built across the phased plan in `PLAN.md`. All six content pages + `/get-in-touc
 
 ## 7. Deploy notes
 
-**GitHub Pages (configured, default target).** [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml) builds a static export (`STATIC_EXPORT=1` → `output: export`, `/sucstrat` basePath, `images.unoptimized`, mailto form, metadata routes forced static) and publishes to **https://rishav-c1.github.io/sucstrat/** on every push to `main`. `actions/configure-pages` enables Pages on first run (fallback: Settings → Pages → Source: GitHub Actions). For a custom domain, add `public/CNAME` + drop the basePath (README has details).
+**GitHub Pages (configured, default target).** [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml) builds a static export (`STATIC_EXPORT=1` → `output: export`, `/sucstrat` basePath, `images.unoptimized`, mailto form, metadata routes forced static) and publishes to **https://rishav-c1.github.io/sucstrat/** on every push to `main`. Enable Pages once (owner action): Settings → Pages → Source: GitHub Actions. For a custom domain, add `public/CNAME` + drop the basePath (README has details).
 
 **Node host (Vercel / Netlify / Cloudflare).** A plain `pnpm build` (no `STATIC_EXPORT`) keeps `next/image` optimization + the `/pitch-us → /get-in-touch` redirect.
 - **Node:** `engines.node >= 20.9` + `.nvmrc` (20).

@@ -26,10 +26,6 @@ jobs:
         with:
           node-version: 20
           cache: pnpm
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true # enable Pages (build type: GitHub Actions) if not already
       - run: pnpm install --frozen-lockfile
       - name: Build static export
         run: pnpm build

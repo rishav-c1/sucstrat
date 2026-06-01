@@ -41,7 +41,7 @@ Pages serves **static files only** (no Node server), so the repo adapts in three
 - **Static contact form** — with no server on Pages, the `/get-in-touch` form composes a prefilled **`mailto:`** on submit (`ContactForm.tsx`). To take submissions without the mail-app handoff, point the `<form>` at [Web3Forms](https://web3forms.com) / [Formspree](https://formspree.io) (add their access-key hidden input — no other change needed).
 - **Image/metadata routes** — `opengraph-image`, `apple-icon`, `sitemap`, and `robots` are marked `dynamic = "force-static"` so they emit as files.
 
-**First-time setup:** the workflow calls `actions/configure-pages` with `enablement: true`, which turns Pages on automatically. If your account/org blocks that, enable it once by hand — repo **Settings → Pages → Build and deployment → Source: GitHub Actions** — then every push to `main` redeploys.
+**First-time setup (one-time, repo owner):** enable Pages by hand — repo **Settings → Pages → Build and deployment → Source: GitHub Actions** (the workflow's `GITHUB_TOKEN` can't enable Pages itself — that needs admin). After that, every push to `main` redeploys automatically.
 
 **Custom domain (`sucstrat.com`)** instead of the github.io path: add `public/CNAME` with `sucstrat.com`, point DNS at GitHub Pages, and remove `basePath`/`assetPrefix` from `next.config.ts` (the `https://sucstrat.com` canonicals in `src/content/site.ts` already match).
 
