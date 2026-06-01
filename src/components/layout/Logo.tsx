@@ -1,17 +1,18 @@
 import Image from "next/image";
 import clsx from "clsx";
-import logoWhite from "@static/logo_white.png";
-import logoNavy from "@static/logo_navy.png";
+import wordmark from "@static/logo_wordmark_navy.png";
 import styles from "./Logo.module.css";
 
 /**
- * SucStrat wordmark (provided in /static). `tone="light"` (default) is the white
- * lockup for dark/navy backgrounds; `tone="dark"` is the navy lockup for light
- * backgrounds. Width is derived from the intrinsic aspect ratio to keep CLS at 0.
+ * SucStrat wordmark — the tagline-free lockup (matches the reference header/footer,
+ * where the wordmark fills the bar rather than a small lockup-with-tagline).
+ * The source art is navy; on dark/navy backgrounds (`tone="light"`, the default) it's
+ * recolored to white via CSS filter. Height is pinned (width auto-scales) so it holds
+ * under `images.unoptimized` (the GitHub Pages export) and keeps CLS at 0.
  */
 export function Logo({
   tone = "light",
-  height = 40,
+  height = 34,
   priority = false,
   className,
 }: {
@@ -20,21 +21,16 @@ export function Logo({
   priority?: boolean;
   className?: string;
 }) {
-  const src = tone === "light" ? logoWhite : logoNavy;
-  const width = Math.round((height * src.width) / src.height);
+  const width = Math.round((height * wordmark.width) / wordmark.height);
 
   return (
     <Image
-      src={src}
-      // Accessible name is the brand only (the link goes to home). Keyword- or
-      // tagline-stuffed alt text is a negative signal; the tagline lives in the H1/copy.
+      src={wordmark}
       alt="SucStrat"
       height={height}
       width={width}
       priority={priority}
-      className={clsx(styles.logo, className)}
-      // Pin the rendered height (width auto-scales) so the raw PNG can't render at its
-      // intrinsic 2051×557 size under `images.unoptimized` (the GitHub Pages export).
+      className={clsx(styles.logo, tone === "light" && styles.onDark, className)}
       style={{ height, width: "auto" }}
     />
   );

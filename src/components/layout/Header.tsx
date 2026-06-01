@@ -22,7 +22,7 @@ export function Header({ cta = DEFAULT_CTA }: { cta?: { label: string; href: str
         <NavLink href="/" className={styles.logoLink}>
           {/* Not `priority`: the logo isn't the LCP (the hero heading is), so preloading
               it would only compete with the LCP-critical fonts on slow connections. */}
-          <Logo tone="light" height={40} />
+          <Logo tone="light" height={38} />
         </NavLink>
 
         <nav className={styles.desktopNav} aria-label="Primary">

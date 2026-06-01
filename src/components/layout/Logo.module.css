@@ -1,5 +1,9 @@
 /* Sizing is set inline on the <Image> (height pinned, width auto) so it holds under
-   `images.unoptimized` too; this just sets the box model. */
+   `images.unoptimized` too; this just sets the box model + dark-bg recolor. */
 .logo {
   display: block;
+}
+/* The wordmark source art is navy — recolor to white on dark (navy) backgrounds. */
+.onDark {
+  filter: brightness(0) invert(1);
 }
