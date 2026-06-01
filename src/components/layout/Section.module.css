@@ -7,6 +7,10 @@
 .mist {
   background: var(--mist);
 }
+/* Continues the page-hero background (no visible band between hero and the section). */
+.heroBg {
+  background: var(--hero-bg);
+}
 .navy {
   background: var(--navy-800);
   color: #fff;

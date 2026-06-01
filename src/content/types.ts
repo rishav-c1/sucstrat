@@ -33,7 +33,11 @@ export type IconName =
   | "star"
   | "target"
   | "steps"
-  | "briefcase";
+  | "briefcase"
+  | "globe"
+  | "mail"
+  | "linkedin"
+  | "mapPin";
 
 export interface Cta {
   label: string;
@@ -116,6 +120,14 @@ export interface ReachCard {
   icon: IconName;
   href: string;
   cta: string;
+}
+
+/** A contact row in the Get in Touch form's navy panel (Email / LinkedIn / Visit). */
+export interface ContactRow {
+  icon: IconName;
+  label: string;
+  value: string;
+  href?: string;
 }
 
 /** An external article/insight link card (Knowledge). */

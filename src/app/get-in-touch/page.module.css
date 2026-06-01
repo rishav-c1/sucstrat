@@ -1,71 +1,124 @@
-.layout {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 56px;
-  align-items: start;
-}
-.heading {
-  font-family: var(--font-serif);
-  font-weight: 600;
-  font-size: clamp(28px, 3.5vw, 40px);
-  color: var(--navy-800);
-  letter-spacing: -0.02em;
-}
-.lead {
-  color: var(--muted);
-  font-size: 17px;
-  line-height: 1.55;
-  margin: 12px 0 28px;
-  max-width: 520px;
-}
-.leadLink {
-  color: var(--blue-700);
-  font-weight: 600;
-}
-.leadLink:hover {
-  color: var(--navy-800);
-}
-.aside {
-  background: var(--mist);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  padding: 28px;
-}
-.asideHeading {
-  font-family: var(--font-serif);
-  font-weight: 600;
-  font-size: 20px;
-  color: var(--navy-800);
-  margin-bottom: 12px;
-}
-.email {
-  display: inline-block;
-  font-size: 18px;
-  color: var(--blue-700);
-  font-weight: 600;
-}
-.email:hover {
-  color: var(--navy-800);
-}
-.linkedin {
-  display: block;
-  margin-top: 14px;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--blue-700);
-}
-.linkedin:hover {
-  color: var(--navy-800);
-}
-.note {
-  color: var(--muted);
-  font-size: 14px;
-  margin-top: 16px;
+/* Continues the hero/reach background; the form block is the last content before the footer. */
+.formSec {
+  background: var(--hero-bg);
+  padding: 0 0 100px;
 }
 
-@media (max-width: 900px) {
-  .layout {
+.block {
+  display: grid;
+  grid-template-columns: 0.82fr 1.18fr;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 26px 70px rgba(38, 66, 89, 0.13);
+}
+
+/* Navy info panel (left). */
+.panel {
+  background: var(--navy-800);
+  color: #fff;
+  padding: 48px 42px;
+  position: relative;
+  overflow: hidden;
+}
+.motif {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.eyebrow {
+  position: relative;
+  z-index: 2;
+  display: block;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent-on-dark);
+}
+.panelTitle {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 32px;
+  color: #fff;
+  margin: 12px 0 12px;
+}
+.intro {
+  position: relative;
+  z-index: 2;
+  font-size: 16px;
+  color: var(--on-navy);
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+.infoList {
+  position: relative;
+  z-index: 2;
+  list-style: none;
+  display: grid;
+  gap: 20px;
+}
+.infoList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.ci {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: rgba(93, 144, 186, 0.18);
+  color: var(--accent-on-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.ci svg {
+  width: 19px;
+  height: 19px;
+}
+.ciLabel {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  font-weight: 700;
+  /* AA-safe on navy (the mockup's --on-navy-mute is only ~3.9:1 — fails axe at 11px). */
+  color: var(--accent-on-dark);
+  margin-bottom: 5px;
+}
+.ciValue {
+  display: block;
+  font-size: 15.5px;
+  color: #fff;
+}
+.ciValue a {
+  color: #fff;
+  text-decoration: none;
+}
+.ciValue a:hover {
+  color: var(--accent-on-dark);
+}
+
+/* White form panel (right). */
+.formWrap {
+  background: #fff;
+  padding: 46px 44px;
+}
+
+@media (max-width: 860px) {
+  .block {
     grid-template-columns: 1fr;
-    gap: 36px;
+  }
+  .panel {
+    padding: 40px 30px;
+  }
+  .formWrap {
+    padding: 36px 30px;
   }
 }

@@ -1,5 +1,5 @@
-import { SITE } from "./site";
-import type { ReachCard } from "./types";
+import { SITE, LINKEDIN_URL } from "./site";
+import type { ContactRow, ReachCard } from "./types";
 
 /** Get in Touch — verbatim from html_static_pages/get_in_touch_mockup.html. */
 export const GET_IN_TOUCH = {
@@ -9,60 +9,69 @@ export const GET_IN_TOUCH = {
     sub: "Tell us who you are and what you're after, and we'll point you to the right person.",
   },
 
+  // "Reach us" routing cards (the mockup section has no heading — cards follow the hero).
   reach: {
-    eyebrow: "Reach us",
     cards: [
       {
         title: "Clients",
         body: "A new or current client exploring a mandate with us.",
-        icon: "target",
+        icon: "people",
         href: "#form",
-        cta: "Start a conversation",
+        cta: "Send us a message",
       },
       {
         title: "Job seekers",
         body: "Ready to build more than a career? See open paths.",
         icon: "briefcase",
         href: "/careers",
-        cta: "See open paths",
+        cta: "SucStrat Careers",
       },
       {
         title: "Partners & alliances",
         body: "Institutions and ecosystem partners exploring collaboration.",
-        icon: "people",
+        icon: "globe",
         href: `mailto:${SITE.email}?subject=Partnership`,
-        cta: "Email us",
+        cta: "Partner with us",
       },
       {
         title: "Media & press",
         body: "Interviews, quotes, and press enquiries.",
         icon: "media",
         href: `mailto:${SITE.email}?subject=Media%20enquiry`,
-        cta: "Email us",
+        cta: "Media enquiries",
       },
       {
         title: "Speaking & faculty",
         body: "Invite Vinay to a keynote, panel, or class.",
         icon: "microphone",
         href: `mailto:${SITE.email}?subject=Speaking%20enquiry`,
-        cta: "Email us",
+        cta: "Speaking enquiries",
       },
       {
         title: "Ventures & funding",
         body: "Investor-readiness, fundraising, and scale.",
         icon: "chartUp",
         href: "#form",
-        cta: "Start a conversation",
+        cta: "Talk to us",
       },
     ] satisfies ReachCard[],
   },
 
-  form: {
-    eyebrow: "Let's talk",
+  // Navy info panel of the "Let's talk" form block.
+  contact: {
+    eyebrow: "Reach us",
     title: "Let's talk",
-    leadBefore: "Tell us where you are and we'll take it from there. Prefer to keep it simple? ",
-    leadLinkLabel: "Just email us directly.",
-    // Select options (verbatim from the mockup).
+    intro:
+      "Tell us where you are and we'll take it from there. Prefer to keep it simple? Just email us directly.",
+    rows: [
+      { icon: "mail", label: "Email", value: SITE.email, href: `mailto:${SITE.email}` },
+      { icon: "linkedin", label: "LinkedIn", value: "linkedin.com/company/sucstrat", href: LINKEDIN_URL },
+      { icon: "mapPin", label: "Visit", value: "New Delhi, India" },
+    ] satisfies ContactRow[],
+  },
+
+  // The white form panel (fields + select options, verbatim from the mockup).
+  form: {
     inquiryTypes: [
       "Client mandate",
       "Advisory / consulting",
@@ -78,12 +87,5 @@ export const GET_IN_TOUCH = {
       title: "Thank you, we've got it.",
       body: "Our team will be in touch shortly.",
     },
-  },
-
-  aside: {
-    heading: "Prefer email?",
-    email: SITE.email,
-    linkedinLabel: "Connect on LinkedIn",
-    note: "We typically reply within two business days.",
   },
 };

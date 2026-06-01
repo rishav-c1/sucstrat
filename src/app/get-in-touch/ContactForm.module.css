@@ -1,31 +1,32 @@
 .form {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  max-width: 620px;
+  display: grid;
+  gap: 17px;
 }
 .row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 18px;
+  gap: 16px;
 }
 .field {
   display: flex;
   flex-direction: column;
-  gap: 7px;
 }
 .label {
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
   color: var(--navy-800);
+  margin-bottom: 7px;
 }
 .input {
+  width: 100%;
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 15px;
   color: var(--ink);
   background: #fff;
   border: 1px solid var(--line-2);
-  border-radius: var(--radius-md);
+  border-radius: 6px;
   padding: 12px 14px;
   transition:
     border-color 0.2s,
@@ -34,7 +35,7 @@
 .input:focus {
   outline: none;
   border-color: var(--blue-600);
-  box-shadow: 0 0 0 3px rgba(68, 118, 161, 0.18);
+  box-shadow: 0 0 0 3px rgba(68, 118, 161, 0.16);
 }
 select.input {
   appearance: none;
@@ -46,11 +47,12 @@ select.input {
 }
 textarea.input {
   resize: vertical;
-  min-height: 140px;
+  min-height: 120px;
 }
 .fieldError {
   color: #a3160c;
   font-size: 13px;
+  margin-top: 4px;
 }
 .formError {
   color: #a3160c;
@@ -81,12 +83,13 @@ textarea.input {
   cursor: pointer;
 }
 .submit {
-  align-self: flex-start;
+  justify-self: start;
+  margin-top: 4px;
   font-family: var(--font-sans);
   font-weight: 600;
   font-size: 15px;
-  padding: 14px 28px;
-  border-radius: var(--radius-sm);
+  padding: 14px 32px;
+  border-radius: 2px;
   background: var(--navy-800);
   color: #fff;
   border: 1.5px solid var(--navy-800);
@@ -111,16 +114,15 @@ textarea.input {
   overflow: hidden;
 }
 .success {
-  background: #fff;
+  background: var(--mist);
   border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  padding: 36px;
-  max-width: 620px;
+  border-radius: 12px;
+  padding: 32px;
 }
 .successTitle {
   font-family: var(--font-serif);
   font-weight: 600;
-  font-size: 26px;
+  font-size: 24px;
   color: var(--navy-800);
   margin-bottom: 8px;
 }

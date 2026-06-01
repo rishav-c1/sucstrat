@@ -10,7 +10,7 @@ export function Section({
   className,
 }: {
   id?: string;
-  bg?: "paper" | "mist" | "navy";
+  bg?: "paper" | "mist" | "navy" | "heroBg";
   children: ReactNode;
   className?: string;
 }) {

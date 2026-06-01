@@ -189,6 +189,34 @@ const PATHS: Record<IconName, ReactNode> = {
       <path d="M3 13h18" />
     </>
   ),
+  globe: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3 12h18" />
+      <path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18" />
+    </>
+  ),
+  mail: (
+    <>
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="M3.5 7l8.5 6 8.5-6" />
+    </>
+  ),
+  linkedin: (
+    <>
+      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <line x1="7" y1="10" x2="7" y2="17" />
+      <circle cx="7" cy="6.6" r="1.1" />
+      <path d="M11 17v-4a2.4 2.4 0 0 1 4.8 0v4" />
+      <line x1="11" y1="10" x2="11" y2="17" />
+    </>
+  ),
+  mapPin: (
+    <>
+      <path d="M12 21s-6-5.2-6-10a6 6 0 0 1 12 0c0 4.8-6 10-6 10z" />
+      <circle cx="12" cy="11" r="2.3" />
+    </>
+  ),
 };
 
 export function Icon({ name, className }: { name: IconName; className?: string }) {
