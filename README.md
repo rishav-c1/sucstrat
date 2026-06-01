@@ -1,4 +1,4 @@
-# SucStrat — marketing website
+# SucStrat - Landing Page
 
 Marketing/content site for **SucStrat**, an execution-first strategy & consulting firm (founder: Vinay Maheshwari). Next.js App Router, TypeScript (strict), CSS Modules, and a typed content layer.
 
