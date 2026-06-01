@@ -1,0 +1,72 @@
+.deliver {
+  padding: 100px 0;
+  background: var(--navy-800);
+  color: #fff;
+}
+.head {
+  margin-bottom: 46px;
+}
+.eyebrow {
+  color: var(--accent-on-dark);
+}
+.title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(30px, 4vw, 46px);
+  color: #fff;
+  margin-top: 14px;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+}
+.lead {
+  color: var(--on-navy);
+  max-width: 580px;
+  margin-top: 14px;
+  font-size: 17px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--line-navy);
+}
+.card {
+  background: var(--navy-800);
+  padding: 30px 24px 32px;
+}
+.ico {
+  display: block;
+  width: 34px;
+  height: 34px;
+  color: var(--blue-500);
+  margin-bottom: 16px;
+}
+.ico svg {
+  width: 100%;
+  height: 100%;
+}
+.cardTitle {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.cardBody {
+  font-size: 13.5px;
+  color: var(--on-navy);
+  line-height: 1.5;
+}
+
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

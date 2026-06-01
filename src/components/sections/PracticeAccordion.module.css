@@ -1,0 +1,64 @@
+.acc {
+  border-top: 1px solid var(--line);
+  margin-top: 8px;
+}
+.item {
+  border-bottom: 1px solid var(--line);
+}
+.head {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+.trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 24px 4px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+}
+.num {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--blue-700);
+}
+.title {
+  flex: 1;
+  font-family: var(--font-serif);
+  font-size: clamp(19px, 2.4vw, 22px);
+  font-weight: 500;
+  color: var(--navy-800);
+  transition: color 0.2s;
+}
+.trigger:hover .title {
+  color: var(--blue-700);
+}
+.chev {
+  width: 11px;
+  height: 11px;
+  border-right: 2px solid var(--blue-600);
+  border-bottom: 2px solid var(--blue-600);
+  transform: rotate(45deg);
+  transition: transform 0.25s;
+  flex-shrink: 0;
+}
+.itemOpen .chev {
+  transform: rotate(225deg);
+}
+.panel {
+  padding: 0 4px 24px 44px;
+}
+.panel[hidden] {
+  display: none;
+}
+.body {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 720px;
+}

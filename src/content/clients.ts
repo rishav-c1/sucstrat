@@ -1,0 +1,113 @@
+import type { CaseItem, Metric } from "./types";
+
+export const CLIENTS = {
+  hero: {
+    eyebrow: "Clients",
+    title: "Partners in performance.",
+    sub: "We work with teams solving high-stakes problems across industries and stages.",
+    primaryCta: { label: "Work with us", href: "/get-in-touch" },
+    secondaryCta: { label: "See our work", href: "#cases" },
+  },
+  logoWall: {
+    eyebrow: "Our clients",
+    title: "The companies we build with",
+    lead: "From market leaders to emerging disruptors, we partner with organisations that shape industries and scale with intent.",
+    groups: [
+      {
+        heading: "Industry leaders",
+        context: "Market leaders and institutions we partner with to shape, turn around, and scale.",
+        logos: [
+          { name: "Hamar Hajaala", logo: "hamar-hajaala.jpg" },
+          { name: "Dainikpuri", logo: "Dainikpuri.jpg" },
+          { name: "Narayana", logo: "Narayana.jpg" },
+          { name: "The Cake Room", logo: "The-Cake-Room.jpg" },
+          { name: "Sparsh", logo: "sparsh.jpg" },
+          { name: "Sree Vidyanikethan", logo: "Sree-Vidyanikethan.jpg" },
+          { name: "New York", logo: "New-York.jpg" },
+          { name: "Nav Bharath", logo: "Nav-Bharath.jpg" },
+          { name: "Mohan Babu University", logo: "MBU.jpg" },
+          { name: "Maison AVA", logo: "Maison-AVA.jpg" },
+          { name: "Hypolator", logo: "Hypolator.jpg" },
+          { name: "Kutchina", logo: "kutchina.jpg" },
+          { name: "Kespariya", logo: "kespariya.jpg" },
+          { name: "AVA", logo: "AVA.jpg" },
+          { name: "24 Frames", logo: "24-frames.jpg" },
+          { name: "Valmar", logo: "valmar.jpg" },
+        ],
+      },
+      {
+        heading: "Alliance network",
+        context: "Collaborators who bring depth, reach, and specialist expertise to client outcomes.",
+        logos: [
+          { name: "EY", logo: "ey-1.jpg" },
+          { name: "Korn Ferry", logo: "Kf.jpg" },
+          { name: "S&P", logo: "SP.jpg" },
+        ],
+      },
+      {
+        heading: "Innovators & startups",
+        context: "High-growth ventures we help unlock new markets and scale.",
+        logos: [
+          { name: "RunTailor", logo: "RunTailor.jpg" },
+          { name: "Kalaclap", logo: "kalaclap.jpg" },
+          { name: "Papa Pawsome", logo: "papa-pawsome.jpg" },
+          { name: "Therapeutics", logo: "therapeutics.jpg" },
+          { name: "SpaceBasic", logo: "spacebasic.jpg" },
+        ],
+      },
+    ],
+  },
+  stats: [
+    { to: 127, suffix: "+", label: "Clients served" },
+    { to: 53, suffix: "+", label: "Institutional clients" },
+    { to: 8, label: "Countries" },
+    { to: 21, label: "Sectors" },
+  ] satisfies Metric[],
+  cases: {
+    eyebrow: "Impact highlights",
+    title: "Complex challenges, clarified and delivered",
+    lead: "A few of the rooms we stayed in until the number moved.",
+    items: [
+      {
+        slug: "sakshi-media-group",
+        name: "Sakshi Media Group",
+        logo: "sakshi.jpg",
+        eyebrow: "Multi-vertical turnaround",
+        stat: { prefix: "₹", value: "147", suffix: "cr" },
+        statLabel: "Profit, up from a ₹14 cr loss",
+        body: "TV rank 2nd to 3rd, 100%+ YoY digital growth. Standalone P&Ls, Must-Win Battles, and India's first paperless newsroom.",
+      },
+      {
+        slug: "dainik-bhaskar",
+        name: "Dainik Bhaskar",
+        logo: "dainik-Bhaskar.jpg",
+        eyebrow: "National circulation leadership",
+        stat: { value: "4th" },
+        statLabel: "Largest daily, worldwide",
+        body: "Consumer-connect programmes, insights-led GTM, and cross-functional alignment at national scale.",
+      },
+      {
+        slug: "mohan-babu-university",
+        name: "Mohan Babu University",
+        logo: "MBU.jpg",
+        eyebrow: "Brownfield to university",
+        stat: { value: "18k", suffix: "+" },
+        statLabel: "Students, up from 7,000",
+        body: "86% placements, 3,100 offers, NAAC A+. Partnerships with Penn State, RWTH, and UW-Madison.",
+      },
+      {
+        slug: "valmar",
+        name: "Valmar",
+        logo: "valmar.jpg",
+        eyebrow: "Student housing & food-tech",
+        stat: { prefix: "₹", value: "80", suffix: "cr+" },
+        statLabel: "FY25 revenue",
+        body: "5,000+ beds, 24,000 meals a day, ₹38 cr+ EBITDA, with a 10,000+ bed pipeline.",
+      },
+    ] satisfies CaseItem[],
+  },
+  cta: {
+    primaryCta: { label: "Book a working session", href: "/get-in-touch" },
+    secondaryCta: { label: "Explore case studies", href: "/case-studies" },
+  },
+};

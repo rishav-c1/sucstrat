@@ -1,0 +1,10 @@
+.eyebrow {
+  display: block;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 11px;
+  font-weight: 600;
+  /* blue-700 (not blue-600) so 11px eyebrows clear AA on white AND tinted bands. */
+  color: var(--blue-700);
+}

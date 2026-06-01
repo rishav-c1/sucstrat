@@ -1,0 +1,80 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-header);
+  background: var(--navy-800);
+  border-bottom: 1px solid transparent;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
+}
+
+/* Driven by ScrollShadow setting body[data-scrolled]. */
+:global(body[data-scrolled="true"]) .header {
+  border-bottom-color: var(--line-navy);
+  box-shadow: var(--shadow-header);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-h);
+}
+
+.logoLink {
+  display: inline-flex;
+  align-items: center;
+}
+
+.navList {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.navLink {
+  position: relative;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: #fff;
+  opacity: 0.82;
+  transition: opacity 0.2s;
+}
+.navLink:hover {
+  opacity: 1;
+}
+.navLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -7px;
+  height: 2px;
+  background: var(--blue-500);
+  transition: right 0.25s;
+}
+.navLink:hover::after,
+.navLinkActive::after {
+  right: 0;
+}
+.navLinkActive {
+  opacity: 1;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+@media (max-width: 900px) {
+  .desktopNav {
+    display: none;
+  }
+  .headerCta {
+    display: none;
+  }
+}

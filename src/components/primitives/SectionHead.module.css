@@ -1,0 +1,19 @@
+.head {
+  margin-bottom: 46px;
+}
+.title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(30px, 4.2vw, 48px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--navy-800);
+  max-width: 740px;
+  margin-top: 14px;
+}
+.lead {
+  max-width: 580px;
+  color: var(--muted);
+  font-size: 17px;
+  margin-top: 14px;
+}

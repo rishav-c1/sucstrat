@@ -1,0 +1,137 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--hero-bg);
+  overflow: hidden;
+  padding: 110px 0 70px;
+}
+
+.media {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  z-index: 1;
+  background: var(--navy-800);
+  -webkit-mask: linear-gradient(105deg, transparent 0, rgba(0, 0, 0, 0.4) 18%, #000 38%);
+  mask: linear-gradient(105deg, transparent 0, rgba(0, 0, 0, 0.4) 18%, #000 38%);
+}
+
+.wrap {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+.inner {
+  max-width: 560px;
+}
+
+.eyebrow {
+  color: var(--blue-700);
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(34px, 5vw, 60px);
+  line-height: 1.07;
+  letter-spacing: -0.02em;
+  color: var(--navy-800);
+  margin-top: 22px;
+}
+.line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+.line > span {
+  display: block;
+}
+.em {
+  color: var(--blue-600);
+  position: relative;
+  white-space: nowrap;
+}
+.underline {
+  position: absolute;
+  left: 0;
+  bottom: -7px;
+  width: 100%;
+  height: 11px;
+  overflow: visible;
+}
+.underline path {
+  stroke: var(--blue-500);
+  stroke-width: 3;
+  fill: none;
+  stroke-linecap: round;
+}
+
+.sub {
+  max-width: 500px;
+  margin-top: 26px;
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.acts {
+  display: flex;
+  gap: 14px;
+  margin-top: 36px;
+}
+.acts a {
+  padding: 15px 30px;
+  font-size: 15px;
+}
+
+/* Entrance animations only when motion is welcome. The h1 (the LCP element) is NOT
+   animated, so it paints immediately; only smaller, non-LCP elements fade in. */
+@media (prefers-reduced-motion: no-preference) {
+  .eyebrow,
+  .sub,
+  .acts {
+    opacity: 0;
+    animation: heroFade 0.7s forwards;
+  }
+  .eyebrow {
+    animation-delay: 0.05s;
+  }
+  .sub {
+    animation-delay: 0.2s;
+  }
+  .acts {
+    animation-delay: 0.32s;
+  }
+  .underline path {
+    stroke-dasharray: 260;
+    stroke-dashoffset: 260;
+    animation: heroDraw 1s 0.5s forwards ease;
+  }
+}
+
+@keyframes heroFade {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes heroDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    min-height: auto;
+    padding: 130px 0 64px;
+  }
+  .media {
+    display: none;
+  }
+  .inner {
+    max-width: none;
+  }
+}

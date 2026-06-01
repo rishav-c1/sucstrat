@@ -1,0 +1,71 @@
+/*
+ * Design tokens — confirmed from the reference mockups.
+ * The :root color block is byte-identical across all six reference pages.
+ * Names use CLAUDE.md's palette scale as primitives, with the references'
+ * functional aliases layered on top. (Type-scale + spacing-scale tokens are
+ * finalised in Phase 1.)
+ */
+
+:root {
+  /* ===== Color primitives ===== */
+  --navy-900: #1b3140;
+  --navy-800: #264259;
+  --blue-700: #355c7d;
+  --blue-600: #4476a1;
+  --blue-500: #5d90ba;
+  --blue-200: #a9c0d8;
+  --mist-100: #cfdbe8;
+  --bg-100: #eef2f7;
+  --bg-50: #f2f6fb;
+  --slate: #5a6e80;
+  --white: #ffffff;
+  --hairline-gray: #e6e6e6;
+
+  /* On-navy text + hairlines */
+  --on-navy: #cdd9e6;
+  --on-navy-mute: #8ba0b5;
+  --line: rgba(38, 66, 89, 0.14);
+  --line-2: rgba(38, 66, 89, 0.24);
+  --line-navy: rgba(255, 255, 255, 0.14);
+
+  /* ===== Functional aliases (match reference component CSS) ===== */
+  --ink: var(--navy-800);
+  --muted: var(--slate);
+  --paper: var(--white);
+  --hero-bg: var(--bg-50);
+  --mist: var(--bg-100);
+  --accent: var(--blue-600);
+  --accent-soft: var(--blue-500);
+  /* Accent text on dark navy bands — meets WCAG AA (≥4.5:1) on both navy-800 and
+     navy-900, where --blue-500 fails for small text. Use for eyebrows/taglines on navy. */
+  --accent-on-dark: var(--blue-200);
+
+  /* ===== Type families (next/font injects --font-lora / --font-lato on <html>) ===== */
+  --font-serif: var(--font-lora), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-lato), system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* ===== Layout scale ===== */
+  --container-max: 1200px;
+  --gutter: 48px;
+  --gutter-mobile: 24px;
+  --header-h: 76px;
+  --section-y: 100px;
+
+  /* ===== Radius ===== */
+  --radius-sm: 2px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+
+  /* ===== Elevation ===== */
+  --shadow-header: 0 2px 24px rgba(0, 0, 0, 0.18);
+  --shadow-card: 0 16px 44px rgba(38, 66, 89, 0.1);
+  --shadow-pop: 0 14px 40px rgba(38, 66, 89, 0.18);
+
+  /* ===== Motion ===== */
+  --ease-out: cubic-bezier(0.16, 0.84, 0.44, 1);
+  --reveal-distance: 22px;
+
+  /* ===== Z-index ===== */
+  --z-header: 100;
+  --z-skip: 1000;
+}

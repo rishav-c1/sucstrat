@@ -1,0 +1,13 @@
+.section {
+  padding: 100px 0;
+}
+.paper {
+  background: var(--paper);
+}
+.mist {
+  background: var(--mist);
+}
+.navy {
+  background: var(--navy-800);
+  color: #fff;
+}

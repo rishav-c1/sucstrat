@@ -1,0 +1,142 @@
+.founder {
+  padding: 72px 0;
+  background: var(--mist);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 0.78fr 1.22fr;
+  gap: 52px;
+  align-items: center;
+}
+
+.portraitWrap {
+  width: 100%;
+}
+.portrait {
+  aspect-ratio: 4 / 5;
+  background: var(--navy-800);
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+.portraitImg {
+  object-fit: cover;
+  object-position: 50% 18%;
+  filter: grayscale(1) contrast(1.04);
+  transition: filter 0.45s ease;
+}
+.portrait:hover .portraitImg {
+  filter: grayscale(0) contrast(1);
+}
+
+.eyebrow {
+  color: var(--blue-700);
+}
+.name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(32px, 4.2vw, 48px);
+  color: var(--navy-800);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  margin-top: 12px;
+}
+.role {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--muted);
+  margin: 3px 0 16px;
+}
+.highlight {
+  border-left: 3px solid var(--blue-600);
+  background: #fff;
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  padding: 13px 18px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--navy-800);
+  margin-bottom: 16px;
+}
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.tile {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 13px 14px;
+}
+.tileValue {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--navy-800);
+  line-height: 1.05;
+}
+.tileLabel {
+  font-size: 11.5px;
+  color: var(--muted);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.para {
+  color: var(--ink);
+  font-size: 15.5px;
+  margin-bottom: 10px;
+  max-width: 640px;
+  line-height: 1.55;
+}
+.cred {
+  margin-top: 18px;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+.credLabel {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--blue-700);
+  margin-bottom: 12px;
+}
+.credRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.credItem {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+}
+.credOrg {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--navy-800);
+}
+.credRole {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 2px;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .tiles {
+    grid-template-columns: 1fr 1fr;
+  }
+}

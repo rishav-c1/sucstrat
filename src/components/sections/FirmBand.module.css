@@ -1,0 +1,16 @@
+.band {
+  padding: 64px 0;
+  background: var(--mist);
+}
+.line {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(24px, 3.2vw, 34px);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--navy-800);
+  border-left: 3px solid var(--blue-600);
+  padding-left: 22px;
+  margin-top: 14px;
+  max-width: 860px;
+}

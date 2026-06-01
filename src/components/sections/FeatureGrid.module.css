@@ -1,0 +1,117 @@
+.head {
+  margin-bottom: 46px;
+}
+.eyebrow {
+  display: block;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--blue-700);
+}
+.title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(28px, 4vw, 44px);
+  color: var(--navy-800);
+  margin-top: 14px;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+}
+.lead {
+  color: var(--muted);
+  max-width: 580px;
+  margin-top: 14px;
+  font-size: 17px;
+}
+
+.grid {
+  display: grid;
+  gap: 16px;
+}
+.grid[data-cols="4"] {
+  grid-template-columns: repeat(4, 1fr);
+}
+.grid[data-cols="2"] {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 26px 24px 28px;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card);
+  border-color: var(--navy-800);
+}
+.ico {
+  display: block;
+  width: 34px;
+  height: 34px;
+  color: var(--blue-600);
+  margin-bottom: 16px;
+}
+.ico svg {
+  width: 100%;
+  height: 100%;
+}
+.cardTitle {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 19px;
+  color: var(--navy-800);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.cardBody {
+  font-size: 14.5px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* Dark (navy) sections. */
+.inner[data-bg="navy"] .eyebrow {
+  color: var(--accent-on-dark);
+}
+.inner[data-bg="navy"] .title {
+  color: #fff;
+}
+.inner[data-bg="navy"] .lead {
+  color: var(--on-navy);
+}
+.inner[data-bg="navy"] .card {
+  background: var(--navy-deep, #1b3140);
+  border-color: var(--line-navy);
+}
+.inner[data-bg="navy"] .card:hover {
+  border-color: var(--blue-500);
+}
+.inner[data-bg="navy"] .cardTitle {
+  color: #fff;
+}
+.inner[data-bg="navy"] .cardBody {
+  color: var(--on-navy);
+}
+.inner[data-bg="navy"] .ico {
+  color: var(--blue-500);
+}
+
+@media (max-width: 980px) {
+  .grid[data-cols="4"] {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .grid[data-cols="4"],
+  .grid[data-cols="2"] {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,71 @@
+.layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+.heading {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(28px, 3.5vw, 40px);
+  color: var(--navy-800);
+  letter-spacing: -0.02em;
+}
+.lead {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.55;
+  margin: 12px 0 28px;
+  max-width: 520px;
+}
+.leadLink {
+  color: var(--blue-700);
+  font-weight: 600;
+}
+.leadLink:hover {
+  color: var(--navy-800);
+}
+.aside {
+  background: var(--mist);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+}
+.asideHeading {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--navy-800);
+  margin-bottom: 12px;
+}
+.email {
+  display: inline-block;
+  font-size: 18px;
+  color: var(--blue-700);
+  font-weight: 600;
+}
+.email:hover {
+  color: var(--navy-800);
+}
+.linkedin {
+  display: block;
+  margin-top: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--blue-700);
+}
+.linkedin:hover {
+  color: var(--navy-800);
+}
+.note {
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 16px;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}

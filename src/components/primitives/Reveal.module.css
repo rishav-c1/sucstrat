@@ -1,0 +1,21 @@
+/* Content is ALWAYS visible (opacity stays 1) so a reveal never delays LCP and is
+   safe for no-JS users and crawlers. The effect is a transform-only slide, enabled
+   only when JS + IntersectionObserver exist (html[data-js], set pre-paint).
+   Transform animation also keeps CLS at 0 (it doesn't trigger layout). */
+.reveal {
+  transform: none;
+}
+:global(html[data-js]) .reveal {
+  transform: translateY(var(--reveal-distance));
+  transition: transform 0.6s var(--ease-out);
+}
+:global(html[data-js]) .reveal.shown {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(html[data-js]) .reveal {
+    transform: none;
+    transition: none;
+  }
+}

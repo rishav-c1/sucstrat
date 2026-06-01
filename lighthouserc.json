@@ -1,0 +1,28 @@
+{
+  "ci": {
+    "collect": {
+      "startServerCommand": "pnpm start",
+      "url": [
+        "http://localhost:3000/",
+        "http://localhost:3000/what-we-do",
+        "http://localhost:3000/know-us",
+        "http://localhost:3000/clients",
+        "http://localhost:3000/careers",
+        "http://localhost:3000/knowledge",
+        "http://localhost:3000/get-in-touch",
+        "http://localhost:3000/case-studies",
+        "http://localhost:3000/case-studies/sakshi-media-group"
+      ],
+      "numberOfRuns": 1
+    },
+    "assert": {
+      "assertions": {
+        "categories:performance": ["warn", { "minScore": 0.95 }],
+        "categories:accessibility": ["error", { "minScore": 0.95 }],
+        "categories:best-practices": ["error", { "minScore": 0.95 }],
+        "categories:seo": ["error", { "minScore": 0.95 }]
+      }
+    },
+    "upload": { "target": "filesystem", "outputDir": ".lighthouseci" }
+  }
+}

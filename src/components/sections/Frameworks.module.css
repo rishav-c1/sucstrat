@@ -1,0 +1,70 @@
+.head {
+  margin-bottom: 46px;
+}
+.eyebrow {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent-on-dark);
+}
+.title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(28px, 4vw, 44px);
+  color: #fff;
+  margin-top: 14px;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+}
+.lead {
+  color: var(--on-navy);
+  max-width: 600px;
+  margin-top: 14px;
+  font-size: 17px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+.card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: 30px 28px;
+}
+.num {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--blue-700);
+}
+.dia {
+  margin: 8px 0 4px;
+}
+.diaSvg {
+  width: 100%;
+  height: auto;
+  max-width: 250px;
+  display: block;
+}
+.cardTitle {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--navy-800);
+  margin: 8px 0;
+  line-height: 1.15;
+}
+.cardBody {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+@media (max-width: 700px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

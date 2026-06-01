@@ -1,0 +1,163 @@
+.title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(26px, 3.5vw, 40px);
+  color: var(--navy-800);
+  letter-spacing: -0.02em;
+  margin-bottom: 32px;
+}
+.grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.cell {
+  display: flex;
+}
+.card {
+  position: relative;
+  width: 100%;
+  height: 430px;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  text-decoration: none;
+  transition:
+    transform 0.25s,
+    box-shadow 0.25s;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 24px 52px rgba(20, 37, 49, 0.3);
+}
+
+/* Tile backgrounds (radial gradients verbatim from the mockup). */
+.tileNavy {
+  background: var(--navy-800);
+}
+.tileG1 {
+  background: radial-gradient(125% 95% at 50% 118%, #8cb4db 0%, #4d80ad 42%, #264259 84%);
+}
+.tileG2 {
+  background:
+    radial-gradient(58% 48% at 16% 90%, rgba(140, 180, 219, 0.95), transparent 72%),
+    radial-gradient(85% 72% at 98% 108%, rgba(118, 160, 206, 0.92), transparent 70%), #233e59;
+}
+.tileLight {
+  background: var(--mist);
+  border: 1px solid var(--line);
+}
+
+.motif {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.tag {
+  position: relative;
+  z-index: 2;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 700;
+  /* accent-on-dark keeps small uppercase tags ≥AA on the solid-navy tile */
+  color: var(--accent-on-dark);
+}
+.tileLight .tag {
+  color: var(--blue-700);
+}
+.cardTitle {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.26;
+  margin-top: 14px;
+  color: #fff;
+}
+.tileLight .cardTitle {
+  color: var(--navy-800);
+}
+.desc {
+  position: relative;
+  z-index: 2;
+  font-size: 14px;
+  line-height: 1.5;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.45s ease,
+    opacity 0.4s ease,
+    margin-top 0.4s ease;
+  color: var(--on-navy);
+}
+.tileLight .desc {
+  color: var(--muted);
+}
+.card:hover .desc {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 14px;
+}
+.more {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+}
+.tileLight .more {
+  color: var(--blue-700);
+}
+.card:hover .more {
+  opacity: 1;
+  transform: none;
+  margin-top: 14px;
+}
+
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  /* Touch: cards grow and reveal content (no hover). */
+  .card {
+    height: auto;
+    min-height: 300px;
+  }
+  .desc {
+    max-height: none;
+    opacity: 1;
+    margin-top: 14px;
+  }
+  .more {
+    opacity: 1;
+    transform: none;
+    margin-top: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .desc {
+    transition: none;
+  }
+}
