@@ -2,16 +2,11 @@
 
 import { useState } from "react";
 import clsx from "clsx";
+import type { Practice } from "@/content/types";
 import styles from "./PracticeAccordion.module.css";
 
-interface AccordionItem {
-  num: string;
-  title: string;
-  body: string;
-}
-
 /** One-open-at-a-time accordion (What We Do practices). Client leaf. */
-export function PracticeAccordion({ items }: { items: AccordionItem[] }) {
+export function PracticeAccordion({ items }: { items: Practice[] }) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
@@ -37,7 +32,14 @@ export function PracticeAccordion({ items }: { items: AccordionItem[] }) {
               </button>
             </h3>
             <div id={panelId} role="region" aria-labelledby={buttonId} className={styles.panel} hidden={!isOpen}>
-              <p className={styles.body}>{item.body}</p>
+              <p className={styles.tagline}>{item.tagline}</p>
+              <ul className={styles.services}>
+                {item.services.map((service) => (
+                  <li key={service} className={styles.service}>
+                    {service}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         );

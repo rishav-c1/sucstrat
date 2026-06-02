@@ -14,6 +14,7 @@ export const SITE = {
   careersEmail: "ashley@v3consultant.com",
   founder: "Vinay Maheshwari",
   founderRole: "Founder & Principal Consultant",
+  address: "209/210 Tower 1, Assotech Business Cresterra, Sector 135, Noida",
 } as const;
 
 /** Base URL for brand/client/award logo images (live on the SucStrat WordPress). */
@@ -66,7 +67,6 @@ export const FOOTER_NAV: { heading: string; links: NavLink[] }[] = [
     heading: "More",
     links: [
       { label: "Knowledge", href: "/knowledge" },
-      { label: "Case Studies", href: "/case-studies" },
       { label: "Get in Touch", href: "/get-in-touch" },
     ],
   },

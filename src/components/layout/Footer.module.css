@@ -54,6 +54,15 @@
   color: #fff;
 }
 
+.address {
+  font-style: normal;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--on-navy);
+  margin-top: 14px;
+  max-width: 215px;
+}
+
 .base {
   display: flex;
   justify-content: space-between;

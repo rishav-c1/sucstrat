@@ -45,7 +45,7 @@ export function LogoWall({
                       src={`${LOGO_BASE}/${item.logo}`}
                       alt={item.name}
                       fill
-                      sizes="(max-width: 600px) 45vw, 150px"
+                      sizes="(max-width: 600px) 45vw, 210px"
                       className={styles.img}
                     />
                   </li>

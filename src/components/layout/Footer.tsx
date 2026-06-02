@@ -41,6 +41,7 @@ export function Footer() {
                   </a>
                 </li>
               </ul>
+              <address className={styles.address}>{SITE.address}</address>
             </div>
           </nav>
         </div>

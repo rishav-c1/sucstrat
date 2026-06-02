@@ -29,6 +29,12 @@
   transform: translateY(-5px);
   box-shadow: var(--shadow-card);
 }
+/* Non-linking (Home proof) cards: keep the logo colour reveal, drop the click affordance. */
+.card[data-static]:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--line);
+}
 
 .logo {
   display: flex;

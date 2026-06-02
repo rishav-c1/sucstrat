@@ -1,16 +1,99 @@
-import type { IconCard, IndustryTile, Metric } from "./types";
+import type { IconCard, IndustryTile, Metric, Practice } from "./types";
 
-// The mockup's "Seven integrated practices" section ships only a heading (no accordion
-// items). Titles are verbatim from the homepage practice list; the descriptions below
-// are concise DRAFT copy describing each practice area. TODO(content): client review.
-const PRACTICES = [
-  { num: "01", title: "Strategy", body: "Corporate, growth, and turnaround strategy — from vision and market positioning to a fundable, executable operating plan." },
-  { num: "02", title: "Digital & AI Transformation", body: "AI, data, and digital tooling embedded into how the business runs, so capability compounds rather than ages." },
-  { num: "03", title: "Business Transformation", body: "Operating-model, cost, and performance redesign that moves the numbers — and holds once we step back." },
-  { num: "04", title: "Marketing, Brand & Communication", body: "Brand, go-to-market, and communications that build demand and tell one coherent story across every channel." },
-  { num: "05", title: "Startup & Leadership Advisory", body: "Hands-on guidance for founders, promoters, and CXOs — from zero-to-one through scaling the leadership team." },
-  { num: "06", title: "Venture Funding & Investment", body: "Investment readiness, capital structuring, and fundraising support — from the narrative and model through to close." },
-  { num: "07", title: "Public Policy & Social Impact", body: "Policy, institutions, and social-impact programmes designed and delivered for measurable, lasting outcomes." },
+// Seven practices — title, tagline, and sub-services (client-supplied content).
+const PRACTICES: Practice[] = [
+  {
+    num: "01",
+    title: "Strategy",
+    tagline: "Adaptive. Future-ready. Outcome-focused.",
+    services: [
+      "Corporate Strategy",
+      "Growth Strategy",
+      "India Entry",
+      "M&A Advisory",
+      "Go-To-Market",
+      "Business Model Innovation",
+      "Competitive Positioning",
+      "Revenue Acceleration",
+    ],
+  },
+  {
+    num: "02",
+    title: "Digital & AI Transformation",
+    tagline: "Human insight. Intelligent systems.",
+    services: [
+      "Digital Transformation",
+      "AI Visibility Strategy",
+      "Advanced Analytics",
+      "Automation Strategy",
+      "Martech Integration",
+      "Innovation Consulting",
+    ],
+  },
+  {
+    num: "03",
+    title: "Business Transformation",
+    tagline: "Reimagine. Reform. Scale.",
+    services: [
+      "Organisational Transformation",
+      "Turnaround Strategy",
+      "Operational Excellence",
+      "Sales Transformation",
+      "Culture Transformation",
+      "Change Management",
+    ],
+  },
+  {
+    num: "04",
+    title: "Marketing, Brand & Communication",
+    tagline: "Strategy meets market impact.",
+    services: [
+      "Brand Positioning",
+      "CEO Branding",
+      "PR & Communication",
+      "Reputation Management",
+      "Thought Leadership",
+      "Narrative Architecture",
+    ],
+  },
+  {
+    num: "05",
+    title: "Startup & Leadership Advisory",
+    tagline: "Helping visionary leaders scale.",
+    services: [
+      "Founder Mentorship",
+      "Leadership Coaching",
+      "Growth Advisory",
+      "Strategic Scaling",
+      "Ecosystem Partnerships",
+    ],
+  },
+  {
+    num: "06",
+    title: "Venture Funding & Investment",
+    tagline: "Enabling visionary startups to scale.",
+    services: [
+      "Investor Readiness",
+      "Pitch Deck Development",
+      "Fundraising Strategy",
+      "VC & Angel Connects",
+      "Due Diligence Support",
+      "Scale Roadmaps",
+    ],
+  },
+  {
+    num: "07",
+    title: "Public Policy & Social Impact",
+    tagline: "Strategy for meaningful change.",
+    services: [
+      "Policy Communication",
+      "Public Engagement",
+      "ESG & Sustainability",
+      "Rural Development",
+      "Community Transformation",
+      "Impact Ecosystem Building",
+    ],
+  },
 ];
 
 export const WHAT_WE_DO = {

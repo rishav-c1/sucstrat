@@ -38,7 +38,7 @@ Built across the phased plan in `PLAN.md`. All six content pages + `/get-in-touc
 
 | # | Item | Where | Current state |
 |---|---|---|---|
-| 1 | **Seven practice descriptions** | `/what-we-do` accordion (`content/whatWeDo.ts`) | Titles verbatim from Home; bodies are concise **`TODO(content)` drafts** (one line each) — replace with client-supplied copy. Not fabricated claims/metrics. |
+| 1 | **Seven practice descriptions** | `/what-we-do` accordion (`content/whatWeDo.ts`) | ✅ **Done** — client-supplied taglines + sub-service lists for all seven practices (rendered as tagline + service chips). |
 | 2 | **Third-party logos** — 24 client (Clients), 5 award (Know Us), 4 case (Home/Clients) | logo wall / awards / case cards | Now rendered via `next/image` **hot-linked from the live `sucstrat.com` CDN** (same source URLs as the mockups; `remotePatterns` allow-listed; grayscale→colour). **For production: self-host** the assets under `/static` (or a CDN you control) so the site doesn't depend on the WordPress origin, then drop the remote pattern. |
 | 3 | **Real brand mark** | `app/icon.svg`, `app/apple-icon.tsx` | Favicon is a square navy **monogram** ("S") + a 180×180 `apple-icon` (both derived, not the wordmark); structured-data `logo` wired. **Pending:** a real designed square mark / SVG master to swap in, and (optional) a query-less `app/favicon.ico` (needs a rasterizer). |
 | 4 | **Privacy / Terms** | footer | Plain text (no pages provided). Decide whether to add `/privacy`, `/terms`. |

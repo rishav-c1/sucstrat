@@ -20,8 +20,8 @@ export default function HomePage() {
       <StatBand eyebrow={impact.eyebrow} title={impact.title} metrics={impact.metrics} columns={3} />
       <GlobalImpact />
       <PracticeList />
-      <CaseCards title={cases.title} lead={cases.sub} items={cases.items} id="cases" />
       <FounderBio founder={HOME.founder} />
+      <CaseCards title={cases.title} lead={cases.sub} items={cases.items} id="cases" linked={false} />
       <CtaBand
         title={
           <>

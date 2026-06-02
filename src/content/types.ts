@@ -100,6 +100,14 @@ export interface IndustryTile {
   icon: IconName;
 }
 
+/** A practice in the What We Do accordion — title + tagline + its sub-services. */
+export interface Practice {
+  num: string;
+  title: string;
+  tagline: string;
+  services: string[];
+}
+
 /** A list card with a line icon (Know Us "Impact at a glance"). */
 export interface ImpactGlanceCard {
   label: string;
