@@ -11,6 +11,12 @@
 .hero > * {
   width: 100%;
 }
+/* No-CTA pages (e.g. Get in Touch): drop the 64vh min-height + trim the bottom so the
+   block doesn't float in a tall empty band where the CTA buttons would have been. */
+.compact {
+  min-height: 0;
+  padding-bottom: 28px;
+}
 .inner {
   max-width: 760px;
   text-align: left;
