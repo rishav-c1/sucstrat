@@ -45,6 +45,26 @@
   border-bottom: 1px solid var(--line);
 }
 .logoBox {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 170px;
+  height: 44px;
+}
+.logoImg {
+  object-fit: contain;
+  object-position: left center;
+  filter: grayscale(1);
+  opacity: 0.62;
+  transition:
+    filter 0.28s,
+    opacity 0.28s;
+}
+.card:hover .logoImg {
+  filter: grayscale(0);
+  opacity: 1;
+}
+.logoName {
   display: flex;
   align-items: center;
   min-height: 44px;
@@ -56,7 +76,7 @@
   opacity: 0.85;
   transition: opacity 0.28s;
 }
-.card:hover .logoBox {
+.card:hover .logoName {
   opacity: 1;
 }
 

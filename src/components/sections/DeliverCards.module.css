@@ -1,6 +1,8 @@
+/* Top color matches the EDGE block's dark bottom (#16293d), then eases into navy so the
+   EDGE -> How-we-deliver transition reads as one continuous navy region (no seam). */
 .deliver {
   padding: 100px 0;
-  background: var(--navy-800);
+  background: linear-gradient(180deg, #16293d 0%, #1b3140 34%, #233f57 100%);
   color: #fff;
 }
 .head {
@@ -28,18 +30,28 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 1px;
-  background: var(--line-navy);
+  gap: 14px;
 }
 .card {
-  background: var(--navy-800);
-  padding: 30px 24px 32px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(143, 180, 221, 0.18);
+  border-radius: var(--radius-lg);
+  padding: 28px 22px 30px;
+  transition:
+    border-color 0.25s,
+    background-color 0.25s,
+    transform 0.25s;
+}
+.card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(143, 180, 221, 0.4);
+  transform: translateY(-4px);
 }
 .ico {
   display: block;
-  width: 34px;
-  height: 34px;
-  color: var(--blue-500);
+  width: 36px;
+  height: 36px;
+  color: var(--blue-200);
   margin-bottom: 16px;
 }
 .ico svg {
@@ -68,5 +80,11 @@
 @media (max-width: 560px) {
   .grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
   }
 }

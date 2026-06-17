@@ -1,9 +1,38 @@
+import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { SectionHead } from "@/components/primitives/SectionHead";
 import { Reveal } from "@/components/primitives/Reveal";
+import { LOGO_PATH } from "@/content/site";
 import type { LogoItem } from "@/content/types";
 import styles from "./LogoWall.module.css";
+
+/** A logo cell: real logo image when supplied, brand-name placeholder otherwise. */
+function LogoCell({
+  item,
+  cellClass,
+  nameClass,
+}: {
+  item: LogoItem;
+  cellClass: string | undefined;
+  nameClass: string | undefined;
+}) {
+  return (
+    <li className={cellClass}>
+      {item.logo ? (
+        <Image
+          src={`${LOGO_PATH}/${item.logo}`}
+          alt={item.name}
+          fill
+          sizes="(max-width: 600px) 45vw, 200px"
+          className={styles.img}
+        />
+      ) : (
+        <span className={nameClass}>{item.name}</span>
+      )}
+    </li>
+  );
+}
 
 /**
  * Clients roster (v4.0): one clean wall of client wordmarks plus a small startups row,
@@ -32,9 +61,7 @@ export function LogoWall({
         <Reveal>
           <ul className={styles.grid}>
             {logos.map((item) => (
-              <li key={item.name} className={styles.cell}>
-                <span className={styles.name}>{item.name}</span>
-              </li>
+              <LogoCell key={item.name} item={item} cellClass={styles.cell} nameClass={styles.name} />
             ))}
           </ul>
         </Reveal>
@@ -44,9 +71,12 @@ export function LogoWall({
               <h3 className={styles.srOnly}>Startups</h3>
               <ul className={styles.startupRow}>
                 {startups.map((item) => (
-                  <li key={item.name} className={styles.startupCell}>
-                    <span className={styles.startupName}>{item.name}</span>
-                  </li>
+                  <LogoCell
+                    key={item.name}
+                    item={item}
+                    cellClass={styles.startupCell}
+                    nameClass={styles.startupName}
+                  />
                 ))}
               </ul>
             </div>

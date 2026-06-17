@@ -61,8 +61,6 @@ export default function KnowUsPage() {
         intro={k.expertise.intro}
         specialisationsLabel={k.expertise.specialisationsLabel}
         specialisations={k.expertise.specialisations}
-        sectorsLabel={k.expertise.sectorsLabel}
-        sectors={k.expertise.sectors}
         pedigreeLabel={k.expertise.pedigreeLabel}
         pedigreeNote={k.expertise.pedigreeNote}
         pedigree={k.expertise.pedigree}

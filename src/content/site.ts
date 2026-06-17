@@ -35,6 +35,9 @@ export const LINKEDIN_URL = "https://www.linkedin.com/company/sucstrat";
  */
 export const SOCIAL_PROFILES: string[] = [LINKEDIN_URL];
 
+/** Local base path for brand/client/award logo images (served from /public/logos). */
+export const LOGO_PATH = "/logos";
+
 export interface NavLink {
   label: string;
   href: string;

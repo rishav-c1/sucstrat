@@ -11,8 +11,6 @@ interface Props {
   intro: string;
   specialisationsLabel: string;
   specialisations: ExpertiseGroup[];
-  sectorsLabel: string;
-  sectors: string[];
   pedigreeLabel: string;
   pedigreeNote: string;
   pedigree: PedigreeGroup[];
@@ -29,8 +27,6 @@ export function CollectiveExpertise({
   intro,
   specialisationsLabel,
   specialisations,
-  sectorsLabel,
-  sectors,
   pedigreeLabel,
   pedigreeNote,
   pedigree,
@@ -62,19 +58,6 @@ export function CollectiveExpertise({
               </li>
             ))}
           </ul>
-        </Reveal>
-
-        <Reveal>
-          <div className={styles.tagsBlock}>
-            <h3 className={styles.subLabel}>{sectorsLabel}</h3>
-            <ul className={styles.tags}>
-              {sectors.map((sector) => (
-                <li key={sector} className={styles.tag}>
-                  {sector}
-                </li>
-              ))}
-            </ul>
-          </div>
         </Reveal>
 
         <Reveal>
