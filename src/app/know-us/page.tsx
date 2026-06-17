@@ -2,19 +2,22 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/sections/PageHero";
 import { FirmBand } from "@/components/sections/FirmBand";
 import { FeatureGrid } from "@/components/sections/FeatureGrid";
+import { EngagementModels } from "@/components/sections/EngagementModels";
 import { FounderBio } from "@/components/sections/FounderBio";
-import { ImpactGlance } from "@/components/sections/ImpactGlance";
+import { CollectiveExpertise } from "@/components/sections/CollectiveExpertise";
 import { Frameworks } from "@/components/sections/Frameworks";
 import { AwardsStrip } from "@/components/sections/AwardsStrip";
+import { ImpactGlance } from "@/components/sections/ImpactGlance";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { JsonLd } from "@/components/primitives/JsonLd";
 import { breadcrumbJsonLd, personJsonLd } from "@/lib/jsonld";
 import { KNOW_US } from "@/content/knowUs";
+import { HOME } from "@/content/home";
 
 export const metadata: Metadata = {
   title: "Know Us",
   description:
-    "Meet SucStrat and founder Vinay Maheshwari — proprietary frameworks and a thirty-year track record of turnarounds and scale.",
+    "An execution-first consulting firm. 195+ leaders who build, scale, and turn around businesses, in the room until rhythm holds.",
   alternates: { canonical: "/know-us" },
 };
 
@@ -37,17 +40,42 @@ export default function KnowUsPage() {
       <FirmBand eyebrow={k.firm.eyebrow} statement={k.firm.statement} />
       <FeatureGrid
         id="how"
-        eyebrow={k.howWeWork.eyebrow}
-        title={k.howWeWork.title}
-        lead={k.howWeWork.lead}
-        cards={k.howWeWork.cards}
+        eyebrow={k.howWeLead.eyebrow}
+        title={k.howWeLead.title}
+        lead={k.howWeLead.lead}
+        cards={k.howWeLead.cards}
         columns={4}
         bg="paper"
       />
-      <FounderBio founder={k.founder} />
-      <ImpactGlance {...k.impactGlance} />
-      <Frameworks {...k.frameworks} />
+      <EngagementModels
+        eyebrow={k.engagement.eyebrow}
+        title={k.engagement.title}
+        lead={k.engagement.lead}
+        models={k.engagement.models}
+      />
+      {/* The Pivot: same component and content as Home. */}
+      <FounderBio founder={HOME.founder} />
+      <CollectiveExpertise
+        eyebrow={k.expertise.eyebrow}
+        title={k.expertise.title}
+        intro={k.expertise.intro}
+        specialisationsLabel={k.expertise.specialisationsLabel}
+        specialisations={k.expertise.specialisations}
+        sectorsLabel={k.expertise.sectorsLabel}
+        sectors={k.expertise.sectors}
+        pedigreeLabel={k.expertise.pedigreeLabel}
+        pedigreeNote={k.expertise.pedigreeNote}
+        pedigree={k.expertise.pedigree}
+      />
+      <Frameworks
+        eyebrow={k.frameworks.eyebrow}
+        title={k.frameworks.title}
+        lead={k.frameworks.lead}
+        label={k.frameworks.label}
+        cards={k.frameworks.cards}
+      />
       <AwardsStrip {...k.awards} />
+      <ImpactGlance {...k.impactGlance} />
       <CtaBand
         title={
           <>
@@ -55,7 +83,6 @@ export default function KnowUsPage() {
           </>
         }
         primaryCta={k.cta.primaryCta}
-        secondaryCta={k.cta.secondaryCta}
       />
       <JsonLd
         data={[

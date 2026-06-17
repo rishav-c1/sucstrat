@@ -13,10 +13,8 @@ const nextConfig: NextConfig = {
     inlineCss: true,
   },
   images: {
-    // Brand/client/award logos are served from the SucStrat WordPress; next/image
-    // fetches + optimizes them server-side. TODO(content): self-host for production.
-    remotePatterns: [{ protocol: "https", hostname: "sucstrat.com", pathname: "/wp-content/uploads/**" }],
-    // GitHub Pages has no image optimizer — serve images as-is in the export build.
+    // v4.0 self-contained gate: all imagery is local (next/image over /static + /public),
+    // no remote patterns. GitHub Pages has no image optimizer, so serve as-is on export.
     ...(isExport ? { unoptimized: true } : {}),
   },
   ...(isExport

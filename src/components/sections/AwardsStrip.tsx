@@ -1,9 +1,7 @@
-import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { SectionHead } from "@/components/primitives/SectionHead";
 import { Reveal } from "@/components/primitives/Reveal";
-import { LOGO_BASE } from "@/content/site";
 import type { LogoItem } from "@/content/types";
 import styles from "./AwardsStrip.module.css";
 
@@ -27,15 +25,11 @@ export function AwardsStrip({
         </Reveal>
         <Reveal>
           <ul className={styles.row}>
+            {/* Award logos deferred (v4.0): each award name stands in as a labelled
+                placeholder until the real logo files are supplied. */}
             {logos.map((item) => (
               <li key={item.name} className={styles.item}>
-                <Image
-                  src={`${LOGO_BASE}/${item.logo}`}
-                  alt={item.name}
-                  fill
-                  sizes="(max-width: 600px) 45vw, 180px"
-                  className={styles.img}
-                />
+                <span className={styles.name}>{item.name}</span>
               </li>
             ))}
           </ul>

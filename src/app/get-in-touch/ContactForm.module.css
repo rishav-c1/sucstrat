@@ -49,6 +49,10 @@ textarea.input {
   resize: vertical;
   min-height: 120px;
 }
+.input[aria-invalid="true"] {
+  border-color: #d0473b;
+  box-shadow: 0 0 0 3px rgba(163, 22, 12, 0.12);
+}
 .fieldError {
   color: #a3160c;
   font-size: 13px;

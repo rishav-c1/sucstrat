@@ -2,7 +2,6 @@ import type { IconCard } from "./types";
 import { SITE } from "./site";
 
 const APPLY = `mailto:${SITE.careersEmail}?subject=Application`;
-const TALENT = `mailto:${SITE.careersEmail}?subject=Talent%20Community`;
 
 export const CAREERS = {
   hero: {
@@ -55,7 +54,7 @@ export const CAREERS = {
     ] satisfies IconCard[],
   },
   cta: {
+    // Single closing CTA (v4.0 Section 0: no closing double-CTA band).
     primaryCta: { label: "Apply now", href: APPLY },
-    secondaryCta: { label: "Join the talent community", href: TALENT },
   },
 };

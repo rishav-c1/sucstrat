@@ -1,67 +1,71 @@
-import type { CaseItem, Metric } from "./types";
+import type { CaseItem, LogoItem, Metric } from "./types";
 
 export const CLIENTS = {
   hero: {
     eyebrow: "Clients",
     title: "Partners in performance.",
-    sub: "We work with teams solving high-stakes problems across industries and stages.",
+    sub: "Fortunate to have scaled alongside some of the boldest names in their categories.",
     primaryCta: { label: "Work with us", href: "/get-in-touch" },
     secondaryCta: { label: "See our work", href: "#cases" },
   },
+  // v4.0: one clean wall of clients + a small startups row (Hypolator moved to startups).
+  // Group headings removed. Logo assets deferred -> names render as labelled placeholders.
   logoWall: {
     eyebrow: "Our clients",
     title: "The companies we build with",
     lead: "From market leaders to emerging disruptors, we partner with organisations that shape industries and scale with intent.",
+    logos: [
+      { name: "Hamar Hajaala" },
+      { name: "Dainikpuri" },
+      { name: "Narayana" },
+      { name: "The Cake Room" },
+      { name: "Sparsh" },
+      { name: "Sree Vidyanikethan" },
+      { name: "New York" },
+      { name: "Nav Bharath" },
+      { name: "Mohan Babu University" },
+      { name: "Maison AVA" },
+      { name: "Kutchina" },
+      { name: "Kespariya" },
+      { name: "AVA" },
+      { name: "24 Frames" },
+      { name: "Valmar" },
+      { name: "EY" },
+      { name: "Korn Ferry" },
+      { name: "S&P" },
+    ] satisfies LogoItem[],
+    startups: [
+      { name: "Hypolator" },
+      { name: "RunTailor" },
+      { name: "Kalaclap" },
+      { name: "Papa Pawsome" },
+      { name: "Therapeutics" },
+      { name: "SpaceBasic" },
+    ] satisfies LogoItem[],
+  },
+  // Interim text (logos deferred). Carried in, not specified in the brief -> flagged.
+  keyClients: {
+    eyebrow: "Across industries",
+    title: "Key clients handled across industries",
+    lead: "Brands the team has worked with across categories. Logos to follow.",
     groups: [
+      { label: "Retail & fashion", names: ["Gap", "A&F", "Walmart", "Macy's", "Tommy Hilfiger", "Levi's"] },
+      { label: "Media & entertainment", names: ["Sony", "Star", "Colors", "&tv", "Eros International"] },
+      { label: "FMCG", names: ["HUL", "P&G", "Dabur", "ITC", "Patanjali", "RHPL"] },
+      { label: "Financial services", names: ["Birla Sun Life", "ICICI Pru", "MobiKwik", "Paytm"] },
+      { label: "Automotive", names: ["Maruti", "Honda", "Hyundai", "KIA"] },
+      { label: "Education", names: ["VIT", "SRM", "Aakash", "FIITJEE", "Narayana", "Sri Chaitanya"] },
       {
-        heading: "Industry leaders",
-        context: "Market leaders and institutions we partner with to shape, turn around, and scale.",
-        logos: [
-          { name: "Hamar Hajaala", logo: "hamar-hajaala.jpg" },
-          { name: "Dainikpuri", logo: "Dainikpuri.jpg" },
-          { name: "Narayana", logo: "Narayana.jpg" },
-          { name: "The Cake Room", logo: "The-Cake-Room.jpg" },
-          { name: "Sparsh", logo: "sparsh.jpg" },
-          { name: "Sree Vidyanikethan", logo: "Sree-Vidyanikethan.jpg" },
-          { name: "New York", logo: "New-York.jpg" },
-          { name: "Nav Bharath", logo: "Nav-Bharath.jpg" },
-          { name: "Mohan Babu University", logo: "MBU.jpg" },
-          { name: "Maison AVA", logo: "Maison-AVA.jpg" },
-          { name: "Hypolator", logo: "Hypolator.jpg" },
-          { name: "Kutchina", logo: "kutchina.jpg" },
-          { name: "Kespariya", logo: "kespariya.jpg" },
-          { name: "AVA", logo: "AVA.jpg" },
-          { name: "24 Frames", logo: "24-frames.jpg" },
-          { name: "Valmar", logo: "valmar.jpg" },
-        ],
-      },
-      {
-        heading: "Alliance network",
-        context: "Collaborators who bring depth, reach, and specialist expertise to client outcomes.",
-        logos: [
-          { name: "EY", logo: "ey-1.jpg" },
-          { name: "Korn Ferry", logo: "Kf.jpg" },
-          { name: "S&P", logo: "SP.jpg" },
-        ],
-      },
-      {
-        heading: "Innovators & startups",
-        context: "High-growth ventures we help unlock new markets and scale.",
-        logos: [
-          { name: "RunTailor", logo: "RunTailor.jpg" },
-          { name: "Kalaclap", logo: "kalaclap.jpg" },
-          { name: "Papa Pawsome", logo: "papa-pawsome.jpg" },
-          { name: "Therapeutics", logo: "therapeutics.jpg" },
-          { name: "SpaceBasic", logo: "spacebasic.jpg" },
-        ],
+        label: "Digital & retail",
+        names: ["Amazon", "Flipkart", "Snapdeal", "Big Bazaar", "Modern Retail", "Disney", "GVK"],
       },
     ],
   },
   stats: [
     { to: 127, suffix: "+", label: "Clients served" },
-    { to: 53, suffix: "+", label: "Institutional clients" },
-    { to: 8, label: "Countries" },
     { to: 21, label: "Sectors" },
+    { to: 53, suffix: "+", label: "Institutional" },
+    { to: 14, suffix: "+", label: "Countries" },
   ] satisfies Metric[],
   cases: {
     eyebrow: "Impact highlights",
@@ -81,9 +85,9 @@ export const CLIENTS = {
         slug: "dainik-bhaskar",
         name: "Dainik Bhaskar",
         logo: "dainik-Bhaskar.jpg",
-        eyebrow: "National circulation leadership",
+        eyebrow: "National media",
         stat: { value: "4th" },
-        statLabel: "Largest daily, worldwide",
+        statLabel: "Among the world's largest by circulation",
         body: "Consumer-connect programmes, insights-led GTM, and cross-functional alignment at national scale.",
       },
       {
@@ -108,6 +112,5 @@ export const CLIENTS = {
   },
   cta: {
     primaryCta: { label: "Book a working session", href: "/get-in-touch" },
-    secondaryCta: { label: "Explore case studies", href: "/case-studies" },
   },
 };

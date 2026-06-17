@@ -5,6 +5,7 @@ import { PageHero } from "@/components/sections/PageHero";
 import { FirmBand } from "@/components/sections/FirmBand";
 import { StatBand } from "@/components/sections/StatBand";
 import { PracticeAccordion } from "@/components/sections/PracticeAccordion";
+import { EdgeBlock } from "@/components/sections/EdgeBlock";
 import { DeliverCards } from "@/components/sections/DeliverCards";
 import { IndustryTiles } from "@/components/sections/IndustryTiles";
 import { CtaBand } from "@/components/sections/CtaBand";
@@ -17,7 +18,7 @@ import { WHAT_WE_DO } from "@/content/whatWeDo";
 export const metadata: Metadata = {
   title: "What We Do",
   description:
-    "Seven integrated consulting practices — strategy, digital & AI, transformation, brand, advisory, funding, and public policy — in one operating discipline.",
+    "Seven practices from strategy and turnaround to capital and AI, under one operating signature: Every Day, Great Execution.",
   alternates: { canonical: "/what-we-do" },
 };
 
@@ -40,6 +41,14 @@ export default function WhatWeDoPage() {
         </Container>
       </Section>
 
+      <EdgeBlock
+        eyebrow={w.edge.eyebrow}
+        acronym={w.edge.acronym}
+        title={w.edge.title}
+        expansions={w.edge.expansions}
+        footer={w.edge.footer}
+      />
+
       <DeliverCards {...w.deliver} />
       <IndustryTiles {...w.industries} />
 
@@ -50,7 +59,6 @@ export default function WhatWeDoPage() {
           </>
         }
         primaryCta={w.cta.primaryCta}
-        secondaryCta={w.cta.secondaryCta}
       />
 
       <JsonLd

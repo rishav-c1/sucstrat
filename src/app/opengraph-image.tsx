@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "SucStrat — Strategy to Scale, execution built in";
+export const alt = "SucStrat · Strategy to Scale, execution built in";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 // Render at build time so it exports to a static file (`output: export`).
@@ -49,7 +49,7 @@ export default function OpengraphImage() {
           <span>execution built in.</span>
         </div>
         <div style={{ fontSize: 28, color: "#cdd9e6", marginTop: 30 }}>
-          India&apos;s only execution-first consulting firm
+          Execution-first consulting firm
         </div>
       </div>
     ),
