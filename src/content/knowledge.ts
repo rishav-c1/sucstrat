@@ -4,7 +4,7 @@ export const KNOWLEDGE = {
   hero: {
     eyebrow: "Knowledge",
     title: "Insights & ideas.",
-    sub: "Selected writing and commentary from Vinay Maheshwari, across education, media, and the business of building things that scale.",
+    sub: "Selected writing and commentary from the SucStrat team, across education, media, and the business of building things that scale.",
     primaryCta: { label: "Get in touch", href: "/get-in-touch" },
     secondaryCta: { label: "Browse insights", href: "#insights" },
   },
