@@ -13,8 +13,7 @@ import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Get in Touch",
-  description:
-    "Tell us who you are and what you're after, and we'll point you to the right person. Start a conversation with SucStrat.",
+  description: "Tell us how we can help. Routing for clients, partners, ventures, media, and speaking.",
   alternates: { canonical: "/get-in-touch" },
 };
 

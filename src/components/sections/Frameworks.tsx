@@ -1,76 +1,134 @@
 import type { CSSProperties, ReactNode } from "react";
+import clsx from "clsx";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { Reveal } from "@/components/primitives/Reveal";
+import type { FrameworkCard } from "@/content/types";
 import styles from "./Frameworks.module.css";
 
 const SERIF: CSSProperties = { fontFamily: "var(--font-serif)" };
 const SANS: CSSProperties = { fontFamily: "var(--font-sans)" };
 
-// Diagram illustrations, keyed by card number — copied verbatim from the mockup.
+/**
+ * On-brand SVG diagram placeholders (brand-blue only, no purple/periwinkle), one per
+ * framework, sketched from the Appendix B descriptions. The locked high-end assets are
+ * not in the repo, so these stand in and are flagged for design sign-off.
+ */
 const DIAGRAMS: Record<string, ReactNode> = {
+  // D Scale-Up Loop: 3-phase loop around a "concentrate to 1 to 3 variables" core.
   "01": (
-    <svg viewBox="0 0 250 118" fill="none" className={styles.diaSvg} aria-hidden="true">
-      <circle cx="48" cy="46" r="17" stroke="#4476a1" strokeWidth="1.6" />
-      <circle cx="125" cy="34" r="17" stroke="#5d90ba" strokeWidth="1.6" />
-      <circle cx="202" cy="46" r="17" stroke="#4476a1" strokeWidth="1.6" />
-      <path d="M66 40 Q92 30 108 34" stroke="#5d90ba" strokeWidth="1.3" />
-      <path d="M142 34 Q170 30 184 40" stroke="#5d90ba" strokeWidth="1.3" />
-      <path d="M196 62 Q125 100 54 62" stroke="#9bb6dd" strokeWidth="1.2" strokeDasharray="3 3" />
-      <text x="48" y="51" textAnchor="middle" style={SERIF} fontSize="15" fill="#264259">1</text>
-      <text x="125" y="39" textAnchor="middle" style={SERIF} fontSize="15" fill="#264259">2</text>
-      <text x="202" y="51" textAnchor="middle" style={SERIF} fontSize="15" fill="#264259">3</text>
-      <text x="48" y="86" textAnchor="middle" style={SANS} fontSize="9" letterSpacing="1" fill="#5a6e80">DISCOVER</text>
-      <text x="125" y="102" textAnchor="middle" style={SANS} fontSize="9" letterSpacing="1" fill="#5a6e80">DESIGN</text>
-      <text x="202" y="86" textAnchor="middle" style={SANS} fontSize="9" letterSpacing="1" fill="#5a6e80">DEBUG</text>
+    <svg viewBox="0 0 260 180" fill="none" className={styles.diaSvg} aria-hidden="true">
+      <circle cx="130" cy="90" r="30" fill="#264259" />
+      <text x="130" y="86" textAnchor="middle" style={SERIF} fontSize="20" fill="#bcd4ee">
+        1-3
+      </text>
+      <text x="130" y="103" textAnchor="middle" style={SANS} fontSize="8" letterSpacing="1.5" fill="#8fb4dd">
+        VARIABLES
+      </text>
+      <circle cx="130" cy="28" r="16" stroke="#5d90ba" strokeWidth="1.6" />
+      <circle cx="206" cy="132" r="16" stroke="#4476a1" strokeWidth="1.6" />
+      <circle cx="54" cy="132" r="16" stroke="#4476a1" strokeWidth="1.6" />
+      <path d="M146 40 A78 78 0 0 1 196 116" stroke="#8fb4dd" strokeWidth="1.3" strokeDasharray="3 3" />
+      <path d="M188 140 A78 78 0 0 1 72 140" stroke="#8fb4dd" strokeWidth="1.3" strokeDasharray="3 3" />
+      <path d="M64 116 A78 78 0 0 1 114 40" stroke="#8fb4dd" strokeWidth="1.3" strokeDasharray="3 3" />
+      <text x="130" y="32" textAnchor="middle" style={SANS} fontSize="8.5" fill="#264259">
+        DISCOVER
+      </text>
+      <text x="206" y="136" textAnchor="middle" style={SANS} fontSize="8.5" fill="#264259">
+        DESIGN
+      </text>
+      <text x="54" y="136" textAnchor="middle" style={SANS} fontSize="8.5" fill="#264259">
+        DEBUG
+      </text>
     </svg>
   ),
+  // Growth Momentum Matrix: 2x2, top-right quadrant highlighted.
   "02": (
-    <svg viewBox="0 0 250 118" fill="none" className={styles.diaSvg} aria-hidden="true">
-      <line x1="34" y1="92" x2="228" y2="92" stroke="#c2cedb" strokeWidth="1.4" />
-      <line x1="34" y1="92" x2="34" y2="14" stroke="#c2cedb" strokeWidth="1.4" />
-      <path d="M44 80 L100 64 L156 42 L214 20" stroke="#4476a1" strokeWidth="1.8" />
-      <circle cx="44" cy="80" r="3.5" fill="#5d90ba" />
-      <circle cx="100" cy="64" r="3.5" fill="#5d90ba" />
-      <circle cx="156" cy="42" r="3.5" fill="#5d90ba" />
-      <circle cx="214" cy="20" r="5" fill="#264259" />
-      <text x="131" y="110" textAnchor="middle" style={SANS} fontSize="9" letterSpacing="1" fill="#5a6e80">TIMING</text>
-      <text x="16" y="52" textAnchor="middle" style={SANS} fontSize="9" letterSpacing="1" fill="#5a6e80" transform="rotate(-90 16 52)">
+    <svg viewBox="0 0 260 180" fill="none" className={styles.diaSvg} aria-hidden="true">
+      <rect x="132" y="26" width="96" height="60" fill="#4476a1" opacity="0.16" />
+      <line x1="34" y1="86" x2="232" y2="86" stroke="#c2cedb" strokeWidth="1.4" />
+      <line x1="132" y1="20" x2="132" y2="150" stroke="#c2cedb" strokeWidth="1.4" />
+      <path d="M44 78 L120 70 L210 30" stroke="#4476a1" strokeWidth="1.8" />
+      <circle cx="210" cy="30" r="4.5" fill="#264259" />
+      <text x="180" y="58" textAnchor="middle" style={SANS} fontSize="8.5" fill="#355c7d">
+        EXPONENTIAL
+      </text>
+      <text x="83" y="58" textAnchor="middle" style={SANS} fontSize="8.5" fill="#9aa9b8">
+        BURNOUT
+      </text>
+      <text x="83" y="116" textAnchor="middle" style={SANS} fontSize="8.5" fill="#9aa9b8">
+        NO GROWTH
+      </text>
+      <text x="183" y="116" textAnchor="middle" style={SANS} fontSize="8.5" fill="#9aa9b8">
+        TEMP SPIKE
+      </text>
+      <text x="131" y="166" textAnchor="middle" style={SANS} fontSize="8.5" letterSpacing="1" fill="#5a6e80">
+        TIMING
+      </text>
+      <text x="18" y="60" textAnchor="middle" style={SANS} fontSize="8.5" letterSpacing="1" fill="#5a6e80" transform="rotate(-90 18 60)">
         EFFORT
       </text>
     </svg>
   ),
+  // Fear-Excitement Intensity Model: two response curves + calibration band.
   "03": (
-    <svg viewBox="0 0 250 118" fill="none" className={styles.diaSvg} aria-hidden="true">
-      <line x1="34" y1="92" x2="228" y2="92" stroke="#c2cedb" strokeWidth="1.4" />
-      <path d="M40 88 C80 88 104 22 131 22 C158 22 182 88 222 88" stroke="#4476a1" strokeWidth="1.8" />
-      <line x1="131" y1="27" x2="131" y2="92" stroke="#c2cedb" strokeWidth="1" strokeDasharray="3 3" />
-      <circle cx="131" cy="22" r="5" fill="#264259" />
-      <text x="131" y="108" textAnchor="middle" style={SANS} fontSize="9" letterSpacing="1.5" fill="#5a6e80">PEAK PERFORMANCE</text>
+    <svg viewBox="0 0 260 180" fill="none" className={styles.diaSvg} aria-hidden="true">
+      <rect x="116" y="22" width="28" height="118" fill="#5d90ba" opacity="0.14" />
+      <line x1="34" y1="140" x2="232" y2="140" stroke="#c2cedb" strokeWidth="1.4" />
+      <line x1="34" y1="20" x2="34" y2="140" stroke="#c2cedb" strokeWidth="1.4" />
+      <path d="M40 136 C90 132 110 36 130 36 C150 36 170 120 222 132" stroke="#4476a1" strokeWidth="1.8" />
+      <path d="M40 132 C96 128 112 60 130 60 C150 60 176 110 222 122" stroke="#8fb4dd" strokeWidth="1.6" strokeDasharray="4 3" />
+      <circle cx="130" cy="36" r="4.5" fill="#264259" />
+      <text x="60" y="36" textAnchor="middle" style={SANS} fontSize="8.5" fill="#355c7d">
+        EXCITEMENT
+      </text>
+      <text x="204" y="112" textAnchor="middle" style={SANS} fontSize="8.5" fill="#5d90ba">
+        FEAR
+      </text>
+      <text x="130" y="158" textAnchor="middle" style={SANS} fontSize="8.5" letterSpacing="1" fill="#5a6e80">
+        INTENSITY
+      </text>
     </svg>
   ),
+  // Qualified vs Classified Audience: consumption-mix ratio bar with 50:50 drift marker.
   "04": (
-    <svg viewBox="0 0 250 118" className={styles.diaSvg} aria-hidden="true">
-      <text x="125" y="54" textAnchor="middle" style={SERIF} fontSize="23" fill="#5a6e80">
-        Talent <tspan fill="#4476a1">×</tspan> <tspan fill="#264259">Execution</tspan>
+    <svg viewBox="0 0 260 180" fill="none" className={styles.diaSvg} aria-hidden="true">
+      <rect x="34" y="74" width="192" height="34" rx="4" fill="#e1e9f1" />
+      <rect x="34" y="74" width="134" height="34" rx="4" fill="#4476a1" />
+      <line x1="130" y1="64" x2="130" y2="118" stroke="#264259" strokeWidth="1.4" strokeDasharray="4 3" />
+      <text x="101" y="96" textAnchor="middle" style={SANS} fontSize="9" fill="#ffffff">
+        CLASSIFIED 70%+
       </text>
-      <line x1="74" y1="68" x2="176" y2="68" stroke="#c2cedb" strokeWidth="1" />
-      <text x="125" y="88" textAnchor="middle" style={SANS} fontSize="10" letterSpacing="3" fill="#5a6e80">OUTCOME</text>
+      <text x="197" y="96" textAnchor="middle" style={SANS} fontSize="9" fill="#5a6e80">
+        ~30%
+      </text>
+      <text x="130" y="58" textAnchor="middle" style={SANS} fontSize="8" letterSpacing="1" fill="#5a6e80">
+        50:50 DRIFT
+      </text>
+      <text x="44" y="132" textAnchor="start" style={SANS} fontSize="8.5" letterSpacing="1" fill="#5a6e80">
+        CONSUMPTION MIX
+      </text>
     </svg>
   ),
 };
 
-/** Know Us "Proprietary frameworks" — navy band, 2×2 white cards with diagrams. */
+/**
+ * Know Us "Proprietary frameworks" (v4.0 Appendix B): navy band, four theory-only cards,
+ * each with a luminous brand-blue diagram, italic tagline, the insight, and how it works
+ * (01 to 03). Diagram side alternates left/right.
+ */
 export function Frameworks({
   eyebrow,
   title,
   lead,
+  label,
   cards,
 }: {
   eyebrow: string;
   title: string;
   lead: string;
-  cards: { num: string; title: string; body: string }[];
+  label: string;
+  cards: FrameworkCard[];
 }) {
   return (
     <Section bg="navy">
@@ -82,18 +140,38 @@ export function Frameworks({
             <p className={styles.lead}>{lead}</p>
           </div>
         </Reveal>
-        <Reveal>
-          <div className={styles.grid}>
-            {cards.map((card) => (
-              <div className={styles.card} key={card.num}>
-                <div className={styles.num}>{card.num}</div>
-                <div className={styles.dia}>{DIAGRAMS[card.num]}</div>
-                <h3 className={styles.cardTitle}>{card.title}</h3>
-                <p className={styles.cardBody}>{card.body}</p>
-              </div>
-            ))}
-          </div>
-        </Reveal>
+        <div className={styles.stack}>
+          {cards.map((card, i) => (
+            <Reveal key={card.num}>
+              <article className={clsx(styles.card, i % 2 === 1 && styles.cardReverse)}>
+                <div className={styles.diaCol}>
+                  <div className={styles.dia}>{DIAGRAMS[card.num]}</div>
+                </div>
+                <div className={styles.txtCol}>
+                  <div className={styles.num}>{card.num}</div>
+                  <h3 className={styles.cardTitle}>{card.title}</h3>
+                  <p className={styles.tagline}>{card.tagline}</p>
+                  <span className={styles.label}>{label}</span>
+                  <div className={styles.block}>
+                    <span className={styles.subhead}>The insight</span>
+                    <p className={styles.insight}>{card.insight}</p>
+                  </div>
+                  <div className={styles.block}>
+                    <span className={styles.subhead}>How it works</span>
+                    <ol className={styles.steps}>
+                      {card.steps.map((step) => (
+                        <li key={step.n} className={styles.step}>
+                          <span className={styles.stepNum}>{step.n}</span>
+                          <span className={styles.stepText}>{step.text}</span>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
       </Container>
     </Section>
   );

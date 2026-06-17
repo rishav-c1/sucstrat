@@ -9,7 +9,7 @@ import { CAREERS } from "@/content/careers";
 export const metadata: Metadata = {
   title: "Careers",
   description:
-    "Build more than a career. Ownership from day one, outcomes over tenure, and work that carries your name.",
+    "Build with a collective of top-ranked CAs and MBAs delivering boardroom thinking with execution on the ground.",
   alternates: { canonical: "/careers" },
 };
 
@@ -29,7 +29,6 @@ export default function CareersPage() {
           </>
         }
         primaryCta={c.cta.primaryCta}
-        secondaryCta={c.cta.secondaryCta}
       />
       <JsonLd
         data={breadcrumbJsonLd([

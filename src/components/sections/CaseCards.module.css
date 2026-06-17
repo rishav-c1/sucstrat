@@ -45,23 +45,18 @@
   border-bottom: 1px solid var(--line);
 }
 .logoBox {
-  position: relative;
-  display: block;
-  width: 100%;
-  max-width: 170px;
-  height: 44px;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  color: var(--navy-800);
+  opacity: 0.85;
+  transition: opacity 0.28s;
 }
-.logoImg {
-  object-fit: contain;
-  object-position: left center;
-  filter: grayscale(1);
-  opacity: 0.62;
-  transition:
-    filter 0.28s,
-    opacity 0.28s;
-}
-.card:hover .logoImg {
-  filter: grayscale(0);
+.card:hover .logoBox {
   opacity: 1;
 }
 

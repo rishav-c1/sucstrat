@@ -3,7 +3,6 @@ import { PillarGrid } from "@/components/sections/PillarGrid";
 import { StatBand } from "@/components/sections/StatBand";
 import { GlobalImpact } from "@/components/sections/GlobalImpact";
 import { PracticeList } from "@/components/sections/PracticeList";
-import { CaseCards } from "@/components/sections/CaseCards";
 import { FounderBio } from "@/components/sections/FounderBio";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { JsonLd } from "@/components/primitives/JsonLd";
@@ -11,17 +10,16 @@ import { personJsonLd } from "@/lib/jsonld";
 import { HOME } from "@/content/home";
 
 export default function HomePage() {
-  const { impact, cases, ctaBand } = HOME;
+  const { impact, ctaBand } = HOME;
 
   return (
     <>
       <SplitMediaHero />
       <PillarGrid />
-      <StatBand eyebrow={impact.eyebrow} title={impact.title} metrics={impact.metrics} columns={3} />
+      <StatBand eyebrow={impact.eyebrow} title={impact.title} metrics={impact.metrics} columns={4} />
       <GlobalImpact />
       <PracticeList />
       <FounderBio founder={HOME.founder} />
-      <CaseCards title={cases.title} lead={cases.sub} items={cases.items} id="cases" linked={false} />
       <CtaBand
         title={
           <>

@@ -392,4 +392,28 @@ config: next.config.ts, tsconfig.json, .eslintrc, vitest.config.ts, playwright.c
 - **Phase 4:** full gate sweep + link integrity + `REVIEW.md`. → STOP.
 
 ---
+
+## v4.0 site refresh (branch `feat/site-refresh-v4`)
+
+Implemented the v4.0 Master Build Spec. All hard gates pass (build/typecheck/lint clean, 10/10 unit, 18/18 e2e smoke + axe, zero em/en dashes in rendered HTML, zero "See how we scale"/"Explore case studies", `ashley@v3consultant.com` the only email, fully self-contained: no WordPress/Google-Fonts/CDN requests).
+
+### Awaiting human confirmation (Appendix G defaults implemented; do not block)
+- **The Pivot** built as a 3-stat triptych (`3 Decades` / `300+ Brand solutions` / `$1B+ Enterprise value shaped`); Transformation projects lives only in Home -> Our Impact.
+- **Home eyebrow** = "Execution-first consulting." (no "firm").
+- **Leadership strip** swaps Dainik Bhaskar -> Mohan Babu University (Dainik retained as a Clients case study + team pedigree).
+- **195+** treated as **Consultants** (distinct from 127+ Clients served).
+- **Clients strip**: `53+ Institutional` and `14+ Countries` carried from the old build (not the brief) - verify or drop before publish. (`14+ Countries` propagated to the What We Do stat band for consistency with the 14-region map.)
+- **Named-brand client list** (Gap/Walmart/Sony/Amazon ...) is carried-in interim text - confirm the right to claim these names before publish.
+- **Email domain** `v3consultant.com` used everywhere per spec - confirm vs a brand-domain address.
+- **Headline claims** ($1B+, 195+, 300+, 127+, "4th by circulation") must be substantiable.
+- **Careers**: retained as-is except (a) header CTA "Apply Now" -> Get in Touch, (b) closing band reduced to a single CTA (Appendix H "no closing double-CTA band"); apply-by-email body CTA kept.
+- **Kept (spec-silent) Home sections**: `PillarGrid` ("The SucStrat Standard") retained (unique content); the redundant Home "Proof" case section was removed (duplicated on Clients, structure now matches the spec's Home).
+
+### Deferred assets (rendered as labelled placeholders - do not fabricate)
+- Client logos (Clients roster + key-clients list), award logos (Know Us) -> name-as-placeholder slots.
+- Framework diagrams + EDGE block -> on-brand SVG/CSS placeholders, flagged for design sign-off (no locked `Mock-Up/` assets in repo).
+- Additional Knowledge articles (16 real ones shipped; no fabrication).
+- OG image meta URL points at the canonical `sucstrat.com` domain (correct for production; the GitHub Pages preview card will not resolve it).
+
+---
 *Generated in Phase 0. Verbatim page copy: `content-extraction/*.md`. Awaiting approval/edits before Phase 1.*

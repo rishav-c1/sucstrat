@@ -8,13 +8,15 @@ import { KNOWLEDGE } from "@/content/knowledge";
 
 export const metadata: Metadata = {
   title: "Knowledge",
-  description:
-    "Selected writing and commentary from Vinay Maheshwari across education, media, and the business of building things that scale.",
+  description: "Op-eds, interviews, and features from the SucStrat team.",
   alternates: { canonical: "/knowledge" },
 };
 
 export default function KnowledgePage() {
   const k = KNOWLEDGE;
+  // v4.0: one free-flowing grid of all article tiles (topic-row headers removed),
+  // in content order (newest first).
+  const articles = k.topics.flatMap((topic) => topic.cards);
   return (
     <>
       <PageHero
@@ -24,9 +26,7 @@ export default function KnowledgePage() {
         primaryCta={k.hero.primaryCta}
         secondaryCta={k.hero.secondaryCta}
       />
-      {k.topics.map((topic) => (
-        <InsightCardGrid key={topic.title} id={topic.id} title={topic.title} cards={topic.cards} bg={topic.bg} />
-      ))}
+      <InsightCardGrid id="insights" title="Articles" cards={articles} headingHidden bg="paper" />
       <CtaBand
         title={
           <>
@@ -34,7 +34,6 @@ export default function KnowledgePage() {
           </>
         }
         primaryCta={k.cta.primaryCta}
-        secondaryCta={k.cta.secondaryCta}
       />
       <JsonLd
         data={breadcrumbJsonLd([

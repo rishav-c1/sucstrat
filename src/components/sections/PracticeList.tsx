@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/primitives/Button";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
@@ -6,7 +5,10 @@ import { Reveal } from "@/components/primitives/Reveal";
 import { HOME } from "@/content/home";
 import styles from "./PracticeList.module.css";
 
-/** Home "What we do" teaser — two columns: intro + 7-practice list → /what-we-do. */
+/**
+ * Home "What we do" teaser — intro + the seven practice names as a compact grid (each with
+ * a one-line descriptor) and a single "Explore what we do" link to the full page.
+ */
 export function PracticeList() {
   const { eyebrow, title, body, cta, practices } = HOME.whatWeDo;
   return (
@@ -22,16 +24,14 @@ export function PracticeList() {
             </Button>
           </Reveal>
           <Reveal>
-            <div className={styles.plist}>
+            <ul className={styles.plist}>
               {practices.map((practice) => (
-                <Link key={practice} href={cta.href} className={styles.prow}>
-                  <span>{practice}</span>
-                  <span className={styles.arrow} aria-hidden="true">
-                    →
-                  </span>
-                </Link>
+                <li key={practice.name} className={styles.prow}>
+                  <span className={styles.pname}>{practice.name}</span>
+                  <span className={styles.pdesc}>{practice.desc}</span>
+                </li>
               ))}
-            </div>
+            </ul>
           </Reveal>
         </div>
       </Container>

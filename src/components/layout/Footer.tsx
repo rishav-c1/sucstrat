@@ -11,7 +11,7 @@ export function Footer() {
       <Container>
         <div className={styles.top}>
           <div className={styles.brand}>
-            <Link href="/" className={styles.brandLogo} aria-label="SucStrat — home">
+            <Link href="/" className={styles.brandLogo} aria-label="SucStrat home">
               <Logo tone="light" height={30} />
             </Link>
             <p className={styles.tagline}>{SITE.tagline}</p>

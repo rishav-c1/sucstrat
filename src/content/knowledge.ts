@@ -165,7 +165,7 @@ export const KNOWLEDGE = {
     },
   ],
   cta: {
+    // Single closing CTA only (v4.0).
     primaryCta: { label: "Get in touch", href: "/get-in-touch" },
-    secondaryCta: { label: "See our work", href: "/clients" },
   },
 };

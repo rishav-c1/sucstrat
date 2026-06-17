@@ -25,24 +25,34 @@ function Motif() {
   );
 }
 
-/** A Knowledge topic section — heading + grid of external article link cards. */
+/**
+ * A grid of external article link cards. `headingHidden` keeps the section's <h2> in the
+ * accessibility tree but visually hidden (used for the single free-flowing Knowledge grid,
+ * which has no topic-row headers).
+ */
 export function InsightCardGrid({
   title,
   cards,
   bg = "paper",
   id,
+  headingHidden = false,
 }: {
   title: string;
   cards: InsightCard[];
   bg?: "paper" | "mist";
   id?: string;
+  headingHidden?: boolean;
 }) {
   return (
     <Section id={id} bg={bg}>
       <Container>
-        <Reveal>
-          <h2 className={styles.title}>{title}</h2>
-        </Reveal>
+        {headingHidden ? (
+          <h2 className="sr-only">{title}</h2>
+        ) : (
+          <Reveal>
+            <h2 className={styles.title}>{title}</h2>
+          </Reveal>
+        )}
         <Reveal>
           <ul className={styles.grid}>
             {cards.map((card) => (
@@ -52,7 +62,7 @@ export function InsightCardGrid({
                   href={card.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`${card.title} — read on ${card.source} (opens in a new tab)`}
+                  aria-label={`Read ${card.title} on ${card.source} (opens in a new tab)`}
                 >
                   {card.tile === "navy" ? <Motif /> : null}
                   <span className={styles.tag}>{card.tag}</span>

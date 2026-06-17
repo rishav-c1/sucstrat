@@ -32,11 +32,11 @@ const lato = Lato({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.domain),
   title: {
-    default: `${SITE.name} | Strategy to Scale, execution built in`,
-    template: `%s | ${SITE.name}`,
+    default: `${SITE.name} · Execution-First Consulting`,
+    template: `%s · ${SITE.name}`,
   },
   description:
-    "India's only execution-first consulting firm — strategy to scale, with execution built in.",
+    "From strategy to scale, with success built in. Three decades of building and turning around businesses, judged on outcomes.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",

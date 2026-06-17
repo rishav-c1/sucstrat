@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/sections/PageHero";
 import { LogoWall } from "@/components/sections/LogoWall";
+import { KeyClients } from "@/components/sections/KeyClients";
 import { StatBand } from "@/components/sections/StatBand";
 import { CaseCards } from "@/components/sections/CaseCards";
 import { CtaBand } from "@/components/sections/CtaBand";
@@ -10,8 +11,7 @@ import { CLIENTS } from "@/content/clients";
 
 export const metadata: Metadata = {
   title: "Clients",
-  description:
-    "Partners in performance — the market leaders, institutions, and ventures SucStrat builds with across 21 sectors.",
+  description: "Partners in performance. Scaled alongside bold names across 21 sectors.",
   alternates: { canonical: "/clients" },
 };
 
@@ -21,6 +21,7 @@ export default function ClientsPage() {
     <>
       <PageHero {...c.hero} />
       <LogoWall {...c.logoWall} />
+      <KeyClients {...c.keyClients} />
       <StatBand metrics={c.stats} columns={4} />
       <CaseCards
         eyebrow={c.cases.eyebrow}
@@ -36,7 +37,6 @@ export default function ClientsPage() {
           </>
         }
         primaryCta={c.cta.primaryCta}
-        secondaryCta={c.cta.secondaryCta}
       />
       <JsonLd
         data={breadcrumbJsonLd([

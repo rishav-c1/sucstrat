@@ -1,20 +1,17 @@
 import { Container } from "./Container";
 import { Logo } from "./Logo";
 import { NavLink } from "./NavLink";
-import { MobileNav } from "./MobileNav";
+import { HeaderActions } from "./HeaderActions";
 import { ScrollShadow } from "./ScrollShadow";
-import { Button } from "@/components/primitives/Button";
 import { PRIMARY_NAV } from "@/content/site";
 import styles from "./Header.module.css";
 
-const DEFAULT_CTA = { label: "Get in Touch", href: "/get-in-touch" };
-
 /**
- * Fixed site header. Server-rendered shell; the scroll-shadow and mobile menu are
- * isolated client leaves (ScrollShadow / MobileNav), and nav links mark the current
- * route via the NavLink leaf.
+ * Fixed site header. Server-rendered shell; the scroll-shadow, the page-specific CTA, and
+ * the mobile menu are isolated client leaves (ScrollShadow / HeaderActions), and nav links
+ * mark the current route via the NavLink leaf.
  */
-export function Header({ cta = DEFAULT_CTA }: { cta?: { label: string; href: string } }) {
+export function Header() {
   return (
     <header className={styles.header}>
       <ScrollShadow />
@@ -41,12 +38,7 @@ export function Header({ cta = DEFAULT_CTA }: { cta?: { label: string; href: str
           </ul>
         </nav>
 
-        <div className={styles.actions}>
-          <Button href={cta.href} variant="white" className={styles.headerCta}>
-            {cta.label}
-          </Button>
-          <MobileNav links={PRIMARY_NAV} cta={cta} />
-        </div>
+        <HeaderActions />
       </Container>
     </header>
   );

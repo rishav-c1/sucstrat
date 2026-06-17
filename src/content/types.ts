@@ -115,10 +115,50 @@ export interface ImpactGlanceCard {
   icon: IconName;
 }
 
-/** A logo (rendered via next/image). `logo` is a filename under LOGO_BASE. */
+/**
+ * A brand/client/award logo. Logo image assets are deferred (v4.0), so the `name` renders
+ * as a labelled placeholder; `logo` (a future local filename) is optional until supplied.
+ */
 export interface LogoItem {
   name: string;
-  logo: string;
+  logo?: string;
+}
+
+/** An engagement archetype (Know Us "How we engage"). */
+export interface EngagementModel {
+  name: string;
+  duration: string;
+  model: string;
+  oneLine: string;
+  body: string;
+  outputs: string[];
+}
+
+/** An "Areas of specialisation" group (Know Us "Our collective expertise"). */
+export interface ExpertiseGroup {
+  title: string;
+  points: string[];
+}
+
+/** A "Leadership pedigree" grouping (Know Us). */
+export interface PedigreeGroup {
+  label: string;
+  orgs: string[];
+}
+
+/** One numbered "How it works" step inside a proprietary framework card. */
+export interface FrameworkStep {
+  n: string;
+  text: string;
+}
+
+/** A proprietary framework (Know Us) — theory only: tagline, insight, three steps. */
+export interface FrameworkCard {
+  num: string;
+  title: string;
+  tagline: string;
+  insight: string;
+  steps: FrameworkStep[];
 }
 
 /** A "Reach us" routing card on Get in Touch — icon + blurb + a link (mailto / route / #form). */

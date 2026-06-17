@@ -1,20 +1,20 @@
-import type { CaseItem, Cta, Metric, Region } from "./types";
+import type { Cta, Metric, Region } from "./types";
 
 /** Verbatim Home content (see content-extraction/home.md). */
 
 const primaryCta: Cta = { label: "Get in Touch", href: "/get-in-touch" };
-const seeHowWeScale: Cta = { label: "See how we scale", href: "#cases" };
+const seeOurWork: Cta = { label: "See our work", href: "/clients" };
 
 export const HOME = {
   hero: {
-    eyebrow: "India's only execution-first consulting firm",
+    eyebrow: "Execution-first consulting.",
     // h1 renders as "Your Success." / "Our Strategy." with "Strategy" emphasised.
     titleLeadLine: "Your Success.",
     titleRestBefore: "Our ",
     titleEmphasis: "Strategy",
     sub: "From strategy to scale, with success built in.",
     primaryCta,
-    secondaryCta: seeHowWeScale,
+    secondaryCta: seeOurWork,
   },
 
   pillars: {
@@ -30,20 +30,19 @@ export const HOME = {
 
   impact: {
     eyebrow: "Our impact",
-    title: "Three decades of operating, measured the only way that counts: in outcomes.",
+    title:
+      "Three decades of building and turning around businesses, judged on one thing: the outcomes we leave behind.",
     metrics: [
+      { to: 195, suffix: "+", label: "Consultants" },
+      { to: 21, label: "Sectors" },
       { to: 127, suffix: "+", label: "Clients served" },
-      { to: 53, suffix: "+", label: "Institutional clients" },
-      { to: 93, suffix: "+", label: "Projects delivered" },
-      { to: 250, prefix: "₹", suffix: "cr+", label: "Value created" },
-      { to: 30, label: "Years operating experience" },
-      { to: 8, label: "Countries" },
+      { to: 300, suffix: "+", label: "Transformation projects" },
     ] satisfies Metric[],
   },
 
   globalImpact: {
     title: "Global impact",
-    sub: "Execution that travels, from Hyderabad to Helsinki, across 21 sectors and four continents.",
+    sub: "Strategy that travels. Execution that stays.",
     legend: { hq: "Headquarters", engagement: "Engagement" },
     cloudLabel: "Sectors we serve",
     cloudHint: "Select a sector to highlight where we run it",
@@ -51,95 +50,51 @@ export const HOME = {
 
   whatWeDo: {
     eyebrow: "What we do",
-    title: "Seven integrated practices. One operating discipline.",
-    body: "From corporate strategy to digital transformation to execution on the ground, we work across the full arc, then stay to make it hold.",
+    title: "Seven practices. One operating discipline.",
+    body: "From strategy and turnaround to capital and AI, we work across the full arc, then stay to make it hold.",
     cta: { label: "Explore what we do", href: "/what-we-do" } satisfies Cta,
     practices: [
-      "Strategy",
-      "Digital & AI Transformation",
-      "Business Transformation",
-      "Marketing, Brand & Communication",
-      "Startup & Leadership Advisory",
-      "Venture Funding & Investment",
-      "Public Policy & Social Impact",
+      { name: "Strategy & Scale", desc: "Growth strategy, scale-up roadmaps, and go-to-market." },
+      { name: "Turnaround & Operations", desc: "360 turnkey operations, turnaround, and operational excellence." },
+      { name: "Brand, Marketing & Consumer", desc: "Brand strategy, consumer insight, and reputation." },
+      { name: "Capital & Corporate Development", desc: "Funding, M&A, valuation, and the road to IPO." },
+      { name: "Leadership & CXO Coaching", desc: "Executive coaching, founder mentorship, and alignment." },
+      { name: "Digital, Data & AI", desc: "Digital transformation, analytics, and automation." },
+      { name: "Public Policy & Institutions", desc: "Policy, institution building, and ESG impact." },
     ],
   },
 
-  cases: {
-    title: "Proof, not promises.",
-    sub: "A few of the rooms we stayed in until the number moved.",
-    items: [
-      {
-        slug: "sakshi-media-group",
-        name: "Sakshi Media Group",
-        logo: "sakshi.jpg",
-        eyebrow: "Turnaround",
-        stat: { prefix: "₹", value: "147", suffix: "cr" },
-        statLabel: "Profit, up from a ₹14 cr loss",
-        body: "A break-even media group to ₹147 cr profit in three years, with standalone P&Ls, Must-Win Battles, and India's first paperless newsroom.",
-      },
-      {
-        slug: "mohan-babu-university",
-        name: "Mohan Babu University",
-        logo: "MBU.jpg",
-        eyebrow: "Education",
-        stat: { value: "18k", suffix: "+" },
-        statLabel: "Students, up from 7,000",
-        body: "Brownfield to a globally linked university, with industry curriculum, 86% placements, and partnerships with Penn State and RWTH Aachen.",
-      },
-      {
-        slug: "valmar",
-        name: "Valmar",
-        logo: "valmar.jpg",
-        eyebrow: "Housing & Food-tech",
-        stat: { prefix: "₹", value: "80", suffix: "cr+" },
-        statLabel: "FY25 revenue",
-        body: "5,000+ beds and 24,000 meals a day, built from feasibility to live operations, with smart kitchens, ops dashboards, and IPO structuring.",
-      },
-      {
-        slug: "dainik-bhaskar",
-        name: "Dainik Bhaskar",
-        logo: "dainik-Bhaskar.jpg",
-        eyebrow: "National Media",
-        stat: { value: "4th" },
-        statLabel: "Largest daily in the world",
-        body: "Consumer-connect programmes and insights-led GTM at national scale, aligning editorial and sales across the group.",
-      },
-    ] satisfies CaseItem[],
-  },
-
   founder: {
-    eyebrow: "The operator",
+    eyebrow: "The pivot",
     name: "Vinay Maheshwari",
     role: "Founder & Principal Consultant, SucStrat",
     highlight: "30+ years of transforming institutions, scaling businesses, and coaching leaders.",
     portraitAlt: "Vinay Maheshwari, Founder & Principal Consultant of SucStrat",
     tiles: [
       { value: "3 Decades", label: "Leadership" },
-      { value: "225+", label: "Industry Awards" },
-      { value: "100+", label: "Clients" },
-      { value: "8", label: "Countries" },
+      { value: "300+", label: "Brand solutions" },
+      { value: "$1B+", label: "Enterprise value shaped" },
     ],
     paragraphs: [
       "Vinay Maheshwari is the driving force behind SucStrat. Over a three-decade career, he has led large-scale organizations, turned around underperforming businesses, and scaled high-growth ventures.",
-      "As Group CEO of India TV, Executive Director & CEO of Sakshi Media Group, and Senior Vice President at Dainik Bhaskar Group, Vinay has consistently delivered transformation at scale, from restoring profitability to building India's largest and the world's third-largest newspaper.",
+      "As Group CEO of India TV, Executive Director & CEO of Sakshi Media Group, and Trustee & Executive Director at Mohan Babu University, Vinay has consistently delivered transformation at scale, from restoring profitability to building one of the world's largest daily newspapers by circulation.",
       "Today, as Founder of SucStrat, he brings this depth of experience to promoters, boards, CXOs, and institutions, delivering consulting that is practical, execution-focused, and built to scale.",
     ],
     credentialsLabel: "Leadership track record",
     credentials: [
       { org: "India TV", role: "Group CEO" },
       { org: "Sakshi Media Group", role: "ED & CEO" },
-      { org: "Dainik Bhaskar Group", role: "Senior VP" },
+      { org: "Mohan Babu University", role: "Trustee & ED" },
       { org: "CEO of the Year", role: "2021" },
     ],
   },
 
   ctaBand: {
-    titleBefore: "Ready to ",
-    titleEmphasis: "scale",
-    titleAfter: ", with success built in?",
+    titleBefore: "Your success. ",
+    titleEmphasis: "Our strategy.",
+    titleAfter: "",
     primaryCta,
-    secondaryCta: seeHowWeScale,
+    secondaryCta: seeOurWork,
   },
 };
 
@@ -176,7 +131,6 @@ export const REGIONS: Region[] = [
     eyebrow: "Headquarters",
     hq: true,
     countries: ["India"],
-    foot: "Delhi, Madhya Pradesh, Hyderabad, Uttar Pradesh, Mumbai",
     sectors: [
       "Hospitality & Leisure",
       "Fashion, Luxury & Lifestyle",
@@ -218,7 +172,6 @@ export const REGIONS: Region[] = [
     name: "Middle East",
     eyebrow: "Engagement",
     countries: ["United Arab Emirates", "Saudi Arabia", "Qatar", "Oman"],
-    foot: "UAE, Saudi Arabia, Qatar, Oman",
     sectors: [
       "Fashion, Luxury & Lifestyle",
       "Education & EdTech",
@@ -235,7 +188,7 @@ export const REGIONS: Region[] = [
     name: "United Kingdom",
     eyebrow: "Engagement",
     countries: ["United Kingdom"],
-    sectors: ["Fashion, Luxury & Lifestyle"],
+    sectors: ["Fashion, Luxury & Lifestyle", "HealthTech & Digital Health", "Food Services & QSR"],
   },
   {
     id: "FI",
@@ -264,5 +217,47 @@ export const REGIONS: Region[] = [
     eyebrow: "Engagement",
     countries: ["Zimbabwe"],
     sectors: ["Mining & Natural Resources"],
+  },
+  {
+    id: "VN",
+    name: "Vietnam",
+    eyebrow: "Engagement",
+    countries: ["Vietnam"],
+    sectors: ["Education & EdTech"],
+  },
+  {
+    id: "TZ",
+    name: "Tanzania",
+    eyebrow: "Engagement",
+    countries: ["Tanzania"],
+    sectors: ["Mining & Natural Resources"],
+  },
+  {
+    id: "KR",
+    name: "South Korea",
+    eyebrow: "Engagement",
+    countries: ["South Korea"],
+    sectors: ["Fashion, Luxury & Lifestyle"],
+  },
+  {
+    id: "IT",
+    name: "Italy",
+    eyebrow: "Engagement",
+    countries: ["Italy"],
+    sectors: ["Fashion, Luxury & Lifestyle"],
+  },
+  {
+    id: "AU",
+    name: "Australia",
+    eyebrow: "Engagement",
+    countries: ["Australia"],
+    sectors: ["Student Housing & Campus Infrastructure"],
+  },
+  {
+    id: "MY",
+    name: "Malaysia",
+    eyebrow: "Engagement",
+    countries: ["Malaysia"],
+    sectors: ["Student Housing & Campus Infrastructure"],
   },
 ];

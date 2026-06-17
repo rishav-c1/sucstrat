@@ -6,19 +6,17 @@
 export const SITE = {
   name: "SucStrat",
   domain: "https://sucstrat.com",
-  tagline: "India's only execution-first consulting firm",
-  // Real contact email (resolves the mockups' "[confirm contact details]" placeholder;
-  // supersedes the mockups' connect@sucstrat.com).
+  // v4.0 spec: drop "India's only" everywhere.
+  tagline: "Execution-first consulting firm",
+  // The only contact email anywhere on the site (v4.0 hard gate). Resolves the mockups'
+  // "[confirm contact details]" placeholder and supersedes the mockups' contact address.
   email: "ashley@v3consultant.com",
-  // Careers applications (per sign-off: route to the V3 Consultant address).
+  // Careers applications route to the same address.
   careersEmail: "ashley@v3consultant.com",
   founder: "Vinay Maheshwari",
   founderRole: "Founder & Principal Consultant",
   address: "209/210 Tower 1, Assotech Business Cresterra, Sector 135, Noida",
 } as const;
-
-/** Base URL for brand/client/award logo images (live on the SucStrat WordPress). */
-export const LOGO_BASE = "https://sucstrat.com/wp-content/uploads/2025/09";
 
 /**
  * Absolute, stable URL of the Organization logo for structured data (knowledge panel).
@@ -51,6 +49,32 @@ export const PRIMARY_NAV: NavLink[] = [
   { label: "Careers", href: "/careers" },
   { label: "Knowledge", href: "/knowledge" },
 ];
+
+/**
+ * Page-specific header CTA (v4.0 Section 0). The label changes per route; every CTA
+ * routes to the Get in Touch page. Resolved client-side by HeaderActions via the
+ * current pathname (SSR-correct under static export — each route pre-renders its own).
+ */
+export const DEFAULT_HEADER_CTA: NavLink = { label: "Get in Touch", href: "/get-in-touch" };
+
+export const HEADER_CTAS: Record<string, NavLink> = {
+  "/": { label: "Get in Touch", href: "/get-in-touch" },
+  "/know-us": { label: "Book a Call", href: "/get-in-touch" },
+  "/what-we-do": { label: "Book a Discovery Call", href: "/get-in-touch" },
+  "/clients": { label: "Work With Us", href: "/get-in-touch" },
+  "/careers": { label: "Apply Now", href: "/get-in-touch" },
+  "/knowledge": { label: "Get in Touch", href: "/get-in-touch" },
+  "/get-in-touch": { label: "Get in Touch", href: "/get-in-touch" },
+};
+
+/** Resolve the header CTA for a pathname (longest-prefix match, default fallback). */
+export function headerCtaFor(pathname: string): NavLink {
+  if (pathname === "/") return HEADER_CTAS["/"] ?? DEFAULT_HEADER_CTA;
+  const match = Object.keys(HEADER_CTAS)
+    .filter((route) => route !== "/" && pathname.startsWith(route))
+    .sort((a, b) => b.length - a.length)[0];
+  return (match ? HEADER_CTAS[match] : undefined) ?? DEFAULT_HEADER_CTA;
+}
 
 /** Footer link columns — identical across all six pages. */
 export const FOOTER_NAV: { heading: string; links: NavLink[] }[] = [

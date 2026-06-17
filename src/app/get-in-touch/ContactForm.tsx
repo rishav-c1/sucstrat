@@ -7,6 +7,9 @@ import { SITE } from "@/content/site";
 import styles from "./ContactForm.module.css";
 
 const F = GET_IN_TOUCH.form;
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+type Errors = Partial<Record<string, string>>;
 
 type FieldProps = {
   id: string;
@@ -17,10 +20,29 @@ type FieldProps = {
   autoComplete?: string;
   as?: "input" | "textarea" | "select";
   options?: readonly string[];
+  error?: string;
 };
 
-function Field({ id, label, type = "text", required = false, placeholder, autoComplete, as = "input", options }: FieldProps) {
-  const shared = { id, name: id, required, className: styles.input, autoComplete };
+function Field({
+  id,
+  label,
+  type = "text",
+  required = false,
+  placeholder,
+  autoComplete,
+  as = "input",
+  options,
+  error,
+}: FieldProps) {
+  const errorId = `${id}-error`;
+  const shared = {
+    id,
+    name: id,
+    className: styles.input,
+    autoComplete,
+    "aria-invalid": error ? true : undefined,
+    "aria-describedby": error ? errorId : undefined,
+  };
   return (
     <div className={styles.field}>
       <label htmlFor={id} className={styles.label}>
@@ -43,35 +65,71 @@ function Field({ id, label, type = "text", required = false, placeholder, autoCo
       ) : (
         <input type={type} placeholder={placeholder} {...shared} />
       )}
+      {error ? (
+        <p id={errorId} className={styles.fieldError}>
+          {error}
+        </p>
+      ) : null}
     </div>
   );
 }
 
 /**
- * Static contact form: composes a prefilled `mailto:` on submit (works on any
- * static host, incl. GitHub Pages — no server). Native HTML5 validation enforces
- * the required fields + consent before the email app opens.
- * To take real submissions without a mailto handoff, point the <form> at a static
- * form provider (Web3Forms / Formspree) — see README.
+ * Static contact form: validates on the client, then composes a prefilled `mailto:` on
+ * submit (works on any static host, incl. GitHub Pages — no server). Custom inline errors,
+ * a hidden honeypot, and a disabled-on-submit button are all client-side.
+ * To take real submissions without a mailto handoff, point the <form> at a static form
+ * provider (Web3Forms / Formspree) — see README.
  */
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [errors, setErrors] = useState<Errors>({});
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const data = new FormData(form);
     const get = (k: string) => String(data.get(k) ?? "").trim();
+
+    // Honeypot: a real user never fills the off-screen "website" field. Drop silently.
+    if (get("website")) {
+      setSubmitted(true);
+      return;
+    }
+
+    const next: Errors = {};
+    if (!get("inquiryType")) next.inquiryType = "Please select an inquiry type.";
+    if (!get("firstName")) next.firstName = "Please enter your first name.";
+    if (!get("lastName")) next.lastName = "Please enter your last name.";
+    const email = get("email");
+    if (!email) next.email = "Please enter your email.";
+    else if (!EMAIL_RE.test(email)) next.email = "Please enter a valid email address.";
+    if (!get("company")) next.company = "Please enter your company.";
+    if (!get("country")) next.country = "Please select a country or region.";
+    if (!get("message")) next.message = "Please tell us how we can help.";
+    if (data.get("consent") !== "yes") next.consent = "Please confirm your consent to proceed.";
+
+    if (Object.keys(next).length > 0) {
+      setErrors(next);
+      const first = form.querySelector<HTMLElement>('[aria-invalid="true"]');
+      first?.focus();
+      return;
+    }
+
+    setErrors({});
+    setSending(true);
     const body = [
       `Inquiry type: ${get("inquiryType")}`,
       `Name: ${get("firstName")} ${get("lastName")}`,
-      `Email: ${get("email")}`,
-      `Phone: ${get("phone") || "—"}`,
+      `Email: ${email}`,
+      `Phone: ${get("phone") || "Not provided"}`,
       `Company: ${get("company")}`,
       `Country / region: ${get("country")}`,
       "",
       get("message"),
     ].join("\n");
-    const subject = `Enquiry — ${get("inquiryType") || "General"}${get("company") ? ` (${get("company")})` : ""}`;
+    const subject = `Enquiry: ${get("inquiryType") || "General"}${get("company") ? ` (${get("company")})` : ""}`;
     window.location.href = `mailto:${SITE.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setSubmitted(true);
   }
@@ -81,7 +139,7 @@ export function ContactForm() {
       <div className={styles.success} role="status">
         <h3 className={styles.successTitle}>{F.success.title}</h3>
         <p>
-          Your email app should open with everything filled in. If it didn’t, email us directly at{" "}
+          Your email app should open with everything filled in. If it did not, email us directly at{" "}
           <a href={`mailto:${SITE.email}`} className={styles.leadLinkInline}>
             {SITE.email}
           </a>
@@ -92,36 +150,50 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
-      <Field id="inquiryType" label="Inquiry type" required as="select" options={F.inquiryTypes} />
+    <form onSubmit={handleSubmit} className={styles.form} noValidate>
+      {/* Honeypot: off-screen, not tabbable, ignored by real users. */}
+      <div className={styles.honeypot} aria-hidden="true">
+        <label htmlFor="website">Leave this field empty</label>
+        <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
+
+      <Field id="inquiryType" label="Inquiry type" required as="select" options={F.inquiryTypes} error={errors.inquiryType} />
 
       <div className={styles.row}>
-        <Field id="firstName" label="First name" required placeholder="First name" autoComplete="given-name" />
-        <Field id="lastName" label="Last name" required placeholder="Last name" autoComplete="family-name" />
+        <Field id="firstName" label="First name" required placeholder="First name" autoComplete="given-name" error={errors.firstName} />
+        <Field id="lastName" label="Last name" required placeholder="Last name" autoComplete="family-name" error={errors.lastName} />
       </div>
 
       <div className={styles.row}>
-        <Field id="email" label="Email" type="email" required placeholder="you@company.com" autoComplete="email" />
+        <Field id="email" label="Email" type="email" required placeholder="Your work email" autoComplete="email" error={errors.email} />
         <Field id="phone" label="Phone" type="tel" placeholder="+91" autoComplete="tel" />
       </div>
 
       <div className={styles.row}>
-        <Field id="company" label="Company" required placeholder="Your organisation" autoComplete="organization" />
-        <Field id="country" label="Country / region" required as="select" options={F.countries} />
+        <Field id="company" label="Company" required placeholder="Your organisation" autoComplete="organization" error={errors.company} />
+        <Field id="country" label="Country / region" required as="select" options={F.countries} error={errors.country} />
       </div>
 
-      <Field id="message" label="How can we help?" required as="textarea" placeholder="Tell us briefly about the mandate or question." />
+      <Field
+        id="message"
+        label="How can we help?"
+        required
+        as="textarea"
+        placeholder="Tell us briefly about the mandate or question."
+        error={errors.message}
+      />
 
       <div className={styles.consent}>
-        <input id="consent" name="consent" type="checkbox" value="yes" required className={styles.checkbox} />
+        <input id="consent" name="consent" type="checkbox" value="yes" className={styles.checkbox} aria-invalid={errors.consent ? true : undefined} />
         <label htmlFor="consent" className={styles.consentLabel}>
           {F.consentLabel}
           <span aria-hidden="true"> *</span>
         </label>
       </div>
+      {errors.consent ? <p className={styles.fieldError}>{errors.consent}</p> : null}
 
-      <button type="submit" className={styles.submit}>
-        Send message
+      <button type="submit" className={styles.submit} disabled={sending}>
+        {sending ? "Sending…" : "Send message"}
       </button>
     </form>
   );
