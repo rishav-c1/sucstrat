@@ -35,8 +35,16 @@ export const LINKEDIN_URL = "https://www.linkedin.com/company/sucstrat";
  */
 export const SOCIAL_PROFILES: string[] = [LINKEDIN_URL];
 
-/** Local base path for brand/client/award logo images (served from /public/logos). */
-export const LOGO_PATH = "/logos";
+/**
+ * Local base path for brand/client/award logo images (served from /public/logos).
+ *
+ * next/image does NOT prepend the configured `basePath` to string `src`s (only to static
+ * imports), so on the static-export build — where the site lives under a basePath such as
+ * /sucstrat on GitHub Pages — we add it here, mirroring next.config's logic. The logo
+ * components are server-rendered, so this is evaluated at build and passed as a prop.
+ */
+const LOGO_BASE_PATH = process.env.STATIC_EXPORT === "1" ? (process.env.PAGES_BASE_PATH ?? "/sucstrat") : "";
+export const LOGO_PATH = `${LOGO_BASE_PATH}/logos`;
 
 export interface NavLink {
   label: string;
