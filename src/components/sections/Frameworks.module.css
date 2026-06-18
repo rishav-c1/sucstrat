@@ -37,7 +37,9 @@
   letter-spacing: 0.1em;
   font-size: 10px;
   font-weight: 600;
-  color: var(--on-navy-mute);
+  /* --on-navy-mute (#8ba0b5) is 3.9:1 on navy at 10px and fails AA; --accent-on-dark
+     (#a9c0d8) is 5.6:1. */
+  color: var(--accent-on-dark);
   border: 1px solid var(--line-navy);
   border-radius: 999px;
   padding: 6px 14px;

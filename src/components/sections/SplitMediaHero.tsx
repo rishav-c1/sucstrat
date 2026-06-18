@@ -7,7 +7,7 @@ import styles from "./SplitMediaHero.module.css";
 
 const hero = HOME.hero;
 
-/** Home hero: split media (animated canvas) + animated serif headline. */
+/** Home hero: centred text + full-width animated backdrop (canvas with a radial mask that clears the headline area). */
 export function SplitMediaHero() {
   return (
     <section className={styles.hero}>
