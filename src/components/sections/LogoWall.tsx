@@ -35,9 +35,9 @@ function LogoCell({
 }
 
 /**
- * Clients roster (v4.0): one clean wall of client wordmarks plus a small startups row,
- * no group headings. Logo assets are deferred, so each cell carries the client name as a
- * labelled placeholder until a local logo file is supplied.
+ * Clients roster (v4.0): one clean wall of client logos, no group headings. `startups`
+ * (incl. Hypolator) are appended so the whole wall is a single uniform grid of equal-size
+ * cells. Logo assets render as images, falling back to a labelled name placeholder.
  */
 export function LogoWall({
   eyebrow,
@@ -52,6 +52,7 @@ export function LogoWall({
   logos: LogoItem[];
   startups?: LogoItem[];
 }) {
+  const all = startups ? [...logos, ...startups] : logos;
   return (
     <Section bg="mist">
       <Container>
@@ -60,28 +61,11 @@ export function LogoWall({
         </Reveal>
         <Reveal>
           <ul className={styles.grid}>
-            {logos.map((item) => (
+            {all.map((item) => (
               <LogoCell key={item.name} item={item} cellClass={styles.cell} nameClass={styles.name} />
             ))}
           </ul>
         </Reveal>
-        {startups && startups.length > 0 ? (
-          <Reveal>
-            <div className={styles.startups}>
-              <h3 className={styles.srOnly}>Startups</h3>
-              <ul className={styles.startupRow}>
-                {startups.map((item) => (
-                  <LogoCell
-                    key={item.name}
-                    item={item}
-                    cellClass={styles.startupCell}
-                    nameClass={styles.startupName}
-                  />
-                ))}
-              </ul>
-            </div>
-          </Reveal>
-        ) : null}
       </Container>
     </Section>
   );
