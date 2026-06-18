@@ -4,12 +4,17 @@
 .title {
   font-family: var(--font-serif);
   font-weight: 600;
-  font-size: clamp(30px, 4.2vw, 48px);
+  font-size: clamp(28px, 3.6vw, 40px);
   line-height: 1.08;
   letter-spacing: -0.02em;
   color: var(--navy-800);
   max-width: 740px;
   margin-top: 14px;
+}
+/* Blue accent on part of a section heading (matches the hero/CTA pattern). */
+.title em {
+  color: var(--blue-600);
+  font-style: normal;
 }
 .lead {
   max-width: 580px;

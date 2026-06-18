@@ -37,12 +37,12 @@ const DIAGRAMS: Record<string, ReactNode> = {
       <circle cx="140" cy="102" r="34" stroke="#eaf3ff" strokeWidth="0.8" opacity="0.5" />
       <text x="140" y="99" textAnchor="middle" style={SERIF} fontSize="24" fill="#16293d">1-3</text>
       <text x="140" y="116" textAnchor="middle" style={SANS} fontSize="8" letterSpacing="2" fill="#1b3140">VARIABLES</text>
-      <circle cx="140" cy="40" r="16" fill="#1b3140" stroke="#8fb4dd" strokeWidth="1.4" />
-      <circle cx="206" cy="156" r="16" fill="#1b3140" stroke="#8fb4dd" strokeWidth="1.4" />
-      <circle cx="74" cy="156" r="16" fill="#1b3140" stroke="#8fb4dd" strokeWidth="1.4" />
-      <text x="140" y="43" textAnchor="middle" style={SANS} fontSize="7.5" fill="#bcd4ee">DISCOVER</text>
-      <text x="206" y="159" textAnchor="middle" style={SANS} fontSize="7.5" fill="#bcd4ee">DESIGN</text>
-      <text x="74" y="159" textAnchor="middle" style={SANS} fontSize="7.5" fill="#bcd4ee">DEBUG</text>
+      <circle cx="140" cy="40" r="18" fill="#1b3140" stroke="#8fb4dd" strokeWidth="1.4" />
+      <circle cx="206" cy="156" r="18" fill="#1b3140" stroke="#8fb4dd" strokeWidth="1.4" />
+      <circle cx="74" cy="156" r="18" fill="#1b3140" stroke="#8fb4dd" strokeWidth="1.4" />
+      <text x="140" y="42" textAnchor="middle" style={SANS} fontSize="6" letterSpacing="-0.3" fill="#bcd4ee">DISCOVER</text>
+      <text x="206" y="158" textAnchor="middle" style={SANS} fontSize="6" letterSpacing="-0.3" fill="#bcd4ee">DESIGN</text>
+      <text x="74" y="158" textAnchor="middle" style={SANS} fontSize="6" letterSpacing="-0.3" fill="#bcd4ee">DEBUG</text>
     </svg>
   ),
   // Growth Momentum Matrix: 2x2 with a glowing top-right (exponential) quadrant + compounding curve.
@@ -127,7 +127,7 @@ export function Frameworks({
   cards,
 }: {
   eyebrow: string;
-  title: string;
+  title: ReactNode;
   lead: string;
   label: string;
   cards: FrameworkCard[];
@@ -140,6 +140,8 @@ export function Frameworks({
             <span className={styles.eyebrow}>{eyebrow}</span>
             <h2 className={styles.title}>{title}</h2>
             <p className={styles.lead}>{lead}</p>
+            {/* Shown once here instead of repeated on every card. */}
+            <span className={styles.reg}>{label}</span>
           </div>
         </Reveal>
         <div className={styles.stack}>
@@ -153,7 +155,6 @@ export function Frameworks({
                   <div className={styles.num}>{card.num}</div>
                   <h3 className={styles.cardTitle}>{card.title}</h3>
                   <p className={styles.tagline}>{card.tagline}</p>
-                  <span className={styles.label}>{label}</span>
                   <div className={styles.block}>
                     <span className={styles.subhead}>The insight</span>
                     <p className={styles.insight}>{card.insight}</p>

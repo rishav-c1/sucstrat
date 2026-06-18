@@ -12,17 +12,35 @@
 .title {
   font-family: var(--font-serif);
   font-weight: 600;
-  font-size: clamp(28px, 4vw, 44px);
+  font-size: clamp(28px, 3.6vw, 40px);
   color: #fff;
   margin-top: 14px;
   letter-spacing: -0.02em;
   line-height: 1.08;
+}
+/* Accent on navy uses the lighter brand blue (blue-600 fails AA on navy). */
+.title em {
+  color: var(--accent-on-dark);
+  font-style: normal;
 }
 .lead {
   color: var(--on-navy);
   max-width: 600px;
   margin-top: 14px;
   font-size: 17px;
+}
+/* Registration note (shown once, under the lead). */
+.reg {
+  display: inline-block;
+  margin-top: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--on-navy-mute);
+  border: 1px solid var(--line-navy);
+  border-radius: 999px;
+  padding: 6px 14px;
 }
 
 .stack {
@@ -82,7 +100,7 @@
 .cardTitle {
   font-family: var(--font-serif);
   font-weight: 600;
-  font-size: clamp(22px, 2.6vw, 27px);
+  font-size: clamp(21px, 2.2vw, 24px);
   color: var(--navy-800);
   margin: 6px 0 6px;
   line-height: 1.12;
@@ -93,18 +111,6 @@
   font-size: 16px;
   color: var(--blue-600);
   margin-bottom: 14px;
-}
-.label {
-  display: inline-block;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--slate);
-  background: var(--mist);
-  border-radius: 999px;
-  padding: 5px 12px;
-  margin-bottom: 18px;
 }
 .block {
   margin-top: 16px;

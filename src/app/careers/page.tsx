@@ -17,7 +17,14 @@ export default function CareersPage() {
   const c = CAREERS;
   return (
     <>
-      <PageHero {...c.hero} />
+      <PageHero
+        {...c.hero}
+        title={
+          <>
+            Build more than a career. Build <em>legacies</em>.
+          </>
+        }
+      />
       <FeatureGrid {...c.why} columns={4} bg="mist" />
       <FeatureGrid id="life" {...c.life} columns={4} bg="navy" />
       <FeatureGrid {...c.growth} columns={4} bg="paper" />

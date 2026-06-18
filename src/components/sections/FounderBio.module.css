@@ -2,6 +2,9 @@
   padding: 72px 0;
   background: var(--mist);
 }
+.paper {
+  background: var(--paper);
+}
 
 .grid {
   display: grid;
@@ -92,6 +95,20 @@
   margin-bottom: 10px;
   max-width: 640px;
   line-height: 1.55;
+}
+.moreLink {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 8px;
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--blue-700);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.moreLink:hover {
+  color: var(--navy-800);
 }
 .cred {
   margin-top: 18px;

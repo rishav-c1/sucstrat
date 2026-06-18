@@ -22,7 +22,16 @@ export default function GetInTouchPage() {
   const c = p.contact;
   return (
     <>
-      <PageHero eyebrow={p.hero.eyebrow} title={p.hero.title} sub={p.hero.sub} compact />
+      <PageHero
+        eyebrow={p.hero.eyebrow}
+        title={
+          <>
+            How can we <em>help</em>?
+          </>
+        }
+        sub={p.hero.sub}
+        compact
+      />
       <ReachGrid cards={p.reach.cards} />
 
       <section id="form" className={styles.formSec}>

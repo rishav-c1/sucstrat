@@ -10,9 +10,9 @@ export const SITE = {
   tagline: "Execution-first consulting firm",
   // The only contact email anywhere on the site (v4.0 hard gate). Resolves the mockups'
   // "[confirm contact details]" placeholder and supersedes the mockups' contact address.
-  email: "ashley@v3consultant.com",
+  email: "info@v3consultant.com",
   // Careers applications route to the same address.
-  careersEmail: "ashley@v3consultant.com",
+  careersEmail: "info@v3consultant.com",
   founder: "Vinay Maheshwari",
   founderRole: "Founder & Principal Consultant",
   address: "209/210 Tower 1, Assotech Business Cresterra, Sector 135, Noida",

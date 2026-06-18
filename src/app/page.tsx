@@ -19,7 +19,7 @@ export default function HomePage() {
       <StatBand eyebrow={impact.eyebrow} title={impact.title} metrics={impact.metrics} columns={4} />
       <GlobalImpact />
       <PracticeList />
-      <FounderBio founder={HOME.founder} />
+      <FounderBio founder={HOME.founder} compact bg="paper" />
       <CtaBand
         title={
           <>
@@ -29,7 +29,6 @@ export default function HomePage() {
           </>
         }
         primaryCta={ctaBand.primaryCta}
-        secondaryCta={ctaBand.secondaryCta}
       />
       <JsonLd data={personJsonLd()} />
     </>

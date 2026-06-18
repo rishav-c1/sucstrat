@@ -39,9 +39,6 @@ export function SplitMediaHero() {
             <Button href={hero.primaryCta.href} variant="navy">
               {hero.primaryCta.label}
             </Button>
-            <Button href={hero.secondaryCta.href} variant="ghostNavy">
-              {hero.secondaryCta.label}
-            </Button>
           </div>
         </div>
       </Container>

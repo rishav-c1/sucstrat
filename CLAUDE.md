@@ -11,7 +11,7 @@ Canonical production domain: **https://sucstrat.com**
 ## Assets & contact (provided)
 
 - Brand + portrait assets live in `/static/` (imported via the `@static/*` alias; served through `next/image`). Logos: **`logo_white.png` (default — for dark/navy backgrounds)**, `logo_navy.png` / `logo_black.png` (for light backgrounds), `logo_wordmark_navy.png` (tagline-free wordmark), plus `logo_preview_on_navy.png` / `logo_preview_on_white.png` (usage comps, not for direct use). Founder portrait: `static/Vinay-Maheshwari.jpg` (1400×936).
-- Public contact email: **ashley@v3consultant.com** (resolves the mockups' `[confirm contact details]` placeholder; supersedes the mockups' `connect@sucstrat.com`). Careers applications: `careers@sucstrat.com` (verbatim from the Careers mockup).
+- Public contact email: **info@v3consultant.com** (resolves the mockups' `[confirm contact details]` placeholder; supersedes the mockups' `connect@sucstrat.com`). Careers applications: `careers@sucstrat.com` (verbatim from the Careers mockup).
 - `/get-in-touch` contact form: a **static `mailto:` form** (no backend) so the site deploys to **GitHub Pages**. The earlier zod-validated Server Action + `EmailTransport` (Resend-ready) is preserved in git history (commit `d17ede7`) for a Node host.
 - Runtime: **Node 20** (nvm default set to 20; Next 16 requires ≥20.9). pnpm via corepack.
 

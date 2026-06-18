@@ -100,19 +100,16 @@ export interface IndustryTile {
   icon: IconName;
 }
 
-/** A practice in the What We Do accordion — title + tagline + its sub-services. */
+/**
+ * A practice in the What We Do services index — number + title, a point-of-view line and a
+ * second supporting line for the detail card, plus its "the work" sub-services.
+ */
 export interface Practice {
   num: string;
   title: string;
-  tagline: string;
+  pov: string;
+  detail: string;
   services: string[];
-}
-
-/** A list card with a line icon (Know Us "Impact at a glance"). */
-export interface ImpactGlanceCard {
-  label: string;
-  items: string[];
-  icon: IconName;
 }
 
 /**
@@ -132,12 +129,6 @@ export interface EngagementModel {
   oneLine: string;
   body: string;
   outputs: string[];
-}
-
-/** An "Areas of specialisation" group (Know Us "Our collective expertise"). */
-export interface ExpertiseGroup {
-  title: string;
-  points: string[];
 }
 
 /** A "Leadership pedigree" grouping (Know Us). */

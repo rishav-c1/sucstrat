@@ -13,12 +13,14 @@ interface Line {
   col: string;
 }
 
+// Brand-blue tones (was light-on-navy) so the lines read as a visible flowing texture on the
+// light hero bg. The centre is masked clear (see .media) so the headline stays crisp.
 const LINES: Line[] = [
-  { amp: 34, len: 300, y: 0.3, sp: 0.55, w: 1.4, a: 0.32, col: "109,155,206" },
-  { amp: 50, len: 360, y: 0.46, sp: 0.42, w: 1.7, a: 0.42, col: "154,184,224" },
-  { amp: 40, len: 320, y: 0.6, sp: 0.5, w: 1.4, a: 0.26, col: "109,155,206" },
-  { amp: 58, len: 400, y: 0.73, sp: 0.34, w: 2.0, a: 0.34, col: "255,255,255" },
-  { amp: 30, len: 270, y: 0.87, sp: 0.66, w: 1.2, a: 0.22, col: "154,184,224" },
+  { amp: 34, len: 300, y: 0.3, sp: 0.55, w: 1.6, a: 0.34, col: "68,118,161" },
+  { amp: 50, len: 360, y: 0.46, sp: 0.42, w: 1.9, a: 0.42, col: "93,144,186" },
+  { amp: 40, len: 320, y: 0.6, sp: 0.5, w: 1.6, a: 0.3, col: "53,92,125" },
+  { amp: 58, len: 400, y: 0.73, sp: 0.34, w: 2.2, a: 0.4, col: "68,118,161" },
+  { amp: 30, len: 270, y: 0.87, sp: 0.66, w: 1.4, a: 0.28, col: "93,144,186" },
 ];
 
 /**

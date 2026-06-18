@@ -8,16 +8,15 @@
   padding: 110px 0 70px;
 }
 
+/* Full-width line texture behind the centred text; cleared in the middle so the navy
+   headline stays readable, fading in toward the edges. */
 .media {
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 50%;
+  inset: 0;
   z-index: 1;
-  background: var(--navy-800);
-  -webkit-mask: linear-gradient(105deg, transparent 0, rgba(0, 0, 0, 0.4) 18%, #000 38%);
-  mask: linear-gradient(105deg, transparent 0, rgba(0, 0, 0, 0.4) 18%, #000 38%);
+  opacity: 1;
+  -webkit-mask: radial-gradient(82% 72% at 50% 46%, transparent 0%, transparent 38%, #000 94%);
+  mask: radial-gradient(82% 72% at 50% 46%, transparent 0%, transparent 38%, #000 94%);
 }
 
 .wrap {
@@ -26,7 +25,9 @@
   width: 100%;
 }
 .inner {
-  max-width: 560px;
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .eyebrow {
@@ -71,8 +72,8 @@
 }
 
 .sub {
-  max-width: 500px;
-  margin-top: 26px;
+  max-width: 540px;
+  margin: 26px auto 0;
   font-size: 19px;
   line-height: 1.55;
   color: var(--muted);
@@ -81,6 +82,7 @@
   display: flex;
   gap: 14px;
   margin-top: 36px;
+  justify-content: center;
 }
 .acts a {
   padding: 15px 30px;

@@ -21,7 +21,7 @@ export function EngagementModels({
   models: EngagementModel[];
 }) {
   return (
-    <Section bg="paper">
+    <Section id="engagement" bg="paper">
       <Container>
         <Reveal>
           <SectionHead eyebrow={eyebrow} title={title} lead={lead} />

@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/sections/PageHero";
 import { FirmBand } from "@/components/sections/FirmBand";
-import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { EngagementModels } from "@/components/sections/EngagementModels";
 import { FounderBio } from "@/components/sections/FounderBio";
-import { CollectiveExpertise } from "@/components/sections/CollectiveExpertise";
 import { Frameworks } from "@/components/sections/Frameworks";
+import { CollectiveExpertise } from "@/components/sections/CollectiveExpertise";
 import { AwardsStrip } from "@/components/sections/AwardsStrip";
-import { ImpactGlance } from "@/components/sections/ImpactGlance";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { JsonLd } from "@/components/primitives/JsonLd";
 import { breadcrumbJsonLd, personJsonLd } from "@/lib/jsonld";
@@ -17,7 +15,7 @@ import { HOME } from "@/content/home";
 export const metadata: Metadata = {
   title: "Know Us",
   description:
-    "An execution-first consulting firm. 195+ leaders who build, scale, and turn around businesses, in the room until rhythm holds.",
+    "An execution-first consulting collective of 195+ operators who build, scale, and turn around businesses, judged on the outcomes they leave behind.",
   alternates: { canonical: "/know-us" },
 };
 
@@ -38,42 +36,35 @@ export default function KnowUsPage() {
         secondaryCta={k.hero.secondaryCta}
       />
       <FirmBand eyebrow={k.firm.eyebrow} statement={k.firm.statement} />
-      <FeatureGrid
-        id="how"
-        eyebrow={k.howWeLead.eyebrow}
-        title={k.howWeLead.title}
-        lead={k.howWeLead.lead}
-        cards={k.howWeLead.cards}
-        columns={4}
-        bg="paper"
-      />
       <EngagementModels
         eyebrow={k.engagement.eyebrow}
         title={k.engagement.title}
         lead={k.engagement.lead}
         models={k.engagement.models}
       />
-      {/* The Pivot: same component and content as Home. */}
+      {/* The Pivot: full founder story here (Home shows the compact teaser variant). */}
       <FounderBio founder={HOME.founder} />
-      <CollectiveExpertise
-        eyebrow={k.expertise.eyebrow}
-        title={k.expertise.title}
-        intro={k.expertise.intro}
-        specialisationsLabel={k.expertise.specialisationsLabel}
-        specialisations={k.expertise.specialisations}
-        pedigreeLabel={k.expertise.pedigreeLabel}
-        pedigreeNote={k.expertise.pedigreeNote}
-        pedigree={k.expertise.pedigree}
-      />
+      {/* Frameworks sit directly after the founder — the proof that this is a real firm. */}
       <Frameworks
         eyebrow={k.frameworks.eyebrow}
-        title={k.frameworks.title}
+        title={
+          <>
+            Proprietary <em>frameworks</em>
+          </>
+        }
         lead={k.frameworks.lead}
         label={k.frameworks.label}
         cards={k.frameworks.cards}
       />
+      <CollectiveExpertise
+        {...k.expertise}
+        title={
+          <>
+            A bench that has <em>built it before</em>
+          </>
+        }
+      />
       <AwardsStrip {...k.awards} />
-      <ImpactGlance {...k.impactGlance} />
       <CtaBand
         title={
           <>
