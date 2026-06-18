@@ -19,7 +19,14 @@ export default function ClientsPage() {
   const c = CLIENTS;
   return (
     <>
-      <PageHero {...c.hero} />
+      <PageHero
+        {...c.hero}
+        title={
+          <>
+            Partners in <em>performance</em>.
+          </>
+        }
+      />
       <LogoWall {...c.logoWall} />
       <KeyClients {...c.keyClients} />
       <StatBand metrics={c.stats} columns={4} />

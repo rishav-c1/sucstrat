@@ -6,7 +6,7 @@ import { HOME } from "@/content/home";
 import styles from "./PracticeList.module.css";
 
 /**
- * Home "What we do" teaser — intro + the seven practice names as a compact grid (each with
+ * Home "What we do" teaser — intro + the eight practice names as a compact grid (each with
  * a one-line descriptor) and a single "Explore what we do" link to the full page.
  */
 export function PracticeList() {

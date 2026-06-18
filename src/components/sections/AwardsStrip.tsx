@@ -7,17 +7,22 @@ import { LOGO_PATH } from "@/content/site";
 import type { LogoItem } from "@/content/types";
 import styles from "./AwardsStrip.module.css";
 
-/** Know Us "Awards & recognition" — logo strip (grayscale → colour on hover). */
+/**
+ * Know Us "Recognition & platform" — award logo strip (grayscale → colour on hover), plus an
+ * optional faculty/speaker platform line (merged in from the former "Impact at a glance").
+ */
 export function AwardsStrip({
   eyebrow,
   title,
   lead,
   logos,
+  platform,
 }: {
   eyebrow: string;
   title: string;
   lead: string;
   logos: LogoItem[];
+  platform?: { label: string; items: string[] };
 }) {
   return (
     <Section bg="mist">
@@ -46,6 +51,14 @@ export function AwardsStrip({
             ))}
           </ul>
         </Reveal>
+        {platform ? (
+          <Reveal>
+            <p className={styles.platform}>
+              <span className={styles.platformLabel}>{platform.label}</span>
+              <span className={styles.platformItems}>{platform.items.join("  ·  ")}</span>
+            </p>
+          </Reveal>
+        ) : null}
       </Container>
     </Section>
   );

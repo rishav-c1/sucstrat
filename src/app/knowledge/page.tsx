@@ -21,7 +21,11 @@ export default function KnowledgePage() {
     <>
       <PageHero
         eyebrow={k.hero.eyebrow}
-        title={k.hero.title}
+        title={
+          <>
+            Insights &amp; <em>ideas</em>.
+          </>
+        }
         sub={k.hero.sub}
         primaryCta={k.hero.primaryCta}
         secondaryCta={k.hero.secondaryCta}

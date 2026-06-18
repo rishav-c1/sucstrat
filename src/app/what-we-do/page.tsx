@@ -2,11 +2,9 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { PageHero } from "@/components/sections/PageHero";
-import { FirmBand } from "@/components/sections/FirmBand";
 import { StatBand } from "@/components/sections/StatBand";
-import { PracticeAccordion } from "@/components/sections/PracticeAccordion";
+import { PracticeShowcase } from "@/components/sections/PracticeShowcase";
 import { EdgeBlock } from "@/components/sections/EdgeBlock";
-import { DeliverCards } from "@/components/sections/DeliverCards";
 import { IndustryTiles } from "@/components/sections/IndustryTiles";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { SectionHead } from "@/components/primitives/SectionHead";
@@ -18,7 +16,7 @@ import { WHAT_WE_DO } from "@/content/whatWeDo";
 export const metadata: Metadata = {
   title: "What We Do",
   description:
-    "Seven practices from strategy and turnaround to capital and AI, under one operating signature: Every Day, Great Execution.",
+    "Eight practices from strategy and turnaround to capital and AI, under one operating signature: Every Day, Great Execution.",
   alternates: { canonical: "/what-we-do" },
 };
 
@@ -26,17 +24,30 @@ export default function WhatWeDoPage() {
   const w = WHAT_WE_DO;
   return (
     <>
-      <PageHero {...w.hero} />
-      <FirmBand eyebrow={w.approach.eyebrow} statement={w.approach.statement} />
-      <StatBand metrics={w.stats} columns={4} />
+      <PageHero
+        {...w.hero}
+        title={
+          <>
+            What we <em>do</em>.
+          </>
+        }
+      />
+      <StatBand eyebrow={w.approach.eyebrow} metrics={w.stats} columns={4} />
 
       <Section id="practices" bg="paper">
         <Container>
           <Reveal>
-            <SectionHead eyebrow={w.practices.eyebrow} title={w.practices.title} lead={w.practices.lead} />
+            <SectionHead
+              eyebrow={w.practices.eyebrow}
+              title={
+                <>
+                  Eight practices. <em>One operating discipline.</em>
+                </>
+              }
+            />
           </Reveal>
           <Reveal>
-            <PracticeAccordion items={w.practices.items} />
+            <PracticeShowcase items={w.practices.items} />
           </Reveal>
         </Container>
       </Section>
@@ -49,7 +60,6 @@ export default function WhatWeDoPage() {
         footer={w.edge.footer}
       />
 
-      <DeliverCards {...w.deliver} />
       <IndustryTiles {...w.industries} />
 
       <CtaBand

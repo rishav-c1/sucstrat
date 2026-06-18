@@ -3,18 +3,16 @@ import type { Cta, Metric, Region } from "./types";
 /** Verbatim Home content (see content-extraction/home.md). */
 
 const primaryCta: Cta = { label: "Get in Touch", href: "/get-in-touch" };
-const seeOurWork: Cta = { label: "See our work", href: "/clients" };
 
 export const HOME = {
   hero: {
-    eyebrow: "Execution-first consulting.",
+    eyebrow: "Execution-first consulting",
     // h1 renders as "Your Success." / "Our Strategy." with "Strategy" emphasised.
     titleLeadLine: "Your Success.",
     titleRestBefore: "Our ",
     titleEmphasis: "Strategy",
     sub: "From strategy to scale, with success built in.",
     primaryCta,
-    secondaryCta: seeOurWork,
   },
 
   pillars: {
@@ -50,11 +48,12 @@ export const HOME = {
 
   whatWeDo: {
     eyebrow: "What we do",
-    title: "Seven practices. One operating discipline.",
+    title: "Eight practices. One operating discipline.",
     body: "From strategy and turnaround to capital and AI, we work across the full arc, then stay to make it hold.",
     cta: { label: "Explore what we do", href: "/what-we-do" } satisfies Cta,
     practices: [
-      { name: "Strategy & Scale", desc: "Growth strategy, scale-up roadmaps, and go-to-market." },
+      { name: "Strategic Transformation", desc: "Growth strategy, scale-up roadmaps, and go-to-market." },
+      { name: "Venture Building & Incubation", desc: "New ventures built from the ground up, often equity-aligned." },
       { name: "Turnaround & Operations", desc: "360 turnkey operations, turnaround, and operational excellence." },
       { name: "Brand, Marketing & Consumer", desc: "Brand strategy, consumer insight, and reputation." },
       { name: "Capital & Corporate Development", desc: "Funding, M&A, valuation, and the road to IPO." },
@@ -94,7 +93,6 @@ export const HOME = {
     titleEmphasis: "Our strategy.",
     titleAfter: "",
     primaryCta,
-    secondaryCta: seeOurWork,
   },
 };
 
