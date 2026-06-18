@@ -1,8 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Container } from "@/components/layout/Container";
 import { SectionHead } from "@/components/primitives/SectionHead";
 import { Reveal } from "@/components/primitives/Reveal";
+import { LOGO_PATH } from "@/content/site";
 import type { CaseItem } from "@/content/types";
 import styles from "./CaseCards.module.css";
 
@@ -38,9 +40,19 @@ export function CaseCards({
               const content: ReactNode = (
                 <>
                   <div className={styles.logo}>
-                    {/* Logo asset deferred (v4.0): the client wordmark stands in as a
-                        labelled placeholder until a local logo file is supplied. */}
-                    <span className={styles.logoBox}>{item.name}</span>
+                    {item.logo ? (
+                      <span className={styles.logoBox}>
+                        <Image
+                          src={`${LOGO_PATH}/${item.logo}`}
+                          alt={item.name}
+                          fill
+                          sizes="170px"
+                          className={styles.logoImg}
+                        />
+                      </span>
+                    ) : (
+                      <span className={styles.logoName}>{item.name}</span>
+                    )}
                   </div>
                   <div className={styles.eyebrow}>{item.eyebrow}</div>
                   <div className={styles.stat}>

@@ -38,19 +38,29 @@
   background: #fff;
   border-radius: var(--radius-lg);
   padding: 36px 38px;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 60px -32px rgba(16, 41, 61, 0.55);
 }
 .cardReverse .diaCol {
   order: 2;
 }
 
+/* Navy panel so the luminous brand-blue diagram glows; centered render. */
 .diaCol {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(160deg, #f2f6fb 0%, #e3edf7 100%);
+  background: radial-gradient(120% 130% at 50% 18%, #2a4a66 0%, #1b3140 60%, #16293d 100%);
+  border: 1px solid rgba(143, 180, 221, 0.16);
   border-radius: var(--radius-md);
-  padding: 22px;
-  min-height: 220px;
+  padding: 26px;
+  min-height: 248px;
+  overflow: hidden;
 }
 .dia {
   width: 100%;
@@ -58,7 +68,7 @@
 .diaSvg {
   width: 100%;
   height: auto;
-  max-width: 320px;
+  max-width: 340px;
   display: block;
   margin: 0 auto;
 }

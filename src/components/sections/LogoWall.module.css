@@ -18,6 +18,7 @@
   margin-top: 36px;
 }
 .cell {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,17 +26,31 @@
   background: #fff;
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
-  min-height: 110px;
-  padding: 16px 18px;
+  min-height: 112px;
+  padding: 18px 20px;
+  overflow: hidden;
   transition:
-    border-color 0.2s,
-    box-shadow 0.2s,
-    transform 0.2s;
+    border-color 0.22s,
+    box-shadow 0.22s,
+    transform 0.22s;
 }
 .cell:hover {
-  border-color: var(--navy-800);
+  border-color: var(--blue-500);
   box-shadow: var(--shadow-card);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+}
+.img {
+  object-fit: contain;
+  padding: 18px 20px;
+  filter: grayscale(1);
+  opacity: 0.82;
+  transition:
+    filter 0.28s,
+    opacity 0.28s;
+}
+.cell:hover .img {
+  filter: grayscale(0);
+  opacity: 1;
 }
 .name {
   font-family: var(--font-serif);
@@ -60,14 +75,24 @@
   gap: 12px;
 }
 .startupCell {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 0 1 auto;
+  flex: 0 0 auto;
+  width: 138px;
+  height: 60px;
   background: #fff;
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
-  padding: 10px 18px;
+  overflow: hidden;
+  transition:
+    border-color 0.22s,
+    transform 0.22s;
+}
+.startupCell:hover {
+  border-color: var(--blue-500);
+  transform: translateY(-2px);
 }
 .startupName {
   font-family: var(--font-serif);
