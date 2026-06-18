@@ -1,7 +1,9 @@
 .edge {
   position: relative;
   overflow: hidden;
-  background: radial-gradient(120% 120% at 50% -10%, #355c7d 0%, #1b3140 55%, #16293d 100%);
+  /* Uniform vertical gradient so the bottom edge is a single colour (#16293d) that hands
+     off seamlessly to How-we-deliver. The aurora glows below sit on top for flair. */
+  background: linear-gradient(180deg, #2a4a66 0%, #1f3850 42%, #16293d 100%);
   padding: 96px 0;
   text-align: center;
 }
@@ -21,13 +23,14 @@
   left: 8%;
   background: #4476a1;
 }
+/* Kept clear of the bottom edge so the seam into How-we-deliver stays uniform. */
 .aura2 {
-  width: 420px;
-  height: 420px;
-  bottom: -180px;
-  right: 6%;
+  width: 360px;
+  height: 360px;
+  bottom: 18%;
+  right: 2%;
   background: #5d90ba;
-  opacity: 0.32;
+  opacity: 0.24;
 }
 .inner {
   position: relative;
