@@ -113,12 +113,15 @@ export interface Practice {
 }
 
 /**
- * A brand/client/award logo. Logo image assets are deferred (v4.0), so the `name` renders
- * as a labelled placeholder; `logo` (a future local filename) is optional until supplied.
+ * A brand/client/award logo. `logo` (a local filename under /public/logos) is optional —
+ * a missing logo renders the `name` as a labelled placeholder. Awards additionally carry
+ * a `description` (revealed on hover) and an `href` to the awarding body's main page.
  */
 export interface LogoItem {
   name: string;
   logo?: string;
+  description?: string;
+  href?: string;
 }
 
 /** An engagement archetype (Know Us "How we engage"). */

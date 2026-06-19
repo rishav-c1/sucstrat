@@ -184,17 +184,60 @@ export const KNOW_US = {
     eyebrow: "Recognition & platform",
     title: "Awards & recognition",
     lead: "Recognised across the industry, and on the platforms that shape it.",
-    // Real logos where available; the four newer awards fall back to name placeholders.
+    // Real logos where available; the newer awards fall back to name placeholders.
+    // Descriptions + links identify the awarding body (researched from each org's site);
+    // each card links to that body's main page (new tab). See build report: the Maddy's
+    // attribution and the 2016 print-media honour are flagged for stakeholder confirmation.
     logos: [
-      { name: "FICCI", logo: "FICCI.jpg" },
-      { name: "WAN-IFRA", logo: "waninfra.jpg" },
-      { name: "INMA", logo: "INMA.jpg" },
-      { name: "Abby's", logo: "abbys.jpg" },
-      { name: "Maddy's", logo: "maddys.jpg" },
-      { name: "INMA NY World Congress" },
-      { name: "Print Media Professional of the Year 2016" },
-      { name: "WAN World Youth Readership, Warsaw" },
-      { name: "CSR & Brand Leadership, CMO Asia" },
+      {
+        name: "FICCI",
+        logo: "FICCI.jpg",
+        description: "Federation of Indian Chambers of Commerce & Industry, India's apex business body.",
+        href: "https://ficci.in",
+      },
+      {
+        name: "WAN-IFRA",
+        logo: "waninfra.jpg",
+        description: "World Association of News Publishers, the global organisation of the world's press.",
+        href: "https://wan-ifra.org",
+      },
+      {
+        name: "INMA",
+        logo: "INMA.jpg",
+        description: "International News Media Association, the news media industry's ideas network.",
+        href: "https://www.inma.org",
+      },
+      {
+        name: "Abby's",
+        logo: "abbys.jpg",
+        description: "The ABBY Awards at Goafest, South Asia's top creativity and communication awards.",
+        href: "https://abbyawards.com",
+      },
+      {
+        name: "Maddy's",
+        logo: "maddys.jpg",
+        description: "The MADDYS, the Advertising Club Madras awards for creative excellence.",
+        href: "https://adclubmadras.com",
+      },
+      {
+        name: "INMA NY World Congress",
+        description: "INMA World Congress of News Media, the global gathering of news media leaders.",
+        href: "https://www.inma.org",
+      },
+      {
+        name: "Print Media Professional of the Year 2016",
+        description: "Print media industry recognition, 2016.",
+      },
+      {
+        name: "WAN World Youth Readership, Warsaw",
+        description: "WAN-IFRA World Young Reader programme, advancing youth readership worldwide.",
+        href: "https://wan-ifra.org",
+      },
+      {
+        name: "CSR & Brand Leadership, CMO Asia",
+        description: "CMO Asia Awards, recognising excellence in branding and CSR leadership.",
+        href: "https://www.cmoasia.org",
+      },
     ] satisfies LogoItem[],
     platform: {
       label: "Faculty & speaker",

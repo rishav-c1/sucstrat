@@ -1,68 +1,124 @@
-.row {
+/* Credibility banners: a 3x3 wall of equal cards (logo or name over a hover-revealed
+   description). Card shell matches the "Our consultants" bento on the same page. */
+.grid {
   list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 28px;
 }
-.item {
+.cell {
+  display: flex;
+}
+.card {
   position: relative;
-  flex: 1 1 150px;
-  min-height: 84px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+  min-height: 172px;
+  padding: 30px 26px 24px;
   background: #fff;
   border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
+  border-radius: 16px;
+  box-shadow:
+    0 1px 2px rgba(38, 66, 89, 0.05),
+    0 6px 20px rgba(38, 66, 89, 0.05);
   transition:
-    border-color 0.22s,
-    transform 0.22s;
+    border-color 0.24s,
+    box-shadow 0.24s,
+    transform 0.24s;
 }
-.item:hover {
+a.card:hover,
+a.card:focus-visible {
   border-color: var(--blue-500);
-  transform: translateY(-2px);
+  box-shadow:
+    0 2px 4px rgba(38, 66, 89, 0.08),
+    0 16px 36px rgba(38, 66, 89, 0.12);
+  transform: translateY(-3px);
+  outline: none;
+}
+a.card:focus-visible {
+  outline: 2px solid var(--blue-600);
+  outline-offset: 3px;
+}
+
+/* Logo lockup (bigger than the old strip) or the award name when no logo exists. */
+.logoArea {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .img {
   object-fit: contain;
-  padding: 18px 24px;
   filter: grayscale(1);
-  opacity: 0.74;
+  opacity: 0.82;
   transition:
     filter 0.28s,
     opacity 0.28s;
 }
-.item:hover .img {
+a.card:hover .img,
+a.card:focus-visible .img {
   filter: grayscale(0);
   opacity: 1;
-}
-.itemText {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1 1 150px;
-  min-height: 84px;
-  padding: 16px 22px;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  text-align: center;
 }
 .name {
   font-family: var(--font-serif);
   font-weight: 600;
-  font-size: 14px;
-  line-height: 1.3;
+  font-size: 18px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
   color: var(--navy-800);
-  opacity: 0.8;
-  transition: opacity 0.25s;
 }
-.itemText:hover .name {
+
+/* Description + visit affordance: reserved in layout, revealed on hover/focus (no reflow). */
+.desc {
+  margin-top: 16px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 0.28s,
+    transform 0.28s;
+}
+.visit {
+  margin-top: 12px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--blue-600);
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 0.28s,
+    transform 0.28s;
+}
+a.card:hover .desc,
+a.card:hover .visit,
+a.card:focus-visible .desc,
+a.card:focus-visible .visit,
+.card[data-static]:hover .desc {
   opacity: 1;
+  transform: none;
 }
+
+/* Faculty & speaker platform line (kept). */
 .platform {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   gap: 6px 16px;
-  margin-top: 24px;
+  margin-top: 28px;
   padding-top: 20px;
   border-top: 1px solid var(--line);
 }
@@ -77,4 +133,33 @@
   font-family: var(--font-serif);
   font-size: 15px;
   color: var(--navy-800);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  /* No hover on touch: show the description + link affordance by default. */
+  .desc,
+  .visit {
+    opacity: 1;
+    transform: none;
+  }
+  .card {
+    min-height: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .img,
+  .desc,
+  .visit {
+    transition: none;
+  }
 }
