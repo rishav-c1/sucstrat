@@ -6,7 +6,7 @@ export const GET_IN_TOUCH = {
   hero: {
     eyebrow: "Get in touch",
     title: "How can we help?",
-    sub: "Tell us who you are and what you're after, and we'll point you to the right person.",
+    sub: "Give us a quick sense of who you are and what you're looking for. We'll take it from there.",
   },
 
   // "Reach us" routing cards (the mockup section has no heading — cards follow the hero).
@@ -14,41 +14,41 @@ export const GET_IN_TOUCH = {
     cards: [
       {
         title: "Clients",
-        body: "A new or current client exploring a mandate with us.",
+        body: "A new or current connect exploring a mandate with us.",
         icon: "people",
         href: "#form",
         cta: "Send us a message",
       },
       {
-        title: "Job seekers",
+        title: "Job Seekers",
         body: "Ready to build more than a career? See open paths.",
         icon: "briefcase",
         href: "/careers",
         cta: "SucStrat Careers",
       },
       {
-        title: "Partners & alliances",
+        title: "Partners & Alliances",
         body: "Institutions and ecosystem partners exploring collaboration.",
         icon: "globe",
         href: `mailto:${SITE.email}?subject=Partnership`,
         cta: "Partner with us",
       },
       {
-        title: "Media & press",
+        title: "Media & PR",
         body: "Interviews, quotes, and press enquiries.",
         icon: "media",
         href: `mailto:${SITE.email}?subject=Media%20enquiry`,
         cta: "Media enquiries",
       },
       {
-        title: "Speaking & faculty",
-        body: "Invite Vinay to a keynote, panel, or class.",
+        title: "Speaking & Faculty",
+        body: "Invite subject matter experts to a keynote, panel or class.",
         icon: "microphone",
         href: `mailto:${SITE.email}?subject=Speaking%20enquiry`,
         cta: "Speaking enquiries",
       },
       {
-        title: "Ventures & funding",
+        title: "Fundraising & Expansion",
         body: "Investor-readiness, fundraising, and scale.",
         icon: "chartUp",
         href: "#form",
@@ -61,12 +61,11 @@ export const GET_IN_TOUCH = {
   contact: {
     eyebrow: "Reach us",
     title: "Let's talk",
-    intro:
-      "Tell us where you are and we'll take it from there. Prefer to keep it simple? Just email us directly.",
+    intro: "Prefer to keep it simple? Just email us directly.",
     rows: [
       { icon: "mail", label: "Email", value: SITE.email, href: `mailto:${SITE.email}` },
       { icon: "linkedin", label: "LinkedIn", value: "linkedin.com/company/sucstrat", href: LINKEDIN_URL },
-      { icon: "mapPin", label: "Visit", value: "New Delhi, India" },
+      { icon: "mapPin", label: "Visit", value: SITE.address },
     ] satisfies ContactRow[],
   },
 
@@ -82,6 +81,34 @@ export const GET_IN_TOUCH = {
       "Other",
     ],
     countries: ["India", "United States", "United Kingdom", "Middle East", "Singapore", "Other"],
+    // International dialing codes for the phone field (India default, then the firm's regions, then common others).
+    dialCodes: [
+      "+91",
+      "+1",
+      "+44",
+      "+971",
+      "+966",
+      "+974",
+      "+65",
+      "+61",
+      "+49",
+      "+33",
+      "+31",
+      "+41",
+      "+81",
+      "+86",
+      "+852",
+      "+82",
+      "+60",
+      "+62",
+      "+27",
+      "+234",
+      "+55",
+      "+34",
+      "+39",
+      "+353",
+      "+64",
+    ],
     consentLabel: "I agree to be contacted regarding this enquiry.",
     success: {
       title: "Thank you, we've got it.",
