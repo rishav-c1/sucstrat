@@ -101,14 +101,13 @@ export interface IndustryTile {
 }
 
 /**
- * A practice in the What We Do services index — number + title, a point-of-view line and a
- * second supporting line for the detail card, plus its "the work" sub-services.
+ * A practice in the What We Do services index — number + title, an italic description, and its
+ * "the work" sub-services.
  */
 export interface Practice {
   num: string;
   title: string;
-  pov: string;
-  detail: string;
+  description: string;
   services: string[];
 }
 

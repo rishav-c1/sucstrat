@@ -47,8 +47,7 @@ export function PracticeShowcase({ items }: { items: Practice[] }) {
             >
               <span className={styles.cardEyebrow}>Practice {p.num}</span>
               <h3 className={styles.cardTitle}>{p.title}</h3>
-              <p className={styles.pov}>{p.pov}</p>
-              <p className={styles.detail}>{p.detail}</p>
+              <p className={styles.description}>{p.description}</p>
               <span className={styles.workLabel}>The work</span>
               <ul className={styles.workGrid}>
                 {p.services.map((service) => (

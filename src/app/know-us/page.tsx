@@ -43,7 +43,7 @@ export default function KnowUsPage() {
         models={k.engagement.models}
       />
       {/* The Pivot: full founder story here (Home shows the compact teaser variant). */}
-      <FounderBio founder={HOME.founder} />
+      <FounderBio founder={HOME.founder} id="pivot" />
       {/* Frameworks sit directly after the founder — the proof that this is a real firm. */}
       <Frameworks
         eyebrow={k.frameworks.eyebrow}

@@ -28,12 +28,11 @@ export const HOME = {
 
   impact: {
     eyebrow: "Our impact",
-    title:
-      "Three decades of building and turning around businesses, judged on one thing: the outcomes we leave behind.",
+    title: "Building and turning around businesses judged by the outcomes we leave behind",
     metrics: [
       { to: 195, suffix: "+", label: "Consultants" },
       { to: 21, label: "Sectors" },
-      { to: 127, suffix: "+", label: "Clients served" },
+      { to: 35, suffix: "+", label: "Active clients" },
       { to: 300, suffix: "+", label: "Transformation projects" },
     ] satisfies Metric[],
   },
@@ -55,7 +54,7 @@ export const HOME = {
       { name: "Strategic Transformation", desc: "Growth strategy, scale-up roadmaps, and go-to-market." },
       { name: "Venture Building & Incubation", desc: "New ventures built from the ground up, often equity-aligned." },
       { name: "Turnaround & Operations", desc: "360 turnkey operations, turnaround, and operational excellence." },
-      { name: "Brand, Marketing & Consumer", desc: "Brand strategy, consumer insight, and reputation." },
+      { name: "Brand, Marketing & Consumer Insights", desc: "Brand positioning, consumer trends, and reputation management." },
       { name: "Capital & Corporate Development", desc: "Funding, M&A, valuation, and the road to IPO." },
       { name: "Leadership & CXO Coaching", desc: "Executive coaching, founder mentorship, and alignment." },
       { name: "Digital, Data & AI", desc: "Digital transformation, analytics, and automation." },

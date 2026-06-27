@@ -17,14 +17,17 @@ export function FounderBio({
   founder,
   compact = false,
   bg = "mist",
+  id,
 }: {
   founder: FounderContent;
   compact?: boolean;
   /** Section background — "mist" (Know Us) or "paper" (Home, to avoid a double-mist run). */
   bg?: "mist" | "paper";
+  /** Optional anchor id (e.g. "pivot" on Know Us) so links can jump straight to this section. */
+  id?: string;
 }) {
   return (
-    <section className={clsx(styles.founder, bg === "paper" && styles.paper)}>
+    <section id={id} className={clsx(styles.founder, bg === "paper" && styles.paper)}>
       <Container>
         <div className={styles.grid}>
           <Reveal className={styles.portraitWrap}>
@@ -54,7 +57,7 @@ export function FounderBio({
             {compact ? (
               <>
                 <p className={styles.para}>{founder.paragraphs[0]}</p>
-                <Link href="/know-us" className={styles.moreLink}>
+                <Link href="/know-us#pivot" className={styles.moreLink}>
                   Read Vinay&rsquo;s full story
                   <span aria-hidden="true"> →</span>
                 </Link>
