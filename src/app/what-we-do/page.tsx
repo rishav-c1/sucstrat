@@ -41,7 +41,9 @@ export default function WhatWeDoPage() {
               eyebrow={w.practices.eyebrow}
               title={
                 <>
-                  Eight practices. <em>One operating discipline.</em>
+                  Eight practices.
+                  <br />
+                  <em>One operating discipline.</em>
                 </>
               }
             />

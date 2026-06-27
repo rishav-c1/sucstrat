@@ -49,6 +49,24 @@ textarea.input {
   resize: vertical;
   min-height: 120px;
 }
+/* Phone: dial-code dropdown + number input side by side. */
+.phoneGroup {
+  display: flex;
+  gap: 8px;
+}
+.dialCode {
+  flex: 0 0 92px;
+  padding-right: 28px;
+  background-position: right 9px center;
+}
+.phoneNum {
+  flex: 1;
+  min-width: 0;
+}
+/* "Other" country free-text box, shown under the select. */
+.subInput {
+  margin-top: 8px;
+}
 .input[aria-invalid="true"] {
   border-color: #d0473b;
   box-shadow: 0 0 0 3px rgba(163, 22, 12, 0.12);

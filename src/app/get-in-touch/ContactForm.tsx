@@ -9,6 +9,15 @@ import styles from "./ContactForm.module.css";
 const F = GET_IN_TOUCH.form;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// Country / region -> default phone dialing code (auto-filled when a region is chosen).
+const COUNTRY_DIAL: Record<string, string> = {
+  India: "+91",
+  "United States": "+1",
+  "United Kingdom": "+44",
+  "Middle East": "+971",
+  Singapore: "+65",
+};
+
 type Errors = Partial<Record<string, string>>;
 
 type FieldProps = {
@@ -85,6 +94,8 @@ export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
+  const [country, setCountry] = useState("");
+  const [phoneCode, setPhoneCode] = useState("+91");
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -107,6 +118,7 @@ export function ContactForm() {
     else if (!EMAIL_RE.test(email)) next.email = "Please enter a valid email address.";
     if (!get("company")) next.company = "Please enter your company.";
     if (!get("country")) next.country = "Please select a country or region.";
+    else if (get("country") === "Other" && !get("countryOther")) next.country = "Please enter your country or region.";
     if (!get("message")) next.message = "Please tell us how we can help.";
     if (data.get("consent") !== "yes") next.consent = "Please confirm your consent to proceed.";
 
@@ -123,9 +135,9 @@ export function ContactForm() {
       `Inquiry type: ${get("inquiryType")}`,
       `Name: ${get("firstName")} ${get("lastName")}`,
       `Email: ${email}`,
-      `Phone: ${get("phone") || "Not provided"}`,
+      `Phone: ${get("phone") ? `${get("phoneCode")} ${get("phone")}` : "Not provided"}`,
       `Company: ${get("company")}`,
-      `Country / region: ${get("country")}`,
+      `Country / region: ${get("country") === "Other" ? get("countryOther") || "Other" : get("country")}`,
       "",
       get("message"),
     ].join("\n");
@@ -165,13 +177,82 @@ export function ContactForm() {
       </div>
 
       <div className={styles.row}>
-        <Field id="email" label="Email" type="email" required placeholder="Your work email" autoComplete="email" error={errors.email} />
-        <Field id="phone" label="Phone" type="tel" placeholder="+91" autoComplete="tel" />
+        <Field id="company" label="Company" required placeholder="Your organisation" autoComplete="organization" error={errors.company} />
+        <div className={styles.field}>
+          <label htmlFor="country" className={styles.label}>
+            Country / region<span aria-hidden="true"> *</span>
+          </label>
+          <select
+            id="country"
+            name="country"
+            defaultValue=""
+            onChange={(e) => {
+              const value = e.target.value;
+              setCountry(value);
+              if (COUNTRY_DIAL[value]) setPhoneCode(COUNTRY_DIAL[value]);
+            }}
+            aria-invalid={errors.country ? true : undefined}
+            aria-describedby={errors.country ? "country-error" : undefined}
+            className={styles.input}
+          >
+            <option value="" disabled>
+              Select one…
+            </option>
+            {F.countries.map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))}
+          </select>
+          {country === "Other" ? (
+            <input
+              id="countryOther"
+              name="countryOther"
+              type="text"
+              placeholder="Your country or region"
+              aria-label="Your country or region"
+              className={`${styles.input} ${styles.subInput}`}
+            />
+          ) : null}
+          {errors.country ? (
+            <p id="country-error" className={styles.fieldError}>
+              {errors.country}
+            </p>
+          ) : null}
+        </div>
       </div>
 
       <div className={styles.row}>
-        <Field id="company" label="Company" required placeholder="Your organisation" autoComplete="organization" error={errors.company} />
-        <Field id="country" label="Country / region" required as="select" options={F.countries} error={errors.country} />
+        <Field id="email" label="Email" type="email" required placeholder="Your work email" autoComplete="email" error={errors.email} />
+        <div className={styles.field}>
+          <label htmlFor="phone" className={styles.label}>
+            Phone
+          </label>
+          <div className={styles.phoneGroup}>
+            <select
+              id="phoneCode"
+              name="phoneCode"
+              value={phoneCode}
+              onChange={(e) => setPhoneCode(e.target.value)}
+              aria-label="Country dialing code"
+              className={`${styles.input} ${styles.dialCode}`}
+            >
+              {F.dialCodes.map((code) => (
+                <option key={code} value={code}>
+                  {code}
+                </option>
+              ))}
+            </select>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              placeholder="Phone number"
+              autoComplete="tel"
+              className={`${styles.input} ${styles.phoneNum}`}
+            />
+          </div>
+        </div>
       </div>
 
       <Field

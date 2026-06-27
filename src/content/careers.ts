@@ -16,8 +16,8 @@ export const CAREERS = {
     title: "We grow people as fast as we grow companies",
     lead: "We attract ambitious consultants and professionals who want to deliver outcomes that last.",
     cards: [
-      { icon: "flag", title: "Ownership from day one", body: "Own outcomes and client relationships from your first week." },
-      { icon: "trophy", title: "Outcomes over tenure", body: "You are recognised by the results you ship, not years served." },
+      { icon: "flag", title: "Ownership", body: "Own outcomes and client relationships from your first week." },
+      { icon: "trophy", title: "Outcomes over tenure", body: "You are recognised by the results, not years served." },
       { icon: "people", title: "Coached to scale", body: "Direct mentorship from senior consultants and partners." },
       { icon: "realEstate", title: "Built to last", body: "Work that shapes institutions and carries your name." },
     ] satisfies IconCard[],
@@ -47,7 +47,7 @@ export const CAREERS = {
   beyond: {
     eyebrow: "Beyond SucStrat",
     title: "Jobs with our clients",
-    lead: "We also connect exceptional professionals with our clients when that is the highest-impact path.",
+    lead: "We open up pathways for exceptional professionals to join our clients on their roles.",
     cards: [
       { icon: "briefcase", title: "Permanent Roles", body: "Join client leadership teams to drive long-term transformation." },
       { icon: "lightning", title: "Interim & Project Roles", body: "Lead time-bound, high-impact missions." },
