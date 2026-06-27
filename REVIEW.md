@@ -1,5 +1,7 @@
 # REVIEW.md — SucStrat Website (final audit)
 
+> **Post-audit change (2026-06-27):** the `/clients` route was removed and its client logos were moved into a scrolling `LogoMarquee` on `/what-we-do` (replacing the "Industries we serve" sector grid). Gate/route counts and the `/clients` Lighthouse row below are from the original audit and predate that change — the live site now has 5 content pages and the e2e suites no longer cover `/clients`.
+
 Built across the phased plan in `PLAN.md`. All six content pages + `/get-in-touch` + case-study stubs are implemented from the verbatim extractions in `content-extraction/*.md`. Run everything under **Node 20** (`.nvmrc`; `corepack`-provided pnpm).
 
 ## 1. Gate results

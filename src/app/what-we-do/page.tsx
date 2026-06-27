@@ -5,12 +5,13 @@ import { PageHero } from "@/components/sections/PageHero";
 import { StatBand } from "@/components/sections/StatBand";
 import { PracticeShowcase } from "@/components/sections/PracticeShowcase";
 import { EdgeBlock } from "@/components/sections/EdgeBlock";
-import { IndustryTiles } from "@/components/sections/IndustryTiles";
+import { LogoMarquee } from "@/components/sections/LogoMarquee";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { SectionHead } from "@/components/primitives/SectionHead";
 import { Reveal } from "@/components/primitives/Reveal";
 import { JsonLd } from "@/components/primitives/JsonLd";
 import { breadcrumbJsonLd } from "@/lib/jsonld";
+import { LOGO_PATH } from "@/content/site";
 import { WHAT_WE_DO } from "@/content/whatWeDo";
 
 export const metadata: Metadata = {
@@ -62,7 +63,19 @@ export default function WhatWeDoPage() {
         footer={w.edge.footer}
       />
 
-      <IndustryTiles {...w.industries} />
+      <Section bg="mist">
+        <Container>
+          <Reveal>
+            <SectionHead eyebrow={w.marquee.eyebrow} title={w.marquee.title} lead={w.marquee.lead} />
+          </Reveal>
+          <Reveal>
+            <LogoMarquee
+              speedSeconds={80}
+              logos={w.marquee.logos.map((l) => ({ src: `${LOGO_PATH}/${l.logo}`, alt: l.name }))}
+            />
+          </Reveal>
+        </Container>
+      </Section>
 
       <CtaBand
         title={

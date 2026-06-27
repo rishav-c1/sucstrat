@@ -1,4 +1,4 @@
-import type { EngagementModel, FrameworkCard, LogoItem, PedigreeGroup } from "./types";
+import type { EngagementModel, LogoItem, MethodFramework, PedigreeGroup } from "./types";
 
 export const KNOW_US = {
   hero: {
@@ -26,7 +26,7 @@ export const KNOW_US = {
       {
         name: "Strategy Sprint",
         duration: "2 to 4 weeks",
-        model: "Fixed scope, fixed fee",
+        model: "Fixed scope",
         oneLine: "Fast clarity, sharp direction, immediate momentum.",
         body: "A focused engagement to solve a specific challenge or define the next growth stage; the ideal entry point before a longer partnership.",
         outputs: [
@@ -122,61 +122,124 @@ export const KNOW_US = {
       "International Business",
     ],
   },
-  frameworks: {
-    eyebrow: "The method",
-    title: "Proprietary frameworks",
-    lead: "The IP behind the practice.",
-    label: "Proprietary framework · Copyright registered, Govt. of India",
-    cards: [
+  // "Our method" — interactive proprietary-frameworks section (replaces the former navy
+  // Frameworks band). Content carried verbatim from the design handoff: four frameworks,
+  // each with a category, eyebrow, thesis (pre + bold mark + post), three points, and a
+  // bespoke CSS diagram ("exhibit") selected by `type`. Em dashes intentionally avoided.
+  method: {
+    eyebrow: "Our method",
+    titleLead: "Proprietary ",
+    titleEmph: "frameworks",
+    titleRest: ", built and proven in the field.",
+    indexHeading: "The four frameworks",
+    author: "Vinay Maheshwari",
+    authorRole: "Founder, SucStrat Consultants",
+    credential: "Proprietary framework · Copyright registered, Govt. of India",
+    frameworks: [
       {
         num: "01",
-        title: "The D Scale-Up Loop",
-        tagline: "Compress complexity. Concentrate impact.",
-        insight:
-          "Scale-ups die from too many priorities, not bad strategy. The Loop is the discipline of deliberately doing less until only what moves the number is left.",
-        steps: [
-          { n: "01", text: "Strip the gap to its 1 to 3 driving variables." },
-          { n: "02", text: "Build the smallest intervention that moves them, deployed in weeks not quarters." },
-          { n: "03", text: "Monitor and adjust weekly, closing the loop fast." },
+        type: "loop",
+        cat: "Scaling System",
+        eyebrow: "Scaling System",
+        titleLead: "The D Scale-Up",
+        emph: "Loop",
+        fullTitle: "The D Scale-Up Loop",
+        exhibitLabel: "The continuous loop",
+        thesisPre:
+          "Scaling stalls when diagnosis, design, and delivery sit in silos. The Loop runs all three as one continuous cycle, ",
+        thesisMark: "simplification in motion",
+        thesisPost: ", turning complexity into clarity.",
+        points: [
+          {
+            label: "Discover & Diagnose",
+            text: "Translate messy realities into sharp, simplified problem statements.",
+          },
+          {
+            label: "Design & Deploy",
+            text: "Build bespoke interventions tailored to context, not borrowed playbooks.",
+          },
+          {
+            label: "Debug & Deliver",
+            text: "Track on live dashboards; debug failures in real time with clear accountability.",
+          },
         ],
       },
       {
         num: "02",
-        title: "The Growth Momentum Matrix",
-        tagline: "Effort meets timing. Trend alignment is the multiplier.",
-        insight:
-          "Effort and timing get you in the game; trend alignment decides whether you compound or stall. Same quadrant, opposite fates.",
-        steps: [
-          { n: "01", text: "Plot the move on effort by timing." },
-          { n: "02", text: "Operate in high-effort, right-timing for compound returns." },
-          { n: "03", text: "Layer trend alignment: 3 to 5x when aligned, decay when contrarian." },
+        type: "matrix",
+        cat: "Effort × Timing × Trend",
+        eyebrow: "Effort × Timing × Trend Alignment",
+        titleLead: "The Momentum",
+        emph: "Matrix",
+        fullTitle: "The Momentum Matrix",
+        exhibitLabel: "Effort × timing quadrants",
+        thesisPre:
+          "Effort alone does not compound. Returns appear only where effort meets the right timing and trend: ",
+        thesisMark: "a GPS for where to spend energy",
+        thesisPost: ", not just how hard to work.",
+        points: [
+          { label: "Effort", text: "Provides the endurance and resilience to stay in the game." },
+          { label: "Timing", text: "Ensures the market is actually ready to receive the effort." },
+          { label: "Trend Alignment", text: "Amplifies both, so growth compounds instead of dissipating." },
         ],
       },
       {
         num: "03",
-        title: "The Fear-Excitement Intensity Model",
-        tagline: "High arousal compresses decision time.",
-        insight:
-          "Likeable brands get remembered, intense ones get bought. The lever is intensity, not valence. Calibrate, do not maximise.",
-        steps: [
-          { n: "01", text: "Identify the dominant arousal lever, fear or excitement." },
-          { n: "02", text: "Dial intensity to the conversion peak and hold." },
-          { n: "03", text: "Past the peak is paralysis or scepticism." },
+        type: "intensity",
+        cat: "Emotional Intensity",
+        eyebrow: "Emotional Intensity · FEIM",
+        titleLead: "Fear–Excitement",
+        emph: "Intensity Model",
+        fullTitle: "Fear–Excitement Intensity Model",
+        exhibitLabel: "Intensity drives response",
+        thesisPre:
+          "Rational appeals delay decisions; emotion accelerates them. The greater the intensity of fear or excitement, ",
+        thesisMark: "the faster and stronger the response",
+        thesisPost: ", and the longer it lasts.",
+        points: [
+          {
+            label: "Emotion as catalyst",
+            text: "Fear and excitement compress hesitation directly into action.",
+          },
+          {
+            label: "Differentiation as intensity",
+            text: "Newness, originality and uniqueness raise the emotional charge.",
+          },
+          {
+            label: "Retention through intensity",
+            text: "High arousal sustains attention, and in some channels, habit.",
+          },
         ],
       },
       {
         num: "04",
-        title: "Qualified vs Classified Audience",
-        tagline: "Not every sale builds the brand.",
-        insight:
-          "Revenue can climb while a brand quietly dies. It turns on who buys and why; the wrong audience trades relevance for cash.",
-        steps: [
-          { n: "01", text: "Classify buyers as on-thesis or off-thesis." },
-          { n: "02", text: "Measure the ratio; healthy brands hold 70%+ Classified." },
-          { n: "03", text: "Course-correct before the 50:50 identity drift." },
+        type: "dominance",
+        cat: "Audience Strategy",
+        eyebrow: "Audience Strategy · QACAM",
+        titleLead: "Qualified vs Classified",
+        emph: "Audience Model",
+        fullTitle: "Qualified vs Classified Audience",
+        exhibitLabel: "Audience composition",
+        thesisPre:
+          "Not every buyer strengthens a brand. Enduring equity depends on the dominance of the Classified Audience: ",
+        thesisMark: "relevance over raw revenue",
+        thesisPost: ".",
+        points: [
+          {
+            label: "Classified",
+            text: "The intended target; all design, positioning and message optimised for them.",
+          },
+          {
+            label: "Qualified",
+            text: "Can afford to buy, but consume off-concept, revenue without relevance.",
+          },
+          {
+            label: "Guardrail",
+            text: "When Qualified consumption dominates, identity erodes despite the growth.",
+          },
         ],
       },
-    ] satisfies FrameworkCard[],
+    ] satisfies MethodFramework[],
   },
   // Recognition & platform: awards strip + the faculty/speaker platforms (merged in from the
   // former "Impact at a glance" section, whose other items duplicated the Pivot and this strip).

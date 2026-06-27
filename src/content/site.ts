@@ -51,12 +51,11 @@ export interface NavLink {
   href: string;
 }
 
-/** Primary nav — identical across all six pages in the references. */
+/** Primary nav. (The Clients page was removed; its logos now live on What We Do.) */
 export const PRIMARY_NAV: NavLink[] = [
   { label: "Home", href: "/" },
   { label: "Know Us", href: "/know-us" },
   { label: "What We Do", href: "/what-we-do" },
-  { label: "Clients", href: "/clients" },
   { label: "Careers", href: "/careers" },
   { label: "Knowledge", href: "/knowledge" },
 ];
@@ -72,7 +71,6 @@ export const HEADER_CTAS: Record<string, NavLink> = {
   "/": { label: "Get in Touch", href: "/get-in-touch" },
   "/know-us": { label: "Book a Call", href: "/get-in-touch" },
   "/what-we-do": { label: "Book a Discovery Call", href: "/get-in-touch" },
-  "/clients": { label: "Work With Us", href: "/get-in-touch" },
   "/careers": { label: "Apply Now", href: "/get-in-touch" },
   "/knowledge": { label: "Get in Touch", href: "/get-in-touch" },
   "/get-in-touch": { label: "Get in Touch", href: "/get-in-touch" },
@@ -94,7 +92,6 @@ export const FOOTER_NAV: { heading: string; links: NavLink[] }[] = [
     links: [
       { label: "Know Us", href: "/know-us" },
       { label: "What We Do", href: "/what-we-do" },
-      { label: "Clients", href: "/clients" },
       { label: "Careers", href: "/careers" },
     ],
   },

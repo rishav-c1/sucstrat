@@ -4,7 +4,7 @@ Persistent project memory. Read every turn. If a request conflicts with anything
 
 ## What this is
 
-Marketing/content website for **SucStrat**, a strategy & consulting firm (founder: Vinay Maheshwari). Six pages. The source material is **six hand-authored semantic HTML mockups** in `/html_static_pages/` — **NOT Wix exports** (clean markup, one `<h1>` each, proper heading nesting, a shared CSS-custom-property design system; the multi-hundred-KB bulk of each file is embedded base64 Lato/Lora fonts, not a runtime blob). They are **visual + content reference**. **Still never copy their markup, classes, or inline styles into the build.** Reproduce the *design* (layout, palette, type, spacing, motion) and carry the *content* verbatim; rebuild the *implementation* clean and semantic. Verbatim per-page copy is extracted in `/content-extraction/*.md`.
+Marketing/content website for **SucStrat**, a strategy & consulting firm (founder: Vinay Maheshwari). Five live pages (the `/clients` page was removed 2026-06-27; see Routes). The source material is **six hand-authored semantic HTML mockups** in `/html_static_pages/` — **NOT Wix exports** (clean markup, one `<h1>` each, proper heading nesting, a shared CSS-custom-property design system; the multi-hundred-KB bulk of each file is embedded base64 Lato/Lora fonts, not a runtime blob). They are **visual + content reference**. **Still never copy their markup, classes, or inline styles into the build.** Reproduce the *design* (layout, palette, type, spacing, motion) and carry the *content* verbatim; rebuild the *implementation* clean and semantic. Verbatim per-page copy is extracted in `/content-extraction/*.md`.
 
 Canonical production domain: **https://sucstrat.com**
 
@@ -27,15 +27,16 @@ Canonical production domain: **https://sucstrat.com**
 
 ## Rendering & routes
 
-All six pages are **static (SSG)**. Use Server Components; add `"use client"` only for genuinely interactive leaf components (mobile nav toggle, scroll-triggered stat counters). Keep client bundles minimal.
+All five pages are **static (SSG)**. Use Server Components; add `"use client"` only for genuinely interactive leaf components (mobile nav toggle, scroll-triggered stat counters, the client-logo marquee). Keep client bundles minimal.
 
 Routes:
 - `/` — Home
 - `/know-us` — Know Us
 - `/what-we-do` — What We Do
-- `/clients` — Clients
 - `/careers` — Careers
 - `/knowledge` — Knowledge
+
+(`/clients` was removed 2026-06-27; its client logos now scroll in a `LogoMarquee` on `/what-we-do`. No redirect — static export can't emit one — and no in-site link points to it.)
 
 Referenced by the mockups but **not provided** (handle, don't 404):
 - `/get-in-touch` — contact page. **Mockup later provided** (`get_in_touch_mockup.html`) and built from it: hero + "Reach us" grid + a "Let's talk" form. To allow **static (GitHub Pages)** hosting, it submits via a prefilled **`mailto:`** (no server); a zod-validated Server Action + email-transport version is preserved in git history for a Node host. (`/pitch-us` 308-redirects here — renamed to match the mockup.)

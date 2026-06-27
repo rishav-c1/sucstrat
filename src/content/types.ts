@@ -136,19 +136,38 @@ export interface PedigreeGroup {
   orgs: string[];
 }
 
-/** One numbered "How it works" step inside a proprietary framework card. */
-export interface FrameworkStep {
-  n: string;
+/** The diagram ("exhibit") variant rendered for a Know Us "Our method" framework. */
+export type MethodDiagram = "loop" | "matrix" | "intensity" | "dominance";
+
+/** One of the three supporting points shown under a method framework's thesis. */
+export interface MethodPoint {
+  label: string;
   text: string;
 }
 
-/** A proprietary framework (Know Us) — theory only: tagline, insight, three steps. */
-export interface FrameworkCard {
+/**
+ * A proprietary framework in the Know Us "Our method" section. The thesis renders as
+ * `thesisPre` + a bold `thesisMark` + `thesisPost`; the title colours `emph`; the diagram
+ * is selected by `type`.
+ */
+export interface MethodFramework {
   num: string;
-  title: string;
-  tagline: string;
-  insight: string;
-  steps: FrameworkStep[];
+  type: MethodDiagram;
+  /** Category sub-label (index rail). */
+  cat: string;
+  /** Panel eyebrow (above the title). */
+  eyebrow: string;
+  /** Title before the coloured emphasis word(s). */
+  titleLead: string;
+  /** Coloured emphasis word(s) ending the title. */
+  emph: string;
+  /** Full title shown in the index rail. */
+  fullTitle: string;
+  exhibitLabel: string;
+  thesisPre: string;
+  thesisMark: string;
+  thesisPost: string;
+  points: MethodPoint[];
 }
 
 /** A "Reach us" routing card on Get in Touch — icon + blurb + a link (mailto / route / #form). */

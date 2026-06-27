@@ -11,17 +11,6 @@ export const CAREERS = {
     primaryCta: { label: "Apply now", href: APPLY },
     secondaryCta: { label: "Life at SucStrat", href: "#life" },
   },
-  why: {
-    eyebrow: "Why SucStrat",
-    title: "We grow people as fast as we grow companies",
-    lead: "We attract ambitious consultants and professionals who want to deliver outcomes that last.",
-    cards: [
-      { icon: "flag", title: "Ownership", body: "Own outcomes and client relationships from your first week." },
-      { icon: "trophy", title: "Outcomes over tenure", body: "You are recognised by the results, not years served." },
-      { icon: "people", title: "Coached to scale", body: "Direct mentorship from senior consultants and partners." },
-      { icon: "realEstate", title: "Built to last", body: "Work that shapes institutions and carries your name." },
-    ] satisfies IconCard[],
-  },
   life: {
     eyebrow: "Life at SucStrat",
     title: "What you can expect",

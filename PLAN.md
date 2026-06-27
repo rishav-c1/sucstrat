@@ -2,6 +2,8 @@
 
 **Status:** Phase 0 signed off (2026-06-01). Phase 1 (design system & shared shell) in progress.
 
+**Update (2026-06-27) — Clients page removed:** The `/clients` route was removed entirely (page, `content/clients.ts`, and the `LogoWall` / `KeyClients` / `CaseCards` sections, which it solely used). The What We Do "Sectors — Industries we serve" section (`IndustryTiles`) was also removed. In its place, What We Do now carries a new client-logo **`LogoMarquee`** — a continuously-scrolling, seamless band of the 24 client logos (carried verbatim from the old Clients `LogoWall`), with a pinned "Partners in performance" tagline, edge gradient masks, a pause/play control, and `prefers-reduced-motion` support. Primary nav, footer, header-CTA map, sitemap, and the e2e route lists were updated accordingly. The earlier Clients-specific references below are retained for history but are superseded by this note. (`/clients` is not redirected — static export can't emit redirects; no in-site link points to it.)
+
 **Phase 0 sign-off resolutions:**
 - Email provider: **TBD — intended Resend** (non-critical); `EmailTransport` stays stubbed (console in dev) until integrated.
 - Reference discrepancy: **`CLAUDE.md` corrected** (approved).
@@ -41,7 +43,7 @@ All six content pages are **static (SSG)**, React Server Components, with `"use 
 | `/` | `sucstrat_homepage_mockup.html` | Your Success. Our Strategy. | SucStrat \| Strategy to Scale, execution built in |
 | `/what-we-do` | `what_we_do_mockup.html` | What we do. | What We Do \| SucStrat |
 | `/know-us` | `know_us_mockup.html` | Strategy. Built to Scale. | Know Us \| SucStrat |
-| `/clients` | `clients_mockup.html` | Partners in performance. | Clients \| SucStrat |
+| ~~`/clients`~~ | ~~`clients_mockup.html`~~ | — | **Removed 2026-06-27** (logos → What We Do marquee) |
 | `/careers` | `careers_mockup.html` | Build more than a career. Build legacies. | Careers \| SucStrat |
 | `/knowledge` | `knowledge_mockup.html` | Insights & ideas. | Knowledge \| SucStrat |
 
