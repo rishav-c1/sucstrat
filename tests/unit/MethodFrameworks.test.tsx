@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { MethodFrameworks } from "@/components/sections/MethodFrameworks";
+import styles from "@/components/sections/MethodFrameworks.module.css";
 import type { MethodFramework } from "@/content/types";
 
 const FRAMEWORKS: MethodFramework[] = [
@@ -85,5 +86,26 @@ describe("MethodFrameworks", () => {
     fireEvent.click(matrix);
     expect(matrix).toHaveAttribute("aria-current", "true");
     expect(loop).not.toHaveAttribute("aria-current");
+  });
+
+  it("swaps the shown panel when a rail row is selected (independent of aria-current)", () => {
+    renderSection();
+    const activeClass = styles.viewActive;
+    expect(activeClass).toBeTruthy();
+    if (!activeClass) return; // narrows string | undefined -> string for the asserts below
+    const loopBtn = screen.getByRole("button", { name: /The D Scale-Up Loop/ });
+    const matrixBtn = screen.getByRole("button", { name: /The Momentum Matrix/ });
+    // The panel each rail row controls is the one it shows.
+    const loopPanel = document.getElementById(loopBtn.getAttribute("aria-controls") ?? "");
+    const matrixPanel = document.getElementById(matrixBtn.getAttribute("aria-controls") ?? "");
+    expect(loopPanel).not.toBeNull();
+    expect(matrixPanel).not.toBeNull();
+    // Default: the loop panel is the active (shown) one.
+    expect(loopPanel).toHaveClass(activeClass);
+    expect(matrixPanel).not.toHaveClass(activeClass);
+    // Selecting matrix moves the active class to its panel — verified via the class, not aria-current.
+    fireEvent.click(matrixBtn);
+    expect(matrixPanel).toHaveClass(activeClass);
+    expect(loopPanel).not.toHaveClass(activeClass);
   });
 });

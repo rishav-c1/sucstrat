@@ -32,8 +32,8 @@ export function AwardsStrip({
         </Reveal>
         <Reveal>
           <ul className={styles.row}>
-            {/* Real logo when supplied; the newer awards (no file yet) fall back to a
-                labelled name placeholder. */}
+            {/* Real logo when supplied; the name placeholder is a defensive fallback for
+                any award without a logo file (all current awards ship a logo). */}
             {logos.map((item) => (
               <li key={item.name} className={item.logo ? styles.item : styles.itemText}>
                 {item.logo ? (

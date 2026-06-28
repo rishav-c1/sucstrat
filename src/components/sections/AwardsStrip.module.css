@@ -86,7 +86,8 @@
   color: var(--navy-800);
 }
 .platformDot {
-  color: var(--blue-200);
+  /* --slate (~5:1 on the white pill) — --blue-200 was 1.87:1, below AA. */
+  color: var(--slate);
 }
 
 @media (max-width: 560px) {

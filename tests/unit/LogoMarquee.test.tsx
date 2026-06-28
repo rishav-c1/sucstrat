@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 
 // next/image isn't needed in jsdom — render a plain <img> so we can assert alt text.
 vi.mock("next/image", () => ({
@@ -39,5 +39,16 @@ describe("LogoMarquee", () => {
   it("labels the marquee region", () => {
     render(<LogoMarquee logos={LOGOS} />);
     expect(screen.getByRole("group", { name: "Client logos" })).toBeInTheDocument();
+  });
+
+  it("pauses the scroll on hover and resumes on leave", () => {
+    const { container } = render(<LogoMarquee logos={LOGOS} />);
+    const region = screen.getByRole("group", { name: "Client logos" });
+    const track = container.querySelector("[data-paused]");
+    expect(track).toHaveAttribute("data-paused", "false");
+    fireEvent.mouseEnter(region);
+    expect(track).toHaveAttribute("data-paused", "true");
+    fireEvent.mouseLeave(region);
+    expect(track).toHaveAttribute("data-paused", "false");
   });
 });

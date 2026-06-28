@@ -294,7 +294,7 @@ The only backend. Progressive-enhancement form (works without JS).
 
 1. **`TODO(content)` — What We Do "Seven integrated practices" accordion bodies.** Titles known (7, verbatim from Home); per-practice descriptions/chips absent in mockup. Seed titles; leave bodies as flagged placeholders.
 2. **✅ Resolved — Founder portrait** `static/Vinay-Maheshwari.jpg` (Home + Know Us), served via `next/image`.
-3. **✅ Resolved (brand) · `TODO(content)` (third-party logos)** — SucStrat logo provided in `/static/`. The 24 client logos (Clients), 4 case logos, 5 award logos (Know Us) were hotlinked in the mockups → rebuild uses the mockups' **text/logotype fallback** (no `<img>`, no hotlinking) until real assets are supplied.
+3. **✅ Resolved — third-party logos.** SucStrat logo in `/static/`. The 24 client logos now ship as real assets in the What We Do logo marquee (`/public/logos/`), and the Know Us award strip ships **8 award logos** — the 5 mockup awards (FICCI, WAN-IFRA, INMA, Abby's, Maddy's) plus ET / Hermès / PRCI (client-confirmed). The 4 case logos remain `TODO(content)` (stubs).
 4. **✅ Resolved — Footer contact:** **ashley@v3consultant.com** (replaces `[confirm contact details]` + mockup `connect@sucstrat.com`).
 5. **`TODO(content)` — Privacy / Terms:** no pages/targets provided; kept as plain text (mockup parity). Decide real `/privacy`, `/terms` later.
 6. **`TODO(content)` — Careers apply flow:** currently `mailto:careers@sucstrat.com` (kept verbatim); confirm whether to route to `/pitch-us`.
