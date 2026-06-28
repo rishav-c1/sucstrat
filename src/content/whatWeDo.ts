@@ -145,7 +145,7 @@ export const WHAT_WE_DO = {
   },
   // Canonical, site-wide stat set (matches Home). "14+ countries" was unverified and dropped.
   stats: [
-    { to: 195, suffix: "+", label: "Consultants" },
+    { to: 170, label: "Consultants" },
     { to: 21, label: "Sectors" },
     { to: 35, suffix: "+", label: "Active clients" },
     { to: 300, suffix: "+", label: "Transformation projects" },
