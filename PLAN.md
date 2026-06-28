@@ -408,7 +408,7 @@ Implemented the v4.0 Master Build Spec. All hard gates pass (build/typecheck/lin
 - **Clients strip**: `53+ Institutional` and `14+ Countries` carried from the old build (not the brief) - verify or drop before publish. (`14+ Countries` propagated to the What We Do stat band for consistency with the 14-region map.)
 - **Named-brand client list** (Gap/Walmart/Sony/Amazon ...) is carried-in interim text - confirm the right to claim these names before publish.
 - **Email domain** `v3consultant.com` used everywhere per spec - confirm vs a brand-domain address.
-- **Headline claims** ($1B+, 195+, 300+, 127+, "4th by circulation") must be substantiable.
+- **Headline claims** — **owner-confirmed real (2026-06-28):** `195+ Consultants`, `35+ Active clients`, `300+ Transformation projects`, and `$1B+ Enterprise Value Shaped` are confirmed by the client and cleared to ship (re-flagged in the PR #8 audit, then confirmed). `127+` / "4th by circulation" remain as carried.
 - **Careers**: retained as-is except (a) header CTA "Apply Now" -> Get in Touch, (b) closing band reduced to a single CTA (Appendix H "no closing double-CTA band"); apply-by-email body CTA kept.
 - **Kept (spec-silent) Home sections**: `PillarGrid` ("The SucStrat Standard") retained (unique content); the redundant Home "Proof" case section was removed (duplicated on Clients, structure now matches the spec's Home).
 
