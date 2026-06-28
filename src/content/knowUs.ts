@@ -23,12 +23,12 @@ export const KNOW_US = {
   pivotArc: {
     arcLabel: "The arc",
     entries: [
-      { org: "India TV", role: "Group CEO", body: "Led one of India's national news networks as Group CEO." },
       {
         org: "Sakshi Media Group",
         role: "Executive Director & CEO",
         body: "Restored profitability across TV, print, and digital and reset the growth engine.",
       },
+      { org: "India TV", role: "Group CEO", body: "Led one of India's national news networks as Group CEO." },
       {
         org: "Mohan Babu University",
         role: "Trustee & Executive Director",
