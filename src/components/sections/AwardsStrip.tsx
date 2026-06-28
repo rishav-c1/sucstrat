@@ -25,7 +25,7 @@ export function AwardsStrip({
   platform?: { label: string; items: string[] };
 }) {
   return (
-    <Section bg="mist">
+    <Section bg="paper">
       <Container>
         <Reveal>
           <SectionHead eyebrow={eyebrow} title={title} lead={lead} />

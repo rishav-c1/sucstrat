@@ -336,18 +336,22 @@
 /* =========================================================================
    Diagram 1 — LOOP (circular)
    ========================================================================= */
+/* Intrinsically 460x256, but expressed fluidly: the box keeps its aspect ratio and shrinks to
+   the exhibit width (never wider than 460px), every position/size is a % of the box, and every
+   font is a cqw of the box — so the whole diagram scales to fit narrow screens with no scroll. */
 .loop {
   position: relative;
-  width: 460px;
-  height: 256px;
+  width: min(460px, 100%);
+  aspect-ratio: 460 / 256;
   margin: 0 auto;
+  container-type: inline-size;
 }
 .loopRing {
   position: absolute;
-  left: 148px;
-  top: 58px;
-  width: 184px;
-  height: 184px;
+  left: 32.17%;
+  top: 22.66%;
+  width: 40%;
+  height: 71.88%;
   border-radius: 50%;
   border: 2px dashed rgba(185, 206, 224, 0.5);
   filter: drop-shadow(0 0 6px rgba(185, 206, 224, 0.3));
@@ -355,31 +359,31 @@
 .loopChevron {
   position: absolute;
   color: #cfe0ef;
-  font-size: 14px;
+  font-size: 3.04cqw;
   text-shadow: 0 0 9px rgba(207, 224, 239, 0.8);
 }
 .loopChevron1 {
-  left: 320px;
-  top: 104px;
+  left: 69.57%;
+  top: 40.63%;
   transform: translate(-50%, -50%) rotate(55deg);
 }
 .loopChevron2 {
-  left: 240px;
-  top: 242px;
+  left: 52.17%;
+  top: 94.53%;
   transform: translate(-50%, -50%) rotate(180deg);
 }
 .loopChevron3 {
-  left: 160px;
-  top: 104px;
+  left: 34.78%;
+  top: 40.63%;
   transform: translate(-50%, -50%) rotate(305deg);
 }
 .loopHub {
   position: absolute;
-  left: 240px;
-  top: 150px;
+  left: 52.17%;
+  top: 58.59%;
   transform: translate(-50%, -50%);
-  width: 92px;
-  height: 92px;
+  width: 20%;
+  height: 35.94%;
   border-radius: 50%;
   background: rgba(185, 206, 224, 0.06);
   border: 1px solid rgba(185, 206, 224, 0.28);
@@ -390,24 +394,24 @@
   text-align: center;
 }
 .loopHubGlyph {
-  font-size: 23px;
+  font-size: 5cqw;
   color: #e9f1f8;
   line-height: 1;
   text-shadow: 0 0 14px rgba(233, 241, 248, 0.7);
 }
 .loopHubLabel {
-  font-size: 8.5px;
+  font-size: 1.85cqw;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #9fb6c9;
-  margin-top: 6px;
+  margin-top: 1.3cqw;
 }
 .loopNode {
   position: absolute;
   transform: translate(-50%, -50%);
-  width: 118px;
-  height: 118px;
+  width: 25.65%;
+  height: 46.09%;
   border-radius: 50%;
   background: #1f3340;
   border: 1px solid rgba(169, 192, 216, 0.18);
@@ -416,22 +420,22 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 10px;
+  padding: 2.17cqw;
 }
 .loopNode1 {
-  left: 240px;
-  top: 58px;
+  left: 52.17%;
+  top: 22.66%;
 }
 .loopNode2 {
-  left: 320px;
-  top: 196px;
+  left: 69.57%;
+  top: 76.56%;
 }
 .loopNode3 {
-  left: 160px;
-  top: 196px;
+  left: 34.78%;
+  top: 76.56%;
 }
 .loopNodeTag {
-  font-size: 10px;
+  font-size: 2.17cqw;
   font-weight: 700;
   letter-spacing: 0.1em;
   color: #cfe0ef;
@@ -439,9 +443,9 @@
 }
 .loopNodeName {
   font-family: var(--font-serif);
-  font-size: 14px;
+  font-size: 3.04cqw;
   color: var(--bg-50);
-  margin-top: 5px;
+  margin-top: 1.09cqw;
   line-height: 1.18;
 }
 
@@ -714,7 +718,7 @@
 }
 
 /* =========================================================================
-   Responsive — stack the rail above the panel; let the fixed loop scroll.
+   Responsive — stack the rail above the panel; the exhibit diagrams scale to fit.
    ========================================================================= */
 @media (max-width: 900px) {
   .inner {
@@ -745,13 +749,97 @@
   }
 }
 @media (max-width: 560px) {
-  .exhibitBody {
-    overflow-x: auto;
+  /* Tighten the side padding so the fluid exhibit diagrams get the most width. */
+  .panel {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+  .exhibit {
+    padding-left: 16px;
+    padding-right: 16px;
   }
   .panelHead {
     min-height: 0;
   }
   .panelTitle {
     font-size: 27px;
+  }
+  /* Let the exhibit's reg label wrap instead of forcing the head wider than the card. */
+  .exhibitReg {
+    white-space: normal;
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+  }
+  /* Matrix — let the 2×2 grid shrink into the narrow column and wrap long words. */
+  .matrix {
+    gap: 10px;
+  }
+  .matrixMain {
+    min-width: 0;
+  }
+  .matrixGrid {
+    gap: 8px;
+    height: 204px;
+  }
+  .matrixXAxis {
+    margin-top: 14px;
+  }
+  .quadrant {
+    min-width: 0;
+    padding: 9px 10px;
+  }
+  .quadrantTag {
+    font-size: 9px;
+  }
+  .quadrantName {
+    font-size: 13px;
+    overflow-wrap: break-word;
+  }
+  .quadrantWin .quadrantName {
+    font-size: 14px;
+  }
+  /* Intensity — tighten the bars; anchor the peak label to the right edge so it can't spill. */
+  .intensity {
+    gap: 10px;
+  }
+  .intensityMain {
+    min-width: 0;
+  }
+  .bars {
+    gap: 8px;
+  }
+  .chip {
+    font-size: 10px;
+    padding: 4px 9px;
+  }
+  .barPeakLabel {
+    white-space: normal;
+    left: auto;
+    right: 0;
+    transform: none;
+    width: 80px;
+    text-align: right;
+    line-height: 1.18;
+    font-size: 9.5px;
+    top: -30px;
+  }
+  /* Dominance — shrink labels so the narrow "Qualified" segment isn't clipped. */
+  .domClassified {
+    padding: 0 12px;
+  }
+  .domClassifiedTitle {
+    font-size: 14px;
+  }
+  .domClassifiedSub {
+    font-size: 9.5px;
+  }
+  .domQualified {
+    padding: 0 8px;
+  }
+  .domQualifiedTitle {
+    font-size: 11px;
+  }
+  .domQualifiedSub {
+    font-size: 8.5px;
   }
 }

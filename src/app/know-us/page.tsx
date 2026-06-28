@@ -42,9 +42,10 @@ export default function KnowUsPage() {
         lead={k.engagement.lead}
         models={k.engagement.models}
       />
-      {/* The Pivot: full founder story here (Home shows the compact teaser variant). */}
-      <FounderBio founder={HOME.founder} id="pivot" pivotArc={k.pivotArc} />
-      {/* Recognition & platform sits directly below the Pivot. */}
+      {/* The Pivot: full founder story here (Home shows the compact teaser variant).
+          White bg so it reads as one bright block with Recognition below it. */}
+      <FounderBio founder={HOME.founder} id="pivot" pivotArc={k.pivotArc} bg="paper" />
+      {/* Recognition & platform — white too, so it continues the Pivot with no band break. */}
       <AwardsStrip {...k.awards} />
       <MethodFrameworks {...k.method} />
       {/* The collective bench closes the page, just before the CTA. */}
