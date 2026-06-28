@@ -1,5 +1,7 @@
 # REVIEW.md — SucStrat Website (final audit)
 
+> **Post-audit change (2026-06-27):** the `/clients` route was removed and its client logos were moved into a scrolling `LogoMarquee` on `/what-we-do` (replacing the "Industries we serve" sector grid). Gate/route counts and the `/clients` Lighthouse row below are from the original audit and predate that change — the live site now has 5 content pages and the e2e suites no longer cover `/clients`.
+
 Built across the phased plan in `PLAN.md`. All six content pages + `/get-in-touch` + case-study stubs are implemented from the verbatim extractions in `content-extraction/*.md`. Run everything under **Node 20** (`.nvmrc`; `corepack`-provided pnpm).
 
 ## 1. Gate results
@@ -9,8 +11,8 @@ Built across the phased plan in `PLAN.md`. All six content pages + `/get-in-touc
 | Build | `pnpm build` | ✅ clean — all routes prerendered static. Also builds as a static export (`STATIC_EXPORT=1`) for GitHub Pages; `/pitch-us` 308-redirects to `/get-in-touch` on a Node host |
 | Types | `pnpm typecheck` | ✅ 0 errors (`strict` + `noUncheckedIndexedAccess`) |
 | Lint | `pnpm lint` | ✅ 0 errors / 0 warnings |
-| Unit | `pnpm test` | ✅ 10 passed (vitest) |
-| E2E | `pnpm test:e2e` | ✅ 18 passed — **9 smoke** (every route 200, exactly one `<h1>`, no console/page errors) + **9 axe** (zero violations) |
+| Unit | `pnpm test` | ✅ 18 passed (vitest) — incl. MethodFrameworks rail/panel-swap + LogoMarquee a11y/hover-pause |
+| E2E | `pnpm test:e2e` | ✅ **8 smoke** (every route 200, exactly one `<h1>`, no console/page errors) + **9 axe** (per route + a per-panel "Our Method" scan), **zero violations**. The `/clients` route was removed (8 routes), and the "Our Method" contrast fix is verified with axe-core 4.11.4. |
 | Lighthouse | `pnpm lhci` | ✅ green — **A11y / SEO / Best-Practices = 100** (hard `error` gates ≥95) on every route. **Performance is a `warn`-level target**: 6/9 routes ≥95; Home/Clients/Case-studies 92–94, accepted per sign-off (see §2). |
 
 **Cross-page integrity:** no `*_mockup.html` links, no absolute `sucstrat.com` nav links (absolute URLs only in canonical/OG/JSON-LD), all internal hrefs resolve to real routes, and every in-page anchor (`#cases`, `#practices`, `#how`, `#life`, `#insights`) has a matching target. No 404s. Nav/footer consistent site-wide.

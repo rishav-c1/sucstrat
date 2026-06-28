@@ -25,7 +25,6 @@ export default function CareersPage() {
           </>
         }
       />
-      <FeatureGrid {...c.why} columns={4} bg="mist" />
       <FeatureGrid id="life" {...c.life} columns={4} bg="navy" />
       <FeatureGrid {...c.growth} columns={4} bg="paper" />
       <FeatureGrid {...c.beyond} columns={2} bg="mist" />

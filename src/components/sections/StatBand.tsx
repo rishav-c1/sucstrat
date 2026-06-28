@@ -5,7 +5,7 @@ import { StatCounter } from "@/components/primitives/StatCounter";
 import type { Metric } from "@/content/types";
 import styles from "./StatBand.module.css";
 
-/** Navy band of count-up metrics. Reused on Home / What We Do / Clients. */
+/** Navy band of count-up metrics. Reused on Home / What We Do. */
 export function StatBand({
   eyebrow,
   title,

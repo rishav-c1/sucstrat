@@ -52,17 +52,6 @@ export interface Metric {
   label: string;
 }
 
-/** A case-study card. `logo` is a filename under LOGO_BASE; stat is static text. */
-export interface CaseItem {
-  slug: string;
-  name: string;
-  eyebrow: string;
-  stat: { prefix?: string; value: string; suffix?: string };
-  statLabel: string;
-  body: string;
-  logo: string;
-}
-
 /** A map region used by the Home "Global impact" world map. */
 export interface Region {
   id: string;
@@ -82,21 +71,27 @@ export interface FounderContent {
   highlight: string;
   portraitAlt: string;
   tiles: { value: string; label: string }[];
+  /** Single condensed line for the Home compact teaser (the full `paragraphs` are Know Us only). */
+  teaser: string;
   paragraphs: string[];
-  credentialsLabel: string;
-  credentials: { org: string; role: string }[];
+}
+
+/**
+ * Know Us pivot "The arc" (leadership timeline) + "Across industries" (brand-by-sector grid),
+ * rendered below the founder bio on the full (non-compact) variant only.
+ */
+export interface PivotArc {
+  arcLabel: string;
+  entries: { org: string; role: string; body: string }[];
+  industriesLabel: string;
+  industriesLead: string;
+  industries: { label: string; brands: string[] }[];
 }
 
 /** A title + body card with a line icon (Careers value cards, Know Us "how we work"). */
 export interface IconCard {
   title: string;
   body: string;
-  icon: IconName;
-}
-
-/** A sector tile with a line icon (What We Do "Industries we serve"). */
-export interface IndustryTile {
-  name: string;
   icon: IconName;
 }
 
@@ -136,19 +131,38 @@ export interface PedigreeGroup {
   orgs: string[];
 }
 
-/** One numbered "How it works" step inside a proprietary framework card. */
-export interface FrameworkStep {
-  n: string;
+/** The diagram ("exhibit") variant rendered for a Know Us "Our method" framework. */
+export type MethodDiagram = "loop" | "matrix" | "intensity" | "dominance";
+
+/** One of the three supporting points shown under a method framework's thesis. */
+export interface MethodPoint {
+  label: string;
   text: string;
 }
 
-/** A proprietary framework (Know Us) — theory only: tagline, insight, three steps. */
-export interface FrameworkCard {
+/**
+ * A proprietary framework in the Know Us "Our method" section. The thesis renders as
+ * `thesisPre` + a bold `thesisMark` + `thesisPost`; the title colours `emph`; the diagram
+ * is selected by `type`.
+ */
+export interface MethodFramework {
   num: string;
-  title: string;
-  tagline: string;
-  insight: string;
-  steps: FrameworkStep[];
+  type: MethodDiagram;
+  /** Category sub-label (index rail). */
+  cat: string;
+  /** Panel eyebrow (above the title). */
+  eyebrow: string;
+  /** Title before the coloured emphasis word(s). */
+  titleLead: string;
+  /** Coloured emphasis word(s) ending the title. */
+  emph: string;
+  /** Full title shown in the index rail. */
+  fullTitle: string;
+  exhibitLabel: string;
+  thesisPre: string;
+  thesisMark: string;
+  thesisPost: string;
+  points: MethodPoint[];
 }
 
 /** A "Reach us" routing card on Get in Touch — icon + blurb + a link (mailto / route / #form). */

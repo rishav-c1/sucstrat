@@ -25,15 +25,15 @@ export function AwardsStrip({
   platform?: { label: string; items: string[] };
 }) {
   return (
-    <Section bg="mist">
+    <Section bg="paper">
       <Container>
         <Reveal>
           <SectionHead eyebrow={eyebrow} title={title} lead={lead} />
         </Reveal>
         <Reveal>
           <ul className={styles.row}>
-            {/* Real logo when supplied; the newer awards (no file yet) fall back to a
-                labelled name placeholder. */}
+            {/* Real logo when supplied; the name placeholder is a defensive fallback for
+                any award without a logo file (all current awards ship a logo). */}
             {logos.map((item) => (
               <li key={item.name} className={item.logo ? styles.item : styles.itemText}>
                 {item.logo ? (
@@ -55,7 +55,14 @@ export function AwardsStrip({
           <Reveal>
             <p className={styles.platform}>
               <span className={styles.platformLabel}>{platform.label}</span>
-              <span className={styles.platformItems}>{platform.items.join("  ·  ")}</span>
+              <span className={styles.platformItems}>
+                {platform.items.map((item, i) => (
+                  <span key={item}>
+                    {i > 0 ? <span className={styles.platformDot}> · </span> : null}
+                    {item}
+                  </span>
+                ))}
+              </span>
             </p>
           </Reveal>
         ) : null}

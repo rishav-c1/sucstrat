@@ -1,6 +1,11 @@
 .band {
   padding: 56px 0;
-  background: var(--mist);
+  background: var(--navy-800);
+}
+/* Eyebrow override for the navy band — blue-200 clears WCAG AA on navy-800
+   (the default blue-700 eyebrow is for light/tinted bands). */
+.eyebrow {
+  color: var(--accent-on-dark);
 }
 .line {
   font-family: var(--font-serif);
@@ -8,8 +13,8 @@
   /* A substantial firm statement, not a giant pull-quote (was clamp 24-34px). */
   font-size: clamp(18px, 2vw, 22px);
   line-height: 1.5;
-  color: var(--navy-800);
-  border-left: 3px solid var(--blue-600);
+  color: #fff;
+  border-left: 3px solid var(--blue-500);
   padding-left: 22px;
   margin-top: 14px;
   max-width: 760px;

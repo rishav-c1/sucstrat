@@ -3,7 +3,7 @@ import { PageHero } from "@/components/sections/PageHero";
 import { FirmBand } from "@/components/sections/FirmBand";
 import { EngagementModels } from "@/components/sections/EngagementModels";
 import { FounderBio } from "@/components/sections/FounderBio";
-import { Frameworks } from "@/components/sections/Frameworks";
+import { MethodFrameworks } from "@/components/sections/MethodFrameworks";
 import { CollectiveExpertise } from "@/components/sections/CollectiveExpertise";
 import { AwardsStrip } from "@/components/sections/AwardsStrip";
 import { CtaBand } from "@/components/sections/CtaBand";
@@ -42,20 +42,13 @@ export default function KnowUsPage() {
         lead={k.engagement.lead}
         models={k.engagement.models}
       />
-      {/* The Pivot: full founder story here (Home shows the compact teaser variant). */}
-      <FounderBio founder={HOME.founder} id="pivot" />
-      {/* Frameworks sit directly after the founder — the proof that this is a real firm. */}
-      <Frameworks
-        eyebrow={k.frameworks.eyebrow}
-        title={
-          <>
-            Proprietary <em>frameworks</em>
-          </>
-        }
-        lead={k.frameworks.lead}
-        label={k.frameworks.label}
-        cards={k.frameworks.cards}
-      />
+      {/* The Pivot: full founder story here (Home shows the compact teaser variant).
+          White bg so it reads as one bright block with Recognition below it. */}
+      <FounderBio founder={HOME.founder} id="pivot" pivotArc={k.pivotArc} bg="paper" />
+      {/* Recognition & platform — white too, so it continues the Pivot with no band break. */}
+      <AwardsStrip {...k.awards} />
+      <MethodFrameworks {...k.method} />
+      {/* The collective bench closes the page, just before the CTA. */}
       <CollectiveExpertise
         {...k.expertise}
         title={
@@ -64,7 +57,6 @@ export default function KnowUsPage() {
           </>
         }
       />
-      <AwardsStrip {...k.awards} />
       <CtaBand
         title={
           <>

@@ -63,27 +63,24 @@ export const HOME = {
   },
 
   founder: {
-    eyebrow: "The pivot",
+    eyebrow: "The Pivot",
     name: "Vinay Maheshwari",
     role: "Founder & Principal Consultant, SucStrat",
-    highlight: "30+ years of transforming institutions, scaling businesses, and coaching leaders.",
+    highlight: "Thirty years transforming institutions, scaling businesses, and coaching the leaders who run them.",
     portraitAlt: "Vinay Maheshwari, Founder & Principal Consultant of SucStrat",
     tiles: [
       { value: "3 Decades", label: "Leadership" },
-      { value: "300+", label: "Brand solutions" },
-      { value: "$1B+", label: "Enterprise value shaped" },
+      { value: "300+", label: "Brand Solutions" },
+      { value: "$1B+", label: "Enterprise Value Shaped" },
     ],
+    // Home teaser (compact variant) — a single condensed line; the full bio below is Know Us only.
+    teaser:
+      "The driving force behind SucStrat: a three-decade operator who has led large-scale organisations, turned around underperforming businesses, and scaled high-growth ventures.",
     paragraphs: [
-      "Vinay Maheshwari is the driving force behind SucStrat. Over a three-decade career, he has led large-scale organizations, turned around underperforming businesses, and scaled high-growth ventures.",
-      "As Group CEO of India TV, Executive Director & CEO of Sakshi Media Group, and Trustee & Executive Director at Mohan Babu University, Vinay has consistently delivered transformation at scale, from restoring profitability to building one of the world's largest daily newspapers by circulation.",
-      "Today, as Founder of SucStrat, he brings this depth of experience to promoters, boards, CXOs, and institutions, delivering consulting that is practical, execution-focused, and built to scale.",
-    ],
-    credentialsLabel: "Leadership track record",
-    credentials: [
-      { org: "India TV", role: "Group CEO" },
-      { org: "Sakshi Media Group", role: "ED & CEO" },
-      { org: "Mohan Babu University", role: "Trustee & ED" },
-      { org: "CEO of the Year", role: "2021" },
+      "Vinay Maheshwari has spent three decades doing the hard part: taking institutions and businesses from where they are to where they need to be.",
+      "He has led national media as Group CEO of India TV, rebuilt profitability as Executive Director & CEO of Sakshi Media Group, and governed at institutional scale as Trustee & Executive Director at Mohan Babu University. Along the way, that work helped build one of the world's largest daily newspapers by circulation.",
+      "Those operating years put him across the table from the brands that define their categories, from Walmart and HUL to Maruti, ICICI, Amazon, and Disney.",
+      "Today he channels that depth into SucStrat, advising promoters, boards, and CXOs with consulting that is practical, execution-focused, and built to scale.",
     ],
   },
 

@@ -1,0 +1,146 @@
+/*
+ * LogoMarquee — a full-width, continuously scrolling, seamless-looping band of client logos
+ * with gradient edge masks. Light theme: white logo chips on a mist band, matching the
+ * (now-removed) Clients page LogoWall treatment but in motion. Chips are sized to match the
+ * Know Us AwardsStrip so the logos read clearly.
+ *
+ * --mq-bg drives the band/mask colour so the edge fades never band against the surface.
+ */
+.root {
+  --mq-bg: var(--bg-100);
+  position: relative;
+  overflow: hidden;
+  padding: 18px 0;
+  background: var(--mq-bg);
+}
+
+/* ===== Track ===== */
+.track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+.left {
+  animation: marqueeLeft var(--marquee-duration, 60s) linear infinite;
+}
+.right {
+  animation: marqueeRight var(--marquee-duration, 60s) linear infinite;
+}
+.track[data-paused="true"] {
+  animation-play-state: paused;
+}
+@keyframes marqueeLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes marqueeRight {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* The track is duplicated exactly twice, so each group hugs a trailing margin and the seam
+   at -50% is invisible. (24 logos ⇒ each group far exceeds any viewport width.) */
+.group {
+  display: flex;
+  flex-shrink: 0;
+  list-style: none;
+}
+.item {
+  flex: 0 0 auto;
+  margin-right: 20px;
+}
+
+.chip {
+  display: block;
+  position: relative;
+  width: 200px;
+  height: 96px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 14px rgba(38, 66, 89, 0.05);
+}
+.imgWrap {
+  display: block;
+  position: absolute;
+  /* Inset = padding around the contained logo; smaller inset ⇒ larger logo in the same chip. */
+  inset: 12px 18px;
+}
+.img {
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.85;
+  transition:
+    filter 0.3s,
+    opacity 0.3s;
+}
+.chip:hover .img {
+  filter: grayscale(0);
+  opacity: 1;
+}
+
+/* ===== Edge gradient masks =====
+   Kept narrow so the logos visually fill the full content width (matching the EDGE band's
+   span) while the band's edges still soften rather than hard-clipping a chip. */
+.mask {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 56px;
+  z-index: 2;
+  pointer-events: none;
+}
+.maskLeft {
+  left: 0;
+  background: linear-gradient(90deg, var(--mq-bg), transparent);
+}
+.maskRight {
+  right: 0;
+  background: linear-gradient(270deg, var(--mq-bg), transparent);
+}
+
+/* ===== Mobile: smaller chips ===== */
+@media (max-width: 600px) {
+  .chip {
+    width: 158px;
+    height: 80px;
+  }
+  .imgWrap {
+    inset: 10px 14px;
+  }
+  .item {
+    margin-right: 14px;
+  }
+  .mask {
+    width: 32px;
+  }
+}
+
+/* Honour reduced-motion: no scrolling. Wrap all logos into a static wall so every brand is
+   reachable (not clipped), show each once (hide the decorative duplicate), and drop the masks. */
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none !important;
+    transform: none !important;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .group {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .group[aria-hidden="true"] {
+    display: none;
+  }
+  .mask {
+    display: none;
+  }
+}

@@ -2,10 +2,10 @@ import { describe, it, expect } from "vitest";
 import { PRIMARY_NAV, FOOTER_NAV, CASE_STUDIES, SITE } from "@/content/site";
 
 describe("site content layer (scaffold smoke)", () => {
-  it("exposes the six primary nav routes", () => {
+  it("exposes the five primary nav routes", () => {
     const hrefs = PRIMARY_NAV.map((l) => l.href);
-    expect(PRIMARY_NAV).toHaveLength(6);
-    expect(hrefs).toEqual(["/", "/know-us", "/what-we-do", "/clients", "/careers", "/knowledge"]);
+    expect(PRIMARY_NAV).toHaveLength(5);
+    expect(hrefs).toEqual(["/", "/know-us", "/what-we-do", "/careers", "/knowledge"]);
   });
 
   it("defines the four case-study stub slugs", () => {

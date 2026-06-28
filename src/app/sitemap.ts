@@ -7,7 +7,7 @@ export const dynamic = "force-static";
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITE.domain;
 
-  const primary = ["", "/what-we-do", "/know-us", "/clients", "/careers", "/knowledge", "/get-in-touch", "/case-studies"].map(
+  const primary = ["", "/what-we-do", "/know-us", "/careers", "/knowledge", "/get-in-touch", "/case-studies"].map(
     (path) => ({
       url: `${base}${path}`,
       changeFrequency: "monthly" as const,

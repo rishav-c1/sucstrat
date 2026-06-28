@@ -2,6 +2,8 @@
 
 **Status:** Phase 0 signed off (2026-06-01). Phase 1 (design system & shared shell) in progress.
 
+**Update (2026-06-27) — Clients page removed:** The `/clients` route was removed entirely (page, `content/clients.ts`, and the `LogoWall` / `KeyClients` / `CaseCards` sections, which it solely used). The What We Do "Sectors — Industries we serve" section (`IndustryTiles`) was also removed. In its place, What We Do now carries a new client-logo **`LogoMarquee`** — a continuously-scrolling, seamless band of the 24 client logos (carried verbatim from the old Clients `LogoWall`), with a pinned "Partners in performance" tagline, edge gradient masks, a pause/play control, and `prefers-reduced-motion` support. Primary nav, footer, header-CTA map, sitemap, and the e2e route lists were updated accordingly. The earlier Clients-specific references below are retained for history but are superseded by this note. (`/clients` is not redirected — static export can't emit redirects; no in-site link points to it.)
+
 **Phase 0 sign-off resolutions:**
 - Email provider: **TBD — intended Resend** (non-critical); `EmailTransport` stays stubbed (console in dev) until integrated.
 - Reference discrepancy: **`CLAUDE.md` corrected** (approved).
@@ -41,7 +43,7 @@ All six content pages are **static (SSG)**, React Server Components, with `"use 
 | `/` | `sucstrat_homepage_mockup.html` | Your Success. Our Strategy. | SucStrat \| Strategy to Scale, execution built in |
 | `/what-we-do` | `what_we_do_mockup.html` | What we do. | What We Do \| SucStrat |
 | `/know-us` | `know_us_mockup.html` | Strategy. Built to Scale. | Know Us \| SucStrat |
-| `/clients` | `clients_mockup.html` | Partners in performance. | Clients \| SucStrat |
+| ~~`/clients`~~ | ~~`clients_mockup.html`~~ | — | **Removed 2026-06-27** (logos → What We Do marquee) |
 | `/careers` | `careers_mockup.html` | Build more than a career. Build legacies. | Careers \| SucStrat |
 | `/knowledge` | `knowledge_mockup.html` | Insights & ideas. | Knowledge \| SucStrat |
 
@@ -218,6 +220,7 @@ Concise outlines; **verbatim copy lives in `content-extraction/<page>.md`**.
 **`/clients`** (`clients.md`): PageHero "Partners in performance." → LogoWall "The companies we build with" (Industry leaders 16 · Alliance network 3 · Innovators & startups 5) → StatBand (127+/53+/8/21) → CaseCards "Complex challenges…" (4) → CtaBand "Let's build something that scales.".
 
 **`/careers`** (`careers.md`): PageHero "Build more than a career…" → IconCardGrid "Why SucStrat" (4) → IconCardGrid "What you can expect" (4, navy) → IconCardGrid "Advance your career" (4) → IconCardGrid "Jobs with our clients" (2) → CtaBand "Ready to build something that lasts?". **No `JobPosting` JSON-LD** (no structured listings).
+> **Update (2026-06-28):** the "Why SucStrat" value-card section (Ownership / Outcomes over tenure / Coached to scale / Built to last) was removed; the page now flows PageHero → Life at SucStrat → Advance your career → Jobs with our clients → CTA. Its `why` content object was dropped from `careers.ts`.
 
 **`/knowledge`** (`knowledge.md`): PageHero "Insights & ideas." → InsightCardGrid ×4 [Education & Skills 7 · Media & Broadcast 3 · Academic Partnerships 3 · Research & Innovation 3] → CtaBand "Have a brief worth solving?". 16 external article links (one is `http://` — flagged; keep verbatim).
 
@@ -291,7 +294,7 @@ The only backend. Progressive-enhancement form (works without JS).
 
 1. **`TODO(content)` — What We Do "Seven integrated practices" accordion bodies.** Titles known (7, verbatim from Home); per-practice descriptions/chips absent in mockup. Seed titles; leave bodies as flagged placeholders.
 2. **✅ Resolved — Founder portrait** `static/Vinay-Maheshwari.jpg` (Home + Know Us), served via `next/image`.
-3. **✅ Resolved (brand) · `TODO(content)` (third-party logos)** — SucStrat logo provided in `/static/`. The 24 client logos (Clients), 4 case logos, 5 award logos (Know Us) were hotlinked in the mockups → rebuild uses the mockups' **text/logotype fallback** (no `<img>`, no hotlinking) until real assets are supplied.
+3. **✅ Resolved — third-party logos.** SucStrat logo in `/static/`. The 24 client logos now ship as real assets in the What We Do logo marquee (`/public/logos/`), and the Know Us award strip ships **8 award logos** — the 5 mockup awards (FICCI, WAN-IFRA, INMA, Abby's, Maddy's) plus ET / Hermès / PRCI (client-confirmed). The 4 case logos remain `TODO(content)` (stubs).
 4. **✅ Resolved — Footer contact:** **ashley@v3consultant.com** (replaces `[confirm contact details]` + mockup `connect@sucstrat.com`).
 5. **`TODO(content)` — Privacy / Terms:** no pages/targets provided; kept as plain text (mockup parity). Decide real `/privacy`, `/terms` later.
 6. **`TODO(content)` — Careers apply flow:** currently `mailto:careers@sucstrat.com` (kept verbatim); confirm whether to route to `/pitch-us`.

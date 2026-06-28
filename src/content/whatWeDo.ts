@@ -1,4 +1,4 @@
-import type { IndustryTile, Metric, Practice } from "./types";
+import type { LogoItem, Metric, Practice } from "./types";
 
 // Eight practices, each with an italic description and its "the work" list.
 const PRACTICES: Practice[] = [
@@ -168,26 +168,39 @@ export const WHAT_WE_DO = {
     ],
     footer: "The behaviour beneath every framework, small, relentless, daily execution compounds into scale.",
   },
-  industries: {
-    eyebrow: "Sectors",
-    title: "Industries we serve",
-    // Framed as a deliberate subset of the 21-sector master list (the Home map), not a fourth
-    // contradictory sector taxonomy.
-    lead: "We work across 21 sectors worldwide. These are the twelve where we go deepest.",
-    tiles: [
-      { icon: "education", name: "Education & Universities" },
-      { icon: "media", name: "Media & Communication" },
-      { icon: "consumer", name: "Consumer & Retail" },
-      { icon: "healthcare", name: "Healthcare" },
-      { icon: "industrial", name: "Industrial & Manufacturing" },
-      { icon: "technology", name: "Technology & AI" },
-      { icon: "publicPolicy", name: "Public Policy" },
-      { icon: "startups", name: "Startups & Emerging Businesses" },
-      { icon: "socialImpact", name: "Social Impact Organisations" },
-      { icon: "realEstate", name: "Real Estate & Infrastructure" },
-      { icon: "digital", name: "Digital & Internet Businesses" },
-      { icon: "skills", name: "Skill Development & Learning" },
-    ] satisfies IndustryTile[],
+  // Replaces the former "Industries we serve" sector grid with a full-width scrolling marquee
+  // of the client logos from the (now-removed) Clients page. Section copy + logo roster carried
+  // verbatim from the old Clients page LogoWall.
+  marquee: {
+    eyebrow: "Our clients",
+    title: "The companies we build with",
+    lead: "From market leaders to emerging disruptors, we partner with organisations that shape industries and scale with intent.",
+    logos: [
+      { name: "Hamar Hajaala", logo: "hamar-hajaala.jpg" },
+      { name: "Dainikpuri", logo: "Dainikpuri.jpg" },
+      { name: "Narayana", logo: "Narayana.jpg" },
+      { name: "The Cake Room", logo: "The-Cake-Room.jpg" },
+      { name: "Sparsh", logo: "sparsh.jpg" },
+      { name: "Sree Vidyanikethan", logo: "Sree-Vidyanikethan.jpg" },
+      { name: "New York", logo: "New-York.jpg" },
+      { name: "Nav Bharath", logo: "Nav-Bharath.jpg" },
+      { name: "Mohan Babu University", logo: "MBU.jpg" },
+      { name: "Maison AVA", logo: "Maison-AVA.jpg" },
+      { name: "Kutchina", logo: "kutchina.jpg" },
+      { name: "Kespariya", logo: "kespariya.jpg" },
+      { name: "AVA", logo: "AVA.jpg" },
+      { name: "24 Frames", logo: "24-frames.jpg" },
+      { name: "Valmar", logo: "valmar.jpg" },
+      { name: "EY", logo: "ey-1.jpg" },
+      { name: "Korn Ferry", logo: "Kf.jpg" },
+      { name: "S&P", logo: "SP.jpg" },
+      { name: "Hypolator", logo: "Hypolator.jpg" },
+      { name: "RunTailor", logo: "RunTailor.jpg" },
+      { name: "Kalaclap", logo: "kalaclap.jpg" },
+      { name: "Papa Pawsome", logo: "papa-pawsome.jpg" },
+      { name: "Therapeutics", logo: "therapeutics.jpg" },
+      { name: "SpaceBasic", logo: "spacebasic.jpg" },
+    ] satisfies LogoItem[],
   },
   cta: {
     primaryCta: { label: "Book a discovery call", href: "/get-in-touch" },
