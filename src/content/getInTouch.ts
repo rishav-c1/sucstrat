@@ -69,15 +69,16 @@ export const GET_IN_TOUCH = {
     ] satisfies ContactRow[],
   },
 
-  // The white form panel (fields + select options, verbatim from the mockup).
+  // The white form panel (fields + select options). Inquiry types mirror the "Reach us"
+  // routing cards above (same categories, in the same order) so the two stay in sync.
   form: {
     inquiryTypes: [
       "Client mandate",
-      "Advisory / consulting",
-      "Partnership",
-      "Media / press",
-      "Speaking / faculty",
-      "Careers",
+      "Job seekers",
+      "Partners & alliances",
+      "Media & PR",
+      "Speaking & faculty",
+      "Fundraising & expansion",
       "Other",
     ],
     countries: ["India", "United States", "United Kingdom", "Middle East", "Singapore", "Other"],

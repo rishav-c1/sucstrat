@@ -21,7 +21,7 @@ export default function CareersPage() {
         {...c.hero}
         title={
           <>
-            Build more than a career. Build <em>legacies</em>.
+            Build more than a career. Build <em>legacy</em>.
           </>
         }
       />

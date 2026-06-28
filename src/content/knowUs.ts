@@ -23,12 +23,12 @@ export const KNOW_US = {
   pivotArc: {
     arcLabel: "The arc",
     entries: [
-      { org: "India TV", role: "Group CEO", body: "Led one of India's national news networks as Group CEO." },
       {
         org: "Sakshi Media Group",
         role: "Executive Director & CEO",
         body: "Restored profitability across TV, print, and digital and reset the growth engine.",
       },
+      { org: "India TV", role: "Group CEO", body: "Led one of India's national news networks as Group CEO." },
       {
         org: "Mohan Babu University",
         role: "Trustee & Executive Director",
@@ -59,6 +59,8 @@ export const KNOW_US = {
     eyebrow: "How we engage",
     title: "Five archetypes. One standard of work.",
     lead: "We embed: coaching boards, running turnaround, building ventures, then structure the relationship to fit the problem, from a two-week sprint to an equity-aligned build.",
+    // Ordered as a commitment gradient (lighter touch -> deeper commitment); the card
+    // spectrum colours track this order.
     models: [
       {
         name: "Strategy Sprint",
@@ -66,6 +68,7 @@ export const KNOW_US = {
         model: "Fixed scope",
         oneLine: "Fast clarity, sharp direction, immediate momentum.",
         body: "A focused engagement to solve a specific challenge or define the next growth stage; the ideal entry point before a longer partnership.",
+        bestFor: "Founders and leadership teams that need clarity on growth priorities, GTM, positioning, market entry, or P&L.",
         outputs: [
           "P&L review and opportunity diagnosis",
           "Tailored recommendations",
@@ -74,25 +77,12 @@ export const KNOW_US = {
         ],
       },
       {
-        name: "Strategic Retainer",
-        duration: "6 to 12 months",
-        model: "Senior counsel, on demand",
-        oneLine: "Ongoing senior strategic support, without a full-time hire.",
-        body: "For scaling businesses navigating transformation, M&A, capital decisions, and CXO execution.",
-        outputs: [
-          "Monthly reviews",
-          "P&L, cash-flow and investment models",
-          "Capital and corporate guidance",
-          "CXO mentoring",
-          "Continuous accountability",
-        ],
-      },
-      {
         name: "Project-Based",
         duration: "4 to 12 weeks",
         model: "Defined scope and deliverables",
         oneLine: "Build a defined growth asset, system, or framework.",
         body: "For specific needs: CRM, campaigns, market entry, positioning, consumer insights, IPO readiness.",
+        bestFor: "Businesses with a specific need: market entry, brand positioning, consumer insights, or IPO readiness.",
         outputs: [
           "Scoped strategy and frameworks",
           "Consumer insights and analytics",
@@ -101,11 +91,27 @@ export const KNOW_US = {
         ],
       },
       {
+        name: "Strategic Retainer",
+        duration: "6 to 12 months",
+        model: "Senior counsel, on demand",
+        oneLine: "Ongoing senior strategic support, without a full-time hire.",
+        body: "For scaling businesses navigating transformation, M&A, capital decisions, and CXO execution.",
+        bestFor: "Scaling businesses navigating transformation, M&A, capital decisions, and CXO-level execution.",
+        outputs: [
+          "Monthly reviews",
+          "CXO mentoring",
+          "Capital and corporate guidance",
+          "P&L, cash-flow and investment models",
+          "Continuous accountability",
+        ],
+      },
+      {
         name: "Hybrid Partnership",
         duration: "6 to 12 months",
         model: "Performance-linked",
         oneLine: "Fixed fee plus performance incentives, aligned to outcomes.",
         body: "Where success metrics are clear and SucStrat meaningfully influences results.",
+        bestFor: "Companies wanting a partner with shared accountability, where success metrics are clear.",
         outputs: [
           "Ongoing support with performance reviews",
           "Outcome-tied growth planning",
@@ -118,6 +124,7 @@ export const KNOW_US = {
         model: "Equity-aligned",
         oneLine: "A selective model for high-potential early-stage businesses.",
         body: "Via equity or a mix of cash and equity, for ventures we help build from the ground up.",
+        bestFor: "High-potential startups needing strategic guidance with a flexible, stage-aligned structure.",
         outputs: [
           "Founder advisory",
           "Growth and business-building",

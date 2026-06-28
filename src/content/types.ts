@@ -120,8 +120,13 @@ export interface EngagementModel {
   name: string;
   duration: string;
   model: string;
+  /** Card one-line "promise". */
   oneLine: string;
+  /** Detail-panel "The engagement" paragraph. */
   body: string;
+  /** Detail-panel "Best for" line. */
+  bestFor: string;
+  /** Detail-panel "What's included" bullets. */
   outputs: string[];
 }
 

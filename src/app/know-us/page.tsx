@@ -36,18 +36,20 @@ export default function KnowUsPage() {
         secondaryCta={k.hero.secondaryCta}
       />
       <FirmBand eyebrow={k.firm.eyebrow} statement={k.firm.statement} />
+      {/* Firm (navy) above and Collective (heroBg) below bound the block; method · pivot ·
+          awards · engage all sit on white (paper). */}
+      <MethodFrameworks {...k.method} />
+      {/* The Pivot: full founder story here (Home shows the compact teaser variant). */}
+      <FounderBio founder={HOME.founder} id="pivot" pivotArc={k.pivotArc} bg="paper" />
+      {/* Recognition & platform. */}
+      <AwardsStrip {...k.awards} />
+      {/* How we engage now follows Recognition, before the collective bench. */}
       <EngagementModels
         eyebrow={k.engagement.eyebrow}
         title={k.engagement.title}
         lead={k.engagement.lead}
         models={k.engagement.models}
       />
-      {/* The Pivot: full founder story here (Home shows the compact teaser variant).
-          White bg so it reads as one bright block with Recognition below it. */}
-      <FounderBio founder={HOME.founder} id="pivot" pivotArc={k.pivotArc} bg="paper" />
-      {/* Recognition & platform — white too, so it continues the Pivot with no band break. */}
-      <AwardsStrip {...k.awards} />
-      <MethodFrameworks {...k.method} />
       {/* The collective bench closes the page, just before the CTA. */}
       <CollectiveExpertise
         {...k.expertise}

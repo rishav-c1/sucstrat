@@ -6,7 +6,7 @@ const APPLY = `mailto:${SITE.careersEmail}?subject=Application`;
 export const CAREERS = {
   hero: {
     eyebrow: "Careers",
-    title: "Build more than a career. Build legacies.",
+    title: "Build more than a career. Build legacy.",
     sub: "At SucStrat, we give consultants and professionals true ownership from day one. Your work will shape institutions, scale brands, and leave an impact that carries your name.",
     primaryCta: { label: "Apply now", href: APPLY },
     secondaryCta: { label: "Life at SucStrat", href: "#life" },
