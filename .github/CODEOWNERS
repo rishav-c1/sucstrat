@@ -1,0 +1,7 @@
+# Code owners for sucstrat-website.
+#
+# @rishav-c1 (repo owner) is the code owner for everything. Combined with the
+# branch-protection rule on `main` (Require review from Code Owners), this means
+# no pull request can be merged into `main` without @rishav-c1's approval, and no
+# other collaborator can push to or merge into `main` directly.
+* @rishav-c1
