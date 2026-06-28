@@ -15,7 +15,7 @@ import { HOME } from "@/content/home";
 export const metadata: Metadata = {
   title: "Know Us",
   description:
-    "An execution-first consulting collective of 195+ operators who build, scale, and turn around businesses, judged on the outcomes they leave behind.",
+    "An execution-first consulting collective of 170 operators who build, scale, and turn around businesses, judged on the outcomes they leave behind.",
   alternates: { canonical: "/know-us" },
 };
 
@@ -50,15 +50,8 @@ export default function KnowUsPage() {
         lead={k.engagement.lead}
         models={k.engagement.models}
       />
-      {/* The collective bench closes the page, just before the CTA. */}
-      <CollectiveExpertise
-        {...k.expertise}
-        title={
-          <>
-            A bench that has <em>built it before</em>
-          </>
-        }
-      />
+      {/* The collective — a summary paragraph about the bench, just before the CTA. */}
+      <CollectiveExpertise {...k.expertise} />
       <CtaBand
         title={
           <>

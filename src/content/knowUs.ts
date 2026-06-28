@@ -1,5 +1,5 @@
 import { SITE } from "./site";
-import type { EngagementModel, LogoItem, MethodFramework, PedigreeGroup, PivotArc } from "./types";
+import type { EngagementModel, LogoItem, MethodFramework, PivotArc } from "./types";
 
 export const KNOW_US = {
   hero: {
@@ -15,7 +15,7 @@ export const KNOW_US = {
     eyebrow: "The firm",
     // Credibility line, not a second slogan: introduces the bench that justifies the page.
     statement:
-      "An execution-first consulting collective of 195+ operators, top-ranked CAs and MBAs, led by a founder with three decades of building and turning around businesses. We are judged on one thing: the outcomes we leave behind.",
+      "An execution-first consulting collective of 170 operators, top-ranked CAs and MBAs, led by a founder with three decades of building and turning around businesses. We are judged on one thing: the outcomes we leave behind.",
   },
   // Pivot "The arc" + "Across industries" — rendered below the founder bio on Know Us only
   // (replaces the former "Leadership track record" credentials row). Industry/brand grid
@@ -134,37 +134,12 @@ export const KNOW_US = {
       },
     ] satisfies EngagementModel[],
   },
-  // "Our consultants" — the 195+ operator bench (names withheld), shown as a bento: a dark hero
-  // banner (count + blurb), a pedigree ledger, and an "areas we go deep" card.
+  // "The collective" — a single summary paragraph about the consultant bench (replaced the
+  // former bench/pedigree/areas bento).
   expertise: {
     eyebrow: "The collective",
-    title: "A bench that has built it before",
-    bench: {
-      stat: "195+",
-      statLabel: "Consultants",
-      blurb:
-        "Top-ranked CAs and MBAs, ex-CXOs and founders who have built, scaled, and turned around businesses.",
-    },
-    pedigreeLabel: "Where they have led & advised",
-    pedigree: [
-      { label: "Education", orgs: ["Mohan Babu University", "Sree Vidyanikethan Group"] },
-      {
-        label: "Media & Publishing",
-        orgs: ["Dainik Bhaskar", "Sakshi", "India TV", "Hindustan Times", "ABP Network", "The Telegraph"],
-      },
-      { label: "Consumer & FMCG", orgs: ["Reckitt Benckiser", "Dabur India"] },
-      { label: "Investment & Industry", orgs: ["Mitsui & Co.", "Krishna Maruti Group", "Rockman Industries"] },
-      { label: "Analytics & Insights", orgs: ["Evalueserve"] },
-    ] satisfies PedigreeGroup[],
-    areasLabel: "Our expertise",
-    areas: [
-      "Growth & Transformation",
-      "Investments & Corporate Development",
-      "Brand, Marketing & Consumer",
-      "Finance, Governance & Risk",
-      "Data, Analytics & Intelligence",
-      "International Business",
-    ],
+    statement:
+      "A bench of 170 consultants: top-ranked CAs and MBAs, ex-CXOs, and founders who have built, scaled, and turned around businesses. Between them they have worked across 350+ organisations spread over every sector we serve, from education and media to consumer, healthcare, and industry, leading and advising names like Mohan Babu University, Dainik Bhaskar, India TV, Reckitt Benckiser, Narayana, and Mitsui & Co. It means we arrive having already run the problem in front of you, not just studied it, with expertise spanning growth and transformation, corporate development, brand and consumer, finance and governance, data and analytics, and international business.",
   },
   // "Our method" — interactive proprietary-frameworks section (replaces the former navy
   // Frameworks band). Content carried verbatim from the design handoff: four frameworks,

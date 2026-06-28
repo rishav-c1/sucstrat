@@ -30,7 +30,7 @@ export const HOME = {
     eyebrow: "Our impact",
     title: "Building and turning around businesses judged by the outcomes we leave behind",
     metrics: [
-      { to: 195, suffix: "+", label: "Consultants" },
+      { to: 170, label: "Consultants" },
       { to: 21, label: "Sectors" },
       { to: 35, suffix: "+", label: "Active clients" },
       { to: 300, suffix: "+", label: "Transformation projects" },
