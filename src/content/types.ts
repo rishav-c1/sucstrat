@@ -130,12 +130,6 @@ export interface EngagementModel {
   outputs: string[];
 }
 
-/** A "Leadership pedigree" grouping (Know Us). */
-export interface PedigreeGroup {
-  label: string;
-  orgs: string[];
-}
-
 /** The diagram ("exhibit") variant rendered for a Know Us "Our method" framework. */
 export type MethodDiagram = "loop" | "matrix" | "intensity" | "dominance";
 
