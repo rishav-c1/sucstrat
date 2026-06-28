@@ -55,7 +55,14 @@ export function AwardsStrip({
           <Reveal>
             <p className={styles.platform}>
               <span className={styles.platformLabel}>{platform.label}</span>
-              <span className={styles.platformItems}>{platform.items.join("  ·  ")}</span>
+              <span className={styles.platformItems}>
+                {platform.items.map((item, i) => (
+                  <span key={item}>
+                    {i > 0 ? <span className={styles.platformDot}> · </span> : null}
+                    {item}
+                  </span>
+                ))}
+              </span>
             </p>
           </Reveal>
         ) : null}

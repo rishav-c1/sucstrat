@@ -10,14 +10,16 @@
   display: grid;
   grid-template-columns: 0.78fr 1.22fr;
   gap: 52px;
-  align-items: center;
+  /* stretch (not center) so the portrait runs the full height of the bio — no floating gap */
+  align-items: stretch;
 }
 
 .portraitWrap {
   width: 100%;
 }
 .portrait {
-  aspect-ratio: 4 / 5;
+  height: 100%;
+  min-height: 460px;
   background: var(--navy-800);
   border-radius: var(--radius-lg);
   position: relative;
@@ -54,13 +56,13 @@
   margin: 3px 0 16px;
 }
 .highlight {
-  border-left: 3px solid var(--blue-600);
-  background: #fff;
+  border-left: 3px solid var(--blue-500);
+  background: var(--navy-800);
   border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-  padding: 13px 18px;
+  padding: 14px 20px;
   font-size: 16px;
   font-weight: 600;
-  color: var(--navy-800);
+  color: #fff;
   margin-bottom: 16px;
 }
 .tiles {
@@ -110,42 +112,104 @@
 .moreLink:hover {
   color: var(--navy-800);
 }
-.cred {
-  margin-top: 18px;
+/* ===== The arc + Across industries (Know Us pivot, full variant) ===== */
+.arcWrap {
+  margin-top: 54px;
+  padding-top: 46px;
   border-top: 1px solid var(--line);
-  padding-top: 16px;
 }
-.credLabel {
+.arcGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+.colEyebrow {
+  margin-bottom: 24px;
+}
+
+/* The arc — leadership timeline */
+.timeline {
+  list-style: none;
+  position: relative;
+  padding-left: 28px;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 7px;
+  bottom: 10px;
+  width: 1px;
+  background: var(--blue-200);
+}
+.arcItem {
+  position: relative;
+  padding-bottom: 24px;
+}
+.arcItem:last-child {
+  padding-bottom: 0;
+}
+.arcDot {
+  position: absolute;
+  left: -28px;
+  top: 4px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--blue-500);
+}
+.arcOrg {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 19px;
+  color: var(--navy-800);
+  line-height: 1.2;
+}
+.arcRole {
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.1em;
   font-size: 11px;
   font-weight: 600;
   color: var(--blue-700);
-  margin-bottom: 12px;
+  margin: 4px 0 7px;
 }
-.credRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.credItem {
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  padding: 10px 14px;
-}
-.credOrg {
-  font-family: var(--font-serif);
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--navy-800);
-}
-.credRole {
-  font-size: 11px;
+.arcBody {
+  font-size: 14px;
   color: var(--muted);
+  line-height: 1.5;
+  max-width: 38ch;
+}
+
+/* Across industries — brand-by-sector grid */
+.indLead {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 18px;
+  max-width: 46ch;
+}
+.indGroups {
+  margin: 0;
+}
+.indGroup {
+  border-top: 1px solid var(--line);
+  padding: 13px 0;
+}
+.indLabel {
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-top: 2px;
+  letter-spacing: 0.1em;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--blue-700);
+  margin-bottom: 5px;
+}
+.indBrands {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 15.5px;
+  color: var(--navy-800);
+  line-height: 1.4;
 }
 
 @media (max-width: 900px) {
@@ -153,7 +217,16 @@
     grid-template-columns: 1fr;
     gap: 36px;
   }
+  .portrait {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 4 / 5;
+  }
   .tiles {
     grid-template-columns: 1fr;
+  }
+  .arcGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
 }

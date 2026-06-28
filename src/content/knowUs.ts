@@ -1,4 +1,5 @@
-import type { EngagementModel, LogoItem, MethodFramework, PedigreeGroup } from "./types";
+import { SITE } from "./site";
+import type { EngagementModel, LogoItem, MethodFramework, PedigreeGroup, PivotArc } from "./types";
 
 export const KNOW_US = {
   hero: {
@@ -16,6 +17,42 @@ export const KNOW_US = {
     statement:
       "An execution-first consulting collective of 195+ operators, top-ranked CAs and MBAs, led by a founder with three decades of building and turning around businesses. We are judged on one thing: the outcomes we leave behind.",
   },
+  // Pivot "The arc" + "Across industries" — rendered below the founder bio on Know Us only
+  // (replaces the former "Leadership track record" credentials row). Industry/brand grid
+  // carried over from the removed Clients page's key-clients data.
+  pivotArc: {
+    arcLabel: "The arc",
+    entries: [
+      { org: "India TV", role: "Group CEO", body: "Led one of India's national news networks as Group CEO." },
+      {
+        org: "Sakshi Media Group",
+        role: "Executive Director & CEO",
+        body: "Restored profitability across TV, print, and digital and reset the growth engine.",
+      },
+      {
+        org: "Mohan Babu University",
+        role: "Trustee & Executive Director",
+        body: "Built and governed at institutional scale, from strategy to execution.",
+      },
+      {
+        org: "SucStrat",
+        role: "Founder & Principal Consultant",
+        body: "Today, channelling three decades into consulting for promoters, boards, and CXOs.",
+      },
+    ],
+    industriesLabel: "Across industries",
+    industriesLead:
+      "Operating roles across media, retail, and consumer businesses have put Vinay across the table from the brands that define their categories.",
+    industries: [
+      { label: "Retail & Fashion", brands: ["Gap", "A&F", "Walmart", "Macy's", "Tommy Hilfiger", "Levi's"] },
+      { label: "Media & Entertainment", brands: ["Sony", "Star", "Colors", "&tv", "Eros International"] },
+      { label: "FMCG", brands: ["HUL", "P&G", "Dabur", "ITC", "Patanjali", "RHPL"] },
+      { label: "Financial Services", brands: ["Birla Sun Life", "ICICI Pru", "MobiKwik", "Paytm"] },
+      { label: "Automotive", brands: ["Maruti", "Honda", "Hyundai", "KIA"] },
+      { label: "Education", brands: ["VIT", "SRM", "Aakash", "FIITJEE", "Narayana", "Sri Chaitanya"] },
+      { label: "Digital & Retail", brands: ["Amazon", "Flipkart", "Snapdeal", "Big Bazaar", "Modern Retail", "Disney", "GVK"] },
+    ],
+  } satisfies PivotArc,
   // "How we engage" — the single "how we work" section. The former "How we lead" delivery
   // modes are covered by the What We Do practices and so were removed to kill the duplication.
   engagement: {
@@ -132,8 +169,10 @@ export const KNOW_US = {
     titleEmph: "frameworks",
     titleRest: ", built and proven in the field.",
     indexHeading: "The four frameworks",
-    author: "Vinay Maheshwari",
-    authorRole: "Founder, SucStrat Consultants",
+    author: SITE.founder,
+    authorRole: SITE.founderRole,
+    // Sourced claim is copyright registration (not a registered trademark) — © not ®.
+    exhibitReg: "© Copyright registered",
     credential: "Proprietary framework · Copyright registered, Govt. of India",
     frameworks: [
       {
@@ -247,21 +286,19 @@ export const KNOW_US = {
     eyebrow: "Recognition & platform",
     title: "Awards & recognition",
     lead: "Recognised across the industry, and on the platforms that shape it.",
-    // Real logos where available; the four newer awards fall back to name placeholders.
     logos: [
       { name: "FICCI", logo: "FICCI.jpg" },
       { name: "WAN-IFRA", logo: "waninfra.jpg" },
       { name: "INMA", logo: "INMA.jpg" },
       { name: "Abby's", logo: "abbys.jpg" },
       { name: "Maddy's", logo: "maddys.jpg" },
-      { name: "INMA NY World Congress" },
-      { name: "Print Media Professional of the Year 2016" },
-      { name: "WAN World Youth Readership, Warsaw" },
-      { name: "CSR & Brand Leadership, CMO Asia" },
+      { name: "ET Entrepreneur Summit & Awards", logo: "et-economic-times.png" },
+      { name: "Hermes Creative Awards", logo: "hermes.png" },
+      { name: "Public Relations Council of India", logo: "prci.png" },
     ] satisfies LogoItem[],
     platform: {
-      label: "Faculty & speaker",
-      items: ["IIMs", "FICCI", "WAN-IFRA", "INMA"],
+      label: "Speaker & faculty",
+      items: ["IIMs", "ET", "FICCI", "WAN-IFRA", "INMA"],
     },
   },
   cta: {

@@ -220,6 +220,7 @@ Concise outlines; **verbatim copy lives in `content-extraction/<page>.md`**.
 **`/clients`** (`clients.md`): PageHero "Partners in performance." → LogoWall "The companies we build with" (Industry leaders 16 · Alliance network 3 · Innovators & startups 5) → StatBand (127+/53+/8/21) → CaseCards "Complex challenges…" (4) → CtaBand "Let's build something that scales.".
 
 **`/careers`** (`careers.md`): PageHero "Build more than a career…" → IconCardGrid "Why SucStrat" (4) → IconCardGrid "What you can expect" (4, navy) → IconCardGrid "Advance your career" (4) → IconCardGrid "Jobs with our clients" (2) → CtaBand "Ready to build something that lasts?". **No `JobPosting` JSON-LD** (no structured listings).
+> **Update (2026-06-28):** the "Why SucStrat" value-card section (Ownership / Outcomes over tenure / Coached to scale / Built to last) was removed; the page now flows PageHero → Life at SucStrat → Advance your career → Jobs with our clients → CTA. Its `why` content object was dropped from `careers.ts`.
 
 **`/knowledge`** (`knowledge.md`): PageHero "Insights & ideas." → InsightCardGrid ×4 [Education & Skills 7 · Media & Broadcast 3 · Academic Partnerships 3 · Research & Innovation 3] → CtaBand "Have a brief worth solving?". 16 external article links (one is `http://` — flagged; keep verbatim).
 

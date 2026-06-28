@@ -43,7 +43,7 @@ export default function KnowUsPage() {
         models={k.engagement.models}
       />
       {/* The Pivot: full founder story here (Home shows the compact teaser variant). */}
-      <FounderBio founder={HOME.founder} id="pivot" />
+      <FounderBio founder={HOME.founder} id="pivot" pivotArc={k.pivotArc} />
       {/* Recognition & platform sits directly below the Pivot. */}
       <AwardsStrip {...k.awards} />
       <MethodFrameworks {...k.method} />

@@ -52,17 +52,6 @@ export interface Metric {
   label: string;
 }
 
-/** A case-study card. `logo` is a filename under LOGO_BASE; stat is static text. */
-export interface CaseItem {
-  slug: string;
-  name: string;
-  eyebrow: string;
-  stat: { prefix?: string; value: string; suffix?: string };
-  statLabel: string;
-  body: string;
-  logo: string;
-}
-
 /** A map region used by the Home "Global impact" world map. */
 export interface Region {
   id: string;
@@ -82,21 +71,27 @@ export interface FounderContent {
   highlight: string;
   portraitAlt: string;
   tiles: { value: string; label: string }[];
+  /** Single condensed line for the Home compact teaser (the full `paragraphs` are Know Us only). */
+  teaser: string;
   paragraphs: string[];
-  credentialsLabel: string;
-  credentials: { org: string; role: string }[];
+}
+
+/**
+ * Know Us pivot "The arc" (leadership timeline) + "Across industries" (brand-by-sector grid),
+ * rendered below the founder bio on the full (non-compact) variant only.
+ */
+export interface PivotArc {
+  arcLabel: string;
+  entries: { org: string; role: string; body: string }[];
+  industriesLabel: string;
+  industriesLead: string;
+  industries: { label: string; brands: string[] }[];
 }
 
 /** A title + body card with a line icon (Careers value cards, Know Us "how we work"). */
 export interface IconCard {
   title: string;
   body: string;
-  icon: IconName;
-}
-
-/** A sector tile with a line icon (What We Do "Industries we serve"). */
-export interface IndustryTile {
-  name: string;
   icon: IconName;
 }
 

@@ -5,19 +5,21 @@ import { Container } from "@/components/layout/Container";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { Reveal } from "@/components/primitives/Reveal";
 import portrait from "@static/Vinay-Maheshwari.jpg";
-import type { FounderContent } from "@/content/types";
+import type { FounderContent, PivotArc } from "@/content/types";
 import styles from "./FounderBio.module.css";
 
 /**
- * Founder bio block — portrait + highlight + stat tiles + prose + credentials.
- * `compact` renders the Home teaser (no prose/credentials, links to the full story on Know Us);
- * the full block lives on Know Us.
+ * Founder bio block — portrait + highlight + stat tiles + prose.
+ * `compact` renders the Home teaser (one line + link to the full story on Know Us). The full
+ * block (Know Us) shows the prose plus, when `pivotArc` is supplied, "The arc" timeline +
+ * "Across industries" grid below the bio.
  */
 export function FounderBio({
   founder,
   compact = false,
   bg = "mist",
   id,
+  pivotArc,
 }: {
   founder: FounderContent;
   compact?: boolean;
@@ -25,6 +27,8 @@ export function FounderBio({
   bg?: "mist" | "paper";
   /** Optional anchor id (e.g. "pivot" on Know Us) so links can jump straight to this section. */
   id?: string;
+  /** Full-variant only: the "arc" timeline + "across industries" grid below the bio. */
+  pivotArc?: PivotArc;
 }) {
   return (
     <section id={id} className={clsx(styles.founder, bg === "paper" && styles.paper)}>
@@ -56,7 +60,7 @@ export function FounderBio({
             </div>
             {compact ? (
               <>
-                <p className={styles.para}>{founder.paragraphs[0]}</p>
+                <p className={styles.para}>{founder.teaser}</p>
                 <Link href="/know-us#pivot" className={styles.moreLink}>
                   Read Vinay&rsquo;s full story
                   <span aria-hidden="true"> →</span>
@@ -69,21 +73,45 @@ export function FounderBio({
                     {para}
                   </p>
                 ))}
-                <div className={styles.cred}>
-                  <div className={styles.credLabel}>{founder.credentialsLabel}</div>
-                  <div className={styles.credRow}>
-                    {founder.credentials.map((item) => (
-                      <div className={styles.credItem} key={item.org}>
-                        <div className={styles.credOrg}>{item.org}</div>
-                        <div className={styles.credRole}>{item.role}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
               </>
             )}
           </Reveal>
         </div>
+
+        {!compact && pivotArc ? (
+          <Reveal className={styles.arcWrap}>
+            <div className={styles.arcGrid}>
+              {/* The arc — leadership timeline */}
+              <div>
+                <Eyebrow className={styles.colEyebrow}>{pivotArc.arcLabel}</Eyebrow>
+                <ol className={styles.timeline}>
+                  {pivotArc.entries.map((entry) => (
+                    <li className={styles.arcItem} key={entry.org}>
+                      <span className={styles.arcDot} aria-hidden="true" />
+                      <div className={styles.arcOrg}>{entry.org}</div>
+                      <div className={styles.arcRole}>{entry.role}</div>
+                      <p className={styles.arcBody}>{entry.body}</p>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+
+              {/* Across industries — brand-by-sector grid */}
+              <div>
+                <Eyebrow className={styles.colEyebrow}>{pivotArc.industriesLabel}</Eyebrow>
+                <p className={styles.indLead}>{pivotArc.industriesLead}</p>
+                <dl className={styles.indGroups}>
+                  {pivotArc.industries.map((group) => (
+                    <div className={styles.indGroup} key={group.label}>
+                      <dt className={styles.indLabel}>{group.label}</dt>
+                      <dd className={styles.indBrands}>{group.brands.join("  ·  ")}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            </div>
+          </Reveal>
+        ) : null}
       </Container>
     </section>
   );

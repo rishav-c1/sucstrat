@@ -157,6 +157,7 @@ export function MethodFrameworks({
   indexHeading,
   author,
   authorRole,
+  exhibitReg,
   credential,
   frameworks,
 }: {
@@ -167,6 +168,7 @@ export function MethodFrameworks({
   indexHeading: string;
   author: string;
   authorRole: string;
+  exhibitReg: string;
   credential: string;
   frameworks: MethodFramework[];
 }) {
@@ -234,9 +236,11 @@ export function MethodFrameworks({
                           {fw.titleLead} <span className={styles.panelTitleEmph}>{fw.emph}</span>
                         </h3>
                       </div>
-                      <div className={styles.panelNum} aria-hidden="true">
-                        {fw.num}
-                      </div>
+                      <svg className={styles.panelNum} viewBox="0 0 132 90" aria-hidden="true" focusable="false">
+                        <text x="132" y="82" textAnchor="end" className={styles.panelNumText}>
+                          {fw.num}
+                        </text>
+                      </svg>
                     </div>
 
                     <p className={styles.thesis}>
@@ -258,7 +262,7 @@ export function MethodFrameworks({
                       <div className={styles.exhibit}>
                         <div className={styles.exhibitHead}>
                           <div className={styles.exhibitLabel}>Exhibit {"·"} {fw.exhibitLabel}</div>
-                          <div className={styles.exhibitReg}>{"®"} Reg. Govt. of India</div>
+                          <div className={styles.exhibitReg}>{exhibitReg}</div>
                         </div>
                         <div className={styles.exhibitBody}>
                           <Exhibit type={fw.type} />
@@ -273,7 +277,7 @@ export function MethodFrameworks({
             {/* Footer credential */}
             <div className={styles.credential}>
               <span className={styles.seal} aria-hidden="true">
-                {"®"}
+                {"©"}
               </span>
               <span className={styles.credentialText}>
                 {credLead}

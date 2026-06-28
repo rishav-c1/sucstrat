@@ -5,7 +5,7 @@ const BASE = "http://localhost:3000";
 const OUT = "/tmp/sucstrat_shots";
 mkdirSync(OUT, { recursive: true });
 
-const PAGES = ["what-we-do", "know-us", "careers", "knowledge", "pitch-us"];
+const PAGES = ["what-we-do", "know-us", "careers", "knowledge", "get-in-touch"];
 const browser = await chromium.launch();
 
 for (const slug of PAGES) {

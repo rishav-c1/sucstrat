@@ -12,7 +12,7 @@ Built across the phased plan in `PLAN.md`. All six content pages + `/get-in-touc
 | Types | `pnpm typecheck` | ✅ 0 errors (`strict` + `noUncheckedIndexedAccess`) |
 | Lint | `pnpm lint` | ✅ 0 errors / 0 warnings |
 | Unit | `pnpm test` | ✅ 10 passed (vitest) |
-| E2E | `pnpm test:e2e` | ✅ 18 passed — **9 smoke** (every route 200, exactly one `<h1>`, no console/page errors) + **9 axe** (zero violations) |
+| E2E | `pnpm test:e2e` | ✅ **8 smoke** (every route 200, exactly one `<h1>`, no console/page errors) + **9 axe** (per route + a per-panel "Our Method" scan), **zero violations**. The `/clients` route was removed (8 routes), and the "Our Method" contrast fix is verified with axe-core 4.11.4. |
 | Lighthouse | `pnpm lhci` | ✅ green — **A11y / SEO / Best-Practices = 100** (hard `error` gates ≥95) on every route. **Performance is a `warn`-level target**: 6/9 routes ≥95; Home/Clients/Case-studies 92–94, accepted per sign-off (see §2). |
 
 **Cross-page integrity:** no `*_mockup.html` links, no absolute `sucstrat.com` nav links (absolute URLs only in canonical/OG/JSON-LD), all internal hrefs resolve to real routes, and every in-page anchor (`#cases`, `#practices`, `#how`, `#life`, `#insights`) has a matching target. No 404s. Nav/footer consistent site-wide.

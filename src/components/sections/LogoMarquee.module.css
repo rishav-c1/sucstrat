@@ -124,10 +124,23 @@
   }
 }
 
-/* Honour reduced-motion: no scrolling, render a static (clipped) row of real logos. */
+/* Honour reduced-motion: no scrolling. Wrap all logos into a static wall so every brand is
+   reachable (not clipped), show each once (hide the decorative duplicate), and drop the masks. */
 @media (prefers-reduced-motion: reduce) {
   .track {
     animation: none !important;
     transform: none !important;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .group {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .group[aria-hidden="true"] {
+    display: none;
+  }
+  .mask {
+    display: none;
   }
 }

@@ -17,15 +17,14 @@ function Chip({ logo, decorative }: { logo: MarqueeLogo; decorative?: boolean })
     <li className={styles.item} aria-hidden={decorative || undefined}>
       <span className={styles.chip}>
         <span className={styles.imgWrap}>
-          {/* Eager (not priority): most chips sit off-screen in the track's horizontal overflow,
-              so lazy-loading would leave them blank until they scroll in. They're small and
-              below the fold, so eager-load without preloading (the hero stays the LCP). */}
+          {/* Lazy + below the fold: keeps the ~1.4 MB of logos off the initial paint (Perf bar).
+              Visible chips load on scroll-in; the hero stays the LCP. */}
           <Image
             src={logo.src}
             alt={decorative ? "" : logo.alt}
             fill
             sizes="200px"
-            loading="eager"
+            loading="lazy"
             className={styles.img}
           />
         </span>
