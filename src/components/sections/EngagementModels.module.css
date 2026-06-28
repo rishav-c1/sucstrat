@@ -1,119 +1,347 @@
-.grid {
-  list-style: none;
-  /* Flex (not grid) so an incomplete final row centres instead of left-aligning. */
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 18px;
-  margin-top: 16px;
-}
-.card {
-  /* Exactly three constant-width cards per row; the last row (2 cards) centres. */
-  flex: 0 1 calc((100% - 2 * 18px) / 3);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  padding: 26px 24px 24px;
-  overflow: hidden;
-  transition:
-    border-color 0.22s,
-    box-shadow 0.22s,
-    transform 0.22s;
-}
-/* Brand aurora accent along the top edge. */
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 3px;
-  background: linear-gradient(90deg, #355c7d, #5d90ba, #8fb4dd);
-}
-.card:hover {
-  border-color: var(--navy-800);
-  box-shadow: var(--shadow-card);
-  transform: translateY(-3px);
-}
-.top {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-}
-.name {
-  font-family: var(--font-serif);
-  font-weight: 600;
-  font-size: 21px;
-  color: var(--navy-800);
-  line-height: 1.1;
-}
-.duration {
-  flex: none;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--blue-700);
-  background: var(--mist);
-  border-radius: 999px;
-  padding: 4px 10px;
-  white-space: nowrap;
-}
-.model {
-  display: block;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 10.5px;
-  font-weight: 600;
-  color: var(--slate);
-  margin: 12px 0 10px;
-}
-.oneLine {
-  font-family: var(--font-serif);
-  font-size: 16px;
-  color: var(--navy-800);
-  line-height: 1.3;
-}
-.body {
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.5;
-  margin-top: 8px;
-}
-.outputs {
-  list-style: none;
-  margin: 16px 0 0;
-  padding: 14px 0 0;
-  border-top: 1px solid var(--line);
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-.output {
-  position: relative;
-  padding-left: 16px;
-  font-size: 13px;
-  line-height: 1.4;
-  color: var(--navy-800);
-}
-.output::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 7px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--blue-500);
+/*
+ * "How we engage" — commitment-spectrum cards + a swapping detail panel. Rebuilt from the design
+ * handoff. Exact spectrum colours are kept on the non-text bits (accent bars, active borders/tints,
+ * rules, dashes); the handoff's ghost-light *text* colours (#a9c0d8 / #5d90ba / #7d93a6) are
+ * darkened to tokenised on-brand tones that clear WCAG AA on white and on the active-card tints.
+ */
+.spectrum {
+  margin-top: 32px;
 }
 
-@media (max-width: 980px) {
-  .card {
-    flex-basis: calc((100% - 18px) / 2);
+/* ===== Card row (the spectrum) ===== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.card {
+  /* Spectrum shade for this card's position (set per nth-child below). */
+  --node: var(--blue-200);
+  --tint: rgba(169, 192, 216, 0.34);
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-family: inherit;
+  padding: 0;
+  border: 1px solid rgba(38, 66, 89, 0.12);
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  /* Query container so the name can scale to the card width and stay on one line. */
+  container-type: inline-size;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+.cards .card:nth-child(1) {
+  --node: #a9c0d8;
+  --tint: rgba(169, 192, 216, 0.34);
+}
+.cards .card:nth-child(2) {
+  --node: #7da7c8;
+  --tint: rgba(125, 167, 200, 0.3);
+}
+.cards .card:nth-child(3) {
+  --node: #5d90ba;
+  --tint: rgba(93, 144, 186, 0.24);
+}
+.cards .card:nth-child(4) {
+  --node: #3f6f9c;
+  --tint: rgba(63, 111, 156, 0.18);
+}
+.cards .card:nth-child(5) {
+  --node: #1b3140;
+  --tint: rgba(27, 49, 64, 0.1);
+}
+.cardActive {
+  border-color: var(--node);
+  background: var(--tint);
+}
+.card:focus-visible {
+  outline: 2px solid var(--blue-600);
+  outline-offset: 2px;
+}
+.accentBar {
+  height: 5px;
+  background: var(--node);
+  flex-shrink: 0;
+}
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 22px 22px 24px;
+}
+.cardNum {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  color: var(--blue-700);
+  margin-bottom: 8px;
+}
+.cardName {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.14;
+  color: var(--navy-900);
+  min-height: 46px;
+}
+.cardDuration {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 10px 0 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--blue-700);
+}
+.rule {
+  width: 16px;
+  height: 1px;
+  background: var(--blue-500);
+  flex-shrink: 0;
+}
+.cardPromise {
+  font-family: var(--font-serif);
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--navy-800);
+}
+
+/* ===== Detail panel (swaps with selection) ===== */
+.strip {
+  margin-top: 28px;
+  background: #f4f7fb;
+  border: 1px solid rgba(38, 66, 89, 0.1);
+  border-left: 3px solid var(--blue-600);
+  border-radius: 0 8px 8px 0;
+  overflow: hidden;
+  /* Stack all five panels in one grid cell so the strip is always as tall as the *tallest*
+     model — selecting a card then never resizes it (no hover jump). All render for SEO. */
+  display: grid;
+}
+.panel {
+  grid-area: 1 / 1;
+  visibility: hidden;
+}
+.panelActive {
+  visibility: visible;
+}
+
+.panelHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px 34px;
+  border-bottom: 1px solid rgba(38, 66, 89, 0.1);
+  background: #fff;
+}
+.panelHeadLeft {
+  display: flex;
+  align-items: baseline;
+  gap: 15px;
+}
+.panelNum {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--blue-600);
+}
+.panelName {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--navy-900);
+}
+.panelHeadRight {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.panelDuration {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--blue-700);
+}
+.panelDivider {
+  width: 1px;
+  height: 14px;
+  background: rgba(38, 66, 89, 0.18);
+  flex-shrink: 0;
+}
+.panelModel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+
+.panelBody {
+  display: grid;
+  grid-template-columns: 1fr 1.45fr;
+  gap: 52px;
+  align-items: start;
+  padding: 28px 34px 30px;
+  /* Fixed floor so swapping models with different bullet counts doesn't jump the page. */
+  min-height: 236px;
+}
+
+/* Small uppercase labels (darkened from the handoff's #a9c0d8 to clear AA). */
+.label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--blue-700);
+}
+.labelEngagement {
+  composes: label;
+  margin-bottom: 12px;
+}
+.labelBestFor {
+  composes: label;
+  margin: 22px 0 8px;
+}
+.labelIncluded {
+  composes: label;
+  margin-bottom: 4px;
+}
+
+.panelDetail {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--navy-800);
+  margin: 0;
+}
+.panelBestFor {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--slate);
+  margin: 0;
+}
+
+.bullets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 36px;
+}
+.bullet {
+  display: flex;
+  gap: 13px;
+  align-items: baseline;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(38, 66, 89, 0.09);
+}
+.bulletDash {
+  width: 13px;
+  height: 2px;
+  background: var(--blue-600);
+  border-radius: 1px;
+  flex-shrink: 0;
+}
+.bulletText {
+  font-size: 14.5px;
+  line-height: 1.45;
+  color: var(--navy-900);
+}
+
+/* ===== Responsive ===== */
+/* Desktop (full 5-column row): keep every name on one line by scaling it to the card width.
+   Below 1041px the cards are too narrow, so the names wrap (base rule) rather than shrink to an
+   unreadable size. */
+@media (min-width: 1041px) {
+  .cardName {
+    white-space: nowrap;
+    font-size: clamp(13px, 7.6cqw, 20px);
+    min-height: 0;
+    margin-bottom: 2px;
   }
 }
-@media (max-width: 600px) {
+
+/* Tablet: drop to a tighter gap; the 5 columns get cramped, so allow a smaller min. */
+@media (max-width: 1040px) {
+  .cards {
+    gap: 10px;
+  }
+  .cardBody {
+    padding: 18px 16px 20px;
+  }
+  .panelBody {
+    gap: 36px;
+    padding: 26px 24px 28px;
+  }
+}
+
+/* Mobile: cards become a horizontal scroll-snap spectrum; the detail panel stacks. */
+@media (max-width: 760px) {
+  .cards {
+    display: flex;
+    grid-template-columns: none;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    /* room for the focus ring + a little breathing space under the row */
+    padding: 4px 2px 8px;
+    margin: 0 -2px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .cards::-webkit-scrollbar {
+    display: none;
+  }
   .card {
-    flex-basis: 100%;
+    flex: 0 0 76%;
+    max-width: 270px;
+    scroll-snap-align: start;
+  }
+  .cardName {
+    min-height: 0;
+  }
+
+  /* Mobile is tapped, not hovered, so let each model take its natural height (no dead space
+     from padding every panel up to the tallest). */
+  .strip {
+    margin-top: 18px;
+    display: block;
+  }
+  .panel {
+    display: none;
+  }
+  .panelActive {
+    display: block;
+  }
+  .panelHead {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 18px 20px;
+  }
+  .panelHeadRight {
+    flex-wrap: wrap;
+  }
+  .panelName {
+    font-size: 23px;
+  }
+  .panelBody {
+    grid-template-columns: 1fr;
+    gap: 8px 0;
+    padding: 22px 20px 24px;
+    min-height: 0;
+  }
+  .bullets {
+    grid-template-columns: 1fr;
   }
 }
