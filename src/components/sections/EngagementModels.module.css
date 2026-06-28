@@ -26,7 +26,7 @@
   font-family: inherit;
   padding: 0;
   border: 1px solid rgba(38, 66, 89, 0.12);
-  background: #fff;
+  background: var(--white);
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
@@ -37,7 +37,7 @@
     border-color 0.2s ease;
 }
 .cards .card:nth-child(1) {
-  --node: #a9c0d8;
+  --node: var(--blue-200);
   --tint: rgba(169, 192, 216, 0.34);
 }
 .cards .card:nth-child(2) {
@@ -45,7 +45,7 @@
   --tint: rgba(125, 167, 200, 0.3);
 }
 .cards .card:nth-child(3) {
-  --node: #5d90ba;
+  --node: var(--blue-500);
   --tint: rgba(93, 144, 186, 0.24);
 }
 .cards .card:nth-child(4) {
@@ -53,7 +53,7 @@
   --tint: rgba(63, 111, 156, 0.18);
 }
 .cards .card:nth-child(5) {
-  --node: #1b3140;
+  --node: var(--navy-900);
   --tint: rgba(27, 49, 64, 0.1);
 }
 .cardActive {
@@ -138,7 +138,7 @@
   gap: 24px;
   padding: 22px 34px;
   border-bottom: 1px solid rgba(38, 66, 89, 0.1);
-  background: #fff;
+  background: var(--white);
 }
 .panelHeadLeft {
   display: flex;

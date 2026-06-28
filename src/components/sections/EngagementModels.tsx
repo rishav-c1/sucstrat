@@ -36,8 +36,11 @@ export function EngagementModels({
   function select(index: number, fromTap: boolean) {
     setActive(index);
     if (fromTap && typeof window !== "undefined" && window.matchMedia("(hover: none)").matches) {
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       window.requestAnimationFrame(() => {
-        document.getElementById(stripId)?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+        document
+          .getElementById(stripId)
+          ?.scrollIntoView({ block: "nearest", behavior: reduced ? "auto" : "smooth" });
       });
     }
   }
@@ -89,12 +92,16 @@ export function EngagementModels({
                 <div
                   key={m.name}
                   id={`${baseId}-panel-${i}`}
+                  role="region"
+                  aria-labelledby={`${baseId}-panelname-${i}`}
                   className={`${styles.panel}${i === active ? ` ${styles.panelActive}` : ""}`}
                 >
                   <div className={styles.panelHead}>
                     <div className={styles.panelHeadLeft}>
                       <span className={styles.panelNum}>{num}</span>
-                      <span className={styles.panelName}>{m.name}</span>
+                      <span id={`${baseId}-panelname-${i}`} className={styles.panelName}>
+                        {m.name}
+                      </span>
                     </div>
                     <div className={styles.panelHeadRight}>
                       <span className={styles.panelDuration}>
