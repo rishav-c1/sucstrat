@@ -5,7 +5,7 @@
  * Light mist band, per design. Exact design values are kept for pixel fidelity.
  */
 .section {
-  background: var(--mist);
+  background: var(--paper);
   padding: 100px 0;
 }
 .inner {
@@ -642,7 +642,8 @@
   display: flex;
   height: 72px;
   border-radius: 6px;
-  overflow: hidden;
+  /* No overflow:hidden — it would clip the Classified block's glow. The two segments round
+     their own outer corners instead, so the bar keeps its shape and the glow shows. */
 }
 .domClassified {
   flex: 0 0 76%;
@@ -651,7 +652,8 @@
   flex-direction: column;
   justify-content: center;
   padding: 0 22px;
-  box-shadow: 0 0 30px rgba(233, 241, 248, 0.5);
+  border-radius: 6px 0 0 6px;
+  box-shadow: 0 0 32px rgba(233, 241, 248, 0.6);
 }
 .domClassifiedTitle {
   font-family: var(--font-serif);
@@ -672,6 +674,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 0 16px;
+  border-radius: 0 6px 6px 0;
 }
 .domQualifiedTitle {
   font-family: var(--font-serif);
@@ -823,7 +826,12 @@
     font-size: 9.5px;
     top: -30px;
   }
-  /* Dominance — shrink labels so the narrow "Qualified" segment isn't clipped. */
+  /* Dominance — on the tight mobile bar, re-clip the segments (the desktop-only Classified
+     glow is dropped here) so the narrow "Qualified" segment can't poke past the bar edge. */
+  .domBar {
+    overflow: hidden;
+  }
+  /* Shrink labels so the narrow "Qualified" segment isn't clipped. */
   .domClassified {
     padding: 0 12px;
   }
