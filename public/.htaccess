@@ -1,0 +1,36 @@
+# Server config for the static Next.js export, served at the domain root on
+# Apache / LiteSpeed (Hostinger). Shipped in the export (out/.htaccess) and
+# deployed alongside the site. Harmless on GitHub Pages (ignored there).
+
+# Serve each route's exported index.html for directory requests.
+DirectoryIndex index.html
+
+# Next.js `output: export` emits a static 404 page.
+ErrorDocument 404 /404.html
+
+# No directory listings.
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Force HTTPS. Harmless if the host already forces it; the second condition
+  # avoids a redirect loop behind a TLS-terminating proxy.
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  # Renamed contact route — a real server can do this redirect (the static
+  # export drops next.config's redirects()).
+  RewriteRule ^pitch-us/?$ /get-in-touch/ [R=301,L]
+</IfModule>
+
+# Long-cache the immutable hashed assets; keep HTML fresh.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|woff2?|png|jpe?g|gif|svg|webp|avif)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>
