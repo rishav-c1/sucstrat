@@ -109,6 +109,9 @@
 .formWrap {
   background: #fff;
   padding: 46px 44px;
+  /* Column so the thank-you panel can fill the card height (matching the info panel). */
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 860px) {

@@ -30,6 +30,14 @@ export const ORG_LOGO_URL = `${SITE.domain}/sucstrat-logo.png`;
 export const LINKEDIN_URL = "https://www.linkedin.com/company/sucstrat";
 
 /**
+ * Web3Forms public access key — the Get in Touch form POSTs here so submissions are emailed
+ * to SITE.email without a backend (the site is a static GitHub Pages export). The key is meant
+ * to be public (domain-restrict it on web3forms.com). Create one for info@v3consultant.com at
+ * https://web3forms.com and paste it below. TODO(setup): replace the placeholder.
+ */
+export const WEB3FORMS_ACCESS_KEY = "f9bc147f-125c-4f56-a7d1-3e60a0bfd59b";
+
+/**
  * Public profiles for `Organization.sameAs` — strengthens entity recognition for the
  * knowledge panel. Add further authority profiles (Crunchbase, etc.) here as they exist.
  */
