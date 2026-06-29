@@ -12,7 +12,7 @@ Canonical production domain: **https://sucstrat.com**
 
 - Brand + portrait assets live in `/static/` (imported via the `@static/*` alias; served through `next/image`). Logos: **`logo_white.png` (default — for dark/navy backgrounds)**, `logo_navy.png` / `logo_black.png` (for light backgrounds), `logo_wordmark_navy.png` (tagline-free wordmark), plus `logo_preview_on_navy.png` / `logo_preview_on_white.png` (usage comps, not for direct use). Founder portrait: `static/Vinay-Maheshwari.jpg` (1400×936).
 - Public contact email: **info@v3consultant.com** (resolves the mockups' `[confirm contact details]` placeholder; supersedes the mockups' `connect@sucstrat.com`). Careers applications also route to `info@v3consultant.com` (unified inbox; the mockup's `careers@sucstrat.com` is superseded).
-- `/get-in-touch` contact form: a **static `mailto:` form** (no backend) so the site deploys to **GitHub Pages**. The earlier zod-validated Server Action + `EmailTransport` (Resend-ready) is preserved in git history (commit `d17ede7`) for a Node host.
+- `/get-in-touch` contact form: submits to **Web3Forms** (client-side POST that emails each submission to `info@v3consultant.com`, then shows a branded thank-you panel) so the site stays a backend-free **GitHub Pages** static export. The public Web3Forms access key lives in `content/site.ts` (domain-restrict it on web3forms.com). The earlier interim `mailto:` form, and before it a zod-validated Server Action + `EmailTransport` (Resend-ready, commit `d17ede7`), are preserved in git history.
 - Runtime: **Node 20** (nvm default set to 20; Next 16 requires ≥20.9). pnpm via corepack.
 
 ## Stack (do not substitute without sign-off)
@@ -39,7 +39,7 @@ Routes:
 (`/clients` was removed 2026-06-27; its client logos now scroll in a `LogoMarquee` on `/what-we-do`. No redirect — static export can't emit one — and no in-site link points to it.)
 
 Referenced by the mockups but **not provided** (handle, don't 404):
-- `/get-in-touch` — contact page. **Mockup later provided** (`get_in_touch_mockup.html`) and built from it: hero + "Reach us" grid + a "Let's talk" form. To allow **static (GitHub Pages)** hosting, it submits via a prefilled **`mailto:`** (no server); a zod-validated Server Action + email-transport version is preserved in git history for a Node host. (`/pitch-us` 308-redirects here — renamed to match the mockup.)
+- `/get-in-touch` — contact page. **Mockup later provided** (`get_in_touch_mockup.html`) and built from it: hero + "Reach us" grid + a "Let's talk" form. It POSTs to **Web3Forms** (no backend; emails to `info@v3consultant.com`) so the site stays a **GitHub Pages** static export, then shows a branded thank-you panel; the earlier interim `mailto:` form and a zod-validated Server Action + email-transport version are preserved in git history. (`/pitch-us` 308-redirects here — renamed to match the mockup.)
 - `/case-studies` and `/case-studies/[slug]` (sakshi-media-group, mohan-babu-university, valmar, dainik-bhaskar) — out of scope for content, but create placeholder routes with proper metadata so nav/links don't 404. Flag as stubs in PLAN.md.
 
 ## Design tokens (from reference extraction — refine against the files)

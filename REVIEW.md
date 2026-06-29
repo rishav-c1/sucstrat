@@ -51,13 +51,13 @@ Built across the phased plan in `PLAN.md`. All six content pages + `/get-in-touc
 ## 4. Outstanding `TODO(seo-copy)`
 
 - **Meta descriptions** (every route) — drafted in each `page.tsx`; human review.
-- **`/get-in-touch`** — now built from `get_in_touch_mockup.html` (hero + 6-card "Reach us" grid + "Let's talk" form). Copy is verbatim from the mockup; the expanded form (inquiry type, first/last name, email, phone, company, country, message, consent) composes a prefilled `mailto:` on submit (static-host friendly). `/pitch-us` 308-redirects here.
+- **`/get-in-touch`** — now built from `get_in_touch_mockup.html` (hero + 6-card "Reach us" grid + "Let's talk" form). Copy is verbatim from the mockup; the expanded form (inquiry type, first/last name, email, phone, company, country, message, consent) POSTs to **Web3Forms** on submit, which emails it to `info@v3consultant.com` (static-host friendly), then shows a branded thank-you. `/pitch-us` 308-redirects here.
 - **OG image** — shared brand card via `app/opengraph-image.tsx`; customise if desired.
 - **`Organization` `sameAs` / `logo`** — ✅ both wired: `logo`/`image` → `/sucstrat-logo.png`; `sameAs` → the LinkedIn company page (`https://www.linkedin.com/company/sucstrat`, from the Get in Touch mockup). Add any further authority profiles (Crunchbase, etc.) to `SOCIAL_PROFILES` in `content/site.ts` as they exist.
 
 ## 5. Contact form
 
-`/get-in-touch` is a **static `mailto:` form** (`ContactForm.tsx`): it composes a prefilled email on submit, so it needs no backend and deploys to any static host (incl. GitHub Pages). Native HTML5 validation enforces the required fields + consent. To take submissions **without** the mail-app handoff, point the `<form>` at a static form provider (Web3Forms / Formspree — add their access-key hidden input). For a Node host, the earlier zod-validated **Server Action + `EmailTransport`** (Resend-ready, honeypot) is preserved in git history (commit `d17ede7`).
+`/get-in-touch` (`ContactForm.tsx`) POSTs to **Web3Forms** on submit, which emails each submission to `info@v3consultant.com` — no backend, deploys to any static host (incl. GitHub Pages). Client-side validation enforces the required fields + consent; a honeypot plus Web3Forms' own spam filtering guard it, and a failed send shows an inline error with a direct-email fallback. The public access key is in `content/site.ts` (domain-restrict it on web3forms.com). The earlier interim `mailto:` form, and before it a zod-validated **Server Action + `EmailTransport`** (Resend-ready, honeypot), are preserved in git history (commit `d17ede7`).
 
 ## 6. Assumptions still worth confirming
 
@@ -68,7 +68,7 @@ Built across the phased plan in `PLAN.md`. All six content pages + `/get-in-touc
 
 ## 7. Deploy notes
 
-**GitHub Pages (configured, default target).** [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml) builds a static export (`STATIC_EXPORT=1` → `output: export`, `/sucstrat` basePath, `images.unoptimized`, mailto form, metadata routes forced static) and publishes to **https://rishav-c1.github.io/sucstrat/** on every push to `main`. Enable Pages once (owner action): Settings → Pages → Source: GitHub Actions. For a custom domain, add `public/CNAME` + drop the basePath (README has details).
+**GitHub Pages (configured, default target).** [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml) builds a static export (`STATIC_EXPORT=1` → `output: export`, `/sucstrat` basePath, `images.unoptimized`, Web3Forms contact form, metadata routes forced static) and publishes to **https://rishav-c1.github.io/sucstrat/** on every push to `main`. Enable Pages once (owner action): Settings → Pages → Source: GitHub Actions. For a custom domain, add `public/CNAME` + drop the basePath (README has details).
 
 **Node host (Vercel / Netlify / Cloudflare).** A plain `pnpm build` (no `STATIC_EXPORT`) keeps `next/image` optimization + the `/pitch-us → /get-in-touch` redirect.
 - **Node:** `engines.node >= 20.9` + `.nvmrc` (20).
