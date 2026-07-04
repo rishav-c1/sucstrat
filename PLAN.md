@@ -4,6 +4,8 @@
 
 **Update (2026-06-27) — Clients page removed:** The `/clients` route was removed entirely (page, `content/clients.ts`, and the `LogoWall` / `KeyClients` / `CaseCards` sections, which it solely used). The What We Do "Sectors — Industries we serve" section (`IndustryTiles`) was also removed. In its place, What We Do now carries a new client-logo **`LogoMarquee`** — a continuously-scrolling, seamless band of the 24 client logos (carried verbatim from the old Clients `LogoWall`), with a pinned "Partners in performance" tagline, edge gradient masks, a pause/play control, and `prefers-reduced-motion` support. Primary nav, footer, header-CTA map, sitemap, and the e2e route lists were updated accordingly. The earlier Clients-specific references below are retained for history but are superseded by this note. (`/clients` is not redirected — static export can't emit redirects; no in-site link points to it.)
 
+**Update (2026-06-29) — Contact form now Web3Forms:** `/get-in-touch` submits to **Web3Forms** (client-side POST → emails each submission to `info@v3consultant.com`) and then shows a branded thank-you panel — no backend, so the site stays a GitHub Pages static export. This supersedes both the interim static `mailto:` form and the original `/pitch-us` Server Action + `EmailTransport` design in §9 (kept below for history). The public Web3Forms access key lives in `content/site.ts` (domain-restrict it on web3forms.com).
+
 **Phase 0 sign-off resolutions:**
 - Email provider: **TBD — intended Resend** (non-critical); `EmailTransport` stays stubbed (console in dev) until integrated.
 - Reference discrepancy: **`CLAUDE.md` corrected** (approved).

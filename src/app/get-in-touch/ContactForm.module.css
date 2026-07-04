@@ -135,21 +135,72 @@ textarea.input {
   height: 1px;
   overflow: hidden;
 }
-.success {
-  background: var(--mist);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 32px;
+/* Branded thank-you panel shown after a successful submit (replaces the form). */
+.thanks {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--navy-900);
+  border-radius: 14px;
+  padding: 52px 40px;
+  text-align: center;
 }
-.successTitle {
+.thanksLogo {
+  display: block;
+  margin: 0 auto 36px;
+}
+.thanksCheck {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background: rgba(93, 144, 186, 0.16);
+  border: 1px solid rgba(93, 144, 186, 0.55);
+  color: var(--blue-200);
+  margin-bottom: 24px;
+}
+.thanksTitle {
   font-family: var(--font-serif);
   font-weight: 600;
-  font-size: 24px;
-  color: var(--navy-800);
-  margin-bottom: 8px;
+  font-size: 27px;
+  line-height: 1.22;
+  color: #fff;
+  margin-bottom: 12px;
 }
-.success p {
-  color: var(--muted);
+.thanksBody {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--on-navy);
+  margin-bottom: 28px;
+}
+.thanksDivider {
+  height: 1px;
+  background: var(--line-navy);
+  max-width: 240px;
+  margin: 0 auto 20px;
+}
+.thanksEmail {
+  font-size: 14px;
+  color: var(--on-navy-mute);
+}
+.thanksEmail a {
+  color: var(--blue-200);
+  text-decoration: none;
+}
+.thanksEmail a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 560px) {
+  .thanks {
+    padding: 40px 24px;
+  }
+  .thanksTitle {
+    font-size: 23px;
+  }
 }
 .leadLinkInline {
   color: var(--blue-700);

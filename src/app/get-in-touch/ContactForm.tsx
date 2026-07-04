@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import type { FormEvent } from "react";
+import { Logo } from "@/components/layout/Logo";
 import { GET_IN_TOUCH } from "@/content/getInTouch";
-import { SITE } from "@/content/site";
+import { SITE, WEB3FORMS_ACCESS_KEY } from "@/content/site";
 import styles from "./ContactForm.module.css";
 
 const F = GET_IN_TOUCH.form;
@@ -97,7 +98,7 @@ export function ContactForm() {
   const [country, setCountry] = useState("");
   const [phoneCode, setPhoneCode] = useState("+91");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
@@ -131,31 +132,55 @@ export function ContactForm() {
 
     setErrors({});
     setSending(true);
-    const body = [
-      `Inquiry type: ${get("inquiryType")}`,
-      `Name: ${get("firstName")} ${get("lastName")}`,
-      `Email: ${email}`,
-      `Phone: ${get("phone") ? `${get("phoneCode")} ${get("phone")}` : "Not provided"}`,
-      `Company: ${get("company")}`,
-      `Country / region: ${get("country") === "Other" ? get("countryOther") || "Other" : get("country")}`,
-      "",
-      get("message"),
-    ].join("\n");
-    const subject = `Enquiry: ${get("inquiryType") || "General"}${get("company") ? ` (${get("company")})` : ""}`;
-    window.location.href = `mailto:${SITE.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setSubmitted(true);
+    // Web3Forms delivers the submission to SITE.email server-side — no mail app, works on the
+    // static (GitHub Pages) host. `replyto` lets us reply straight to the sender.
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `New enquiry: ${get("inquiryType")} — ${get("firstName")} ${get("lastName")}${
+            get("company") ? ` (${get("company")})` : ""
+          }`,
+          from_name: `${get("firstName")} ${get("lastName")}`,
+          replyto: email,
+          "Inquiry type": get("inquiryType"),
+          Name: `${get("firstName")} ${get("lastName")}`,
+          Email: email,
+          Phone: get("phone") ? `${get("phoneCode")} ${get("phone")}` : "Not provided",
+          Company: get("company"),
+          "Country / region": get("country") === "Other" ? get("countryOther") || "Other" : get("country"),
+          Message: get("message"),
+        }),
+      });
+      const result = (await res.json()) as { success?: boolean };
+      if (res.ok && result.success) {
+        setSubmitted(true);
+      } else {
+        setSending(false);
+        setErrors({ submit: "Something went wrong sending your message. Please try again, or email us directly." });
+      }
+    } catch {
+      setSending(false);
+      setErrors({ submit: "We couldn't reach the server. Please check your connection and try again, or email us directly." });
+    }
   }
 
   if (submitted) {
     return (
-      <div className={styles.success} role="status">
-        <h3 className={styles.successTitle}>{F.success.title}</h3>
-        <p>
-          Your email app should open with everything filled in. If it did not, email us directly at{" "}
-          <a href={`mailto:${SITE.email}`} className={styles.leadLinkInline}>
-            {SITE.email}
-          </a>
-          .
+      <div className={styles.thanks} role="status">
+        <Logo tone="light" height={30} className={styles.thanksLogo} />
+        <span className={styles.thanksCheck} aria-hidden="true">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M5 13l4 4L19 7" />
+          </svg>
+        </span>
+        <h3 className={styles.thanksTitle}>{F.success.title}</h3>
+        <p className={styles.thanksBody}>{F.success.body}</p>
+        <div className={styles.thanksDivider} aria-hidden="true" />
+        <p className={styles.thanksEmail}>
+          Prefer email? <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
         </p>
       </div>
     );
@@ -272,6 +297,15 @@ export function ContactForm() {
         </label>
       </div>
       {errors.consent ? <p className={styles.fieldError}>{errors.consent}</p> : null}
+
+      {errors.submit ? (
+        <p className={styles.fieldError} role="alert">
+          {errors.submit}{" "}
+          <a href={`mailto:${SITE.email}`} className={styles.leadLinkInline}>
+            {SITE.email}
+          </a>
+        </p>
+      ) : null}
 
       <button type="submit" className={styles.submit} disabled={sending}>
         {sending ? "Sending…" : "Send message"}

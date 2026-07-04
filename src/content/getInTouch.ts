@@ -112,8 +112,8 @@ export const GET_IN_TOUCH = {
     ],
     consentLabel: "I agree to be contacted regarding this enquiry.",
     success: {
-      title: "Thank you, we've got it.",
-      body: "Our team will be in touch shortly.",
+      title: "Thank you for getting in touch",
+      body: "We'll get back to you shortly.",
     },
   },
 };
