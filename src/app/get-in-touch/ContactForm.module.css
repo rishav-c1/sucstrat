@@ -154,6 +154,8 @@ textarea.input {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  /* Centre the badge in the column (fixed-width flex items default to flex-start). */
+  align-self: center;
   width: 66px;
   height: 66px;
   border-radius: 50%;
