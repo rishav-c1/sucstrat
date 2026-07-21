@@ -11,8 +11,23 @@ export const KNOWLEDGE = {
   topics: [
     {
       id: "insights",
-      title: "Education & Skills",
+      title: "Strategy & Execution",
       bg: "paper" as const,
+      cards: [
+        {
+          tag: "Op-ed",
+          title: "Making strategy work: why execution is the real differentiator",
+          // TODO(content): description paraphrases the headline thesis — article body could not be fetched to confirm a fuller summary.
+          desc: "On why disciplined execution — not strategy on paper — is what separates organisations that deliver.",
+          source: "The Economic Times",
+          href: "https://economictimes.indiatimes.com/news/company/corporate-trends/making-strategy-work-why-execution-is-the-real-differentiator/articleshow/132532866.cms",
+          tile: "navy",
+        },
+      ] satisfies InsightCard[],
+    },
+    {
+      title: "Education & Skills",
+      bg: "mist" as const,
       cards: [
         {
           tag: "Op-ed",
