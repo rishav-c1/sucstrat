@@ -38,6 +38,18 @@ export const metadata: Metadata = {
   description:
     "From strategy to scale, with success built in. Three decades of building and turning around businesses, judged on outcomes.",
   alternates: { canonical: "/" },
+  // Explicit, STABLE icon URLs (served from /public, so no build content-hash).
+  // Google requires a stable favicon URL and caches by it; the .ico is the
+  // universal crawler/browser fallback, the SVG is for modern browsers.
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48", type: "image/x-icon" },
+      { url: "/icon-96.png", sizes: "96x96", type: "image/png" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: ["/favicon.ico"],
+  },
   openGraph: {
     type: "website",
     siteName: SITE.name,
