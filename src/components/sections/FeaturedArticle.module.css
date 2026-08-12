@@ -1,0 +1,207 @@
+/* Head row — matches SectionHead's scale/rhythm, recoloured for the navy band. */
+.head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 46px;
+}
+.eyebrow {
+  /* blue-200: keeps an 11px uppercase eyebrow ≥AA on navy (blue-700 would fail). */
+  color: var(--accent-on-dark);
+}
+.title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(28px, 3.6vw, 40px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-top: 14px;
+}
+/* Italic blue accent — the same treatment the hero and CTA band use on navy. */
+.title em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--blue-500);
+}
+
+.allLink {
+  flex: none;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  text-decoration: none;
+  padding-bottom: 6px;
+  border-bottom: 1.5px solid var(--blue-500);
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+}
+.allLink:hover {
+  color: var(--blue-200);
+  border-bottom-color: var(--blue-200);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 56px;
+  /* Both columns end on the same baseline. The brief's type is sized (below) so its column
+     lands close to the card's natural height; the small remainder the card stretches by
+     becomes whitespace above the "Read on" rule rather than a hollow gap. */
+  align-items: stretch;
+}
+
+/* ===== The article card ===== */
+.card {
+  display: grid;
+  /* The image column is sized by the photo's own aspect ratio (see .portrait), so it is never
+     cropped; the text takes whatever is left. */
+  grid-template-columns: auto 1fr;
+  background: var(--paper);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+.portrait {
+  position: relative;
+  height: 100%;
+  /* The source photo's native ratio (1199 × 1448). Deriving the column's width from its
+     height means `cover` has nothing to crop — the whole frame shows at any card height. */
+  aspect-ratio: 1199 / 1448;
+  background: var(--navy-800);
+  overflow: hidden;
+}
+.portraitImg {
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(1) contrast(1.04);
+  transition: filter 0.45s ease;
+}
+.card:hover .portraitImg {
+  filter: grayscale(0) contrast(1);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  padding: 34px 30px 28px;
+}
+.source {
+  color: var(--blue-700);
+}
+.articleTitle {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(20px, 1.9vw, 25px);
+  line-height: 1.24;
+  letter-spacing: -0.01em;
+  color: var(--navy-800);
+  margin-top: 12px;
+}
+/* Byline + role read as one attribution block: same size, tight leading, no wrap on the role. */
+.byline {
+  font-size: 13.5px;
+  color: var(--muted);
+  margin-top: 18px;
+}
+.byline strong {
+  font-weight: 700;
+  color: var(--navy-800);
+}
+.role {
+  font-size: 13.5px;
+  line-height: 1.35;
+  color: var(--muted);
+  margin-top: 1px;
+}
+.more {
+  /* Pinned to the bottom of the text column, above a hairline — as in the reference. */
+  margin-top: auto;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+  text-align: right;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy-800);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.more span {
+  display: inline-block;
+  margin-left: 4px;
+  transition: transform 0.2s;
+}
+.more:hover {
+  color: var(--blue-700);
+}
+.more:hover span {
+  transform: translate(2px, -2px);
+}
+
+/* ===== The brief ===== */
+.brief {
+  padding-top: 4px;
+}
+.briefLabel {
+  color: var(--accent-on-dark);
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line-navy);
+}
+.briefPara {
+  font-family: var(--font-serif);
+  /* 15.5px / 1.55 — the same body size as the Pivot's prose (FounderBio .para). */
+  font-size: 15.5px;
+  line-height: 1.55;
+  color: var(--on-navy);
+  margin-top: 18px;
+}
+/* The opening paragraph carries the thesis — brighter than the supporting one. */
+.briefPara:first-of-type {
+  color: #eaf1f7;
+}
+
+@media (max-width: 1080px) {
+  .grid {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+  .head {
+    margin-bottom: 34px;
+  }
+}
+
+@media (max-width: 640px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+  /* Stacked: the photo spans the card's width and keeps its native ratio (still no crop). */
+  .portrait {
+    width: 100%;
+    height: auto;
+  }
+  .body {
+    padding: 28px 24px 24px;
+  }
+  .head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+}
+
+/* The portrait's grayscale→colour hover is decorative; hold it still when asked. */
+@media (prefers-reduced-motion: reduce) {
+  .portraitImg,
+  .more span {
+    transition: none;
+  }
+}

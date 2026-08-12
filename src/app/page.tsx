@@ -4,6 +4,7 @@ import { StatBand } from "@/components/sections/StatBand";
 import { GlobalImpact } from "@/components/sections/GlobalImpact";
 import { PracticeList } from "@/components/sections/PracticeList";
 import { FounderBio } from "@/components/sections/FounderBio";
+import { FeaturedArticle } from "@/components/sections/FeaturedArticle";
 import { LogoMarquee } from "@/components/sections/LogoMarquee";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { Container } from "@/components/layout/Container";
@@ -27,6 +28,10 @@ export default function HomePage() {
       <GlobalImpact />
       <PracticeList />
       <FounderBio founder={HOME.founder} compact bg="paper" />
+
+      {/* Featured article — sits right after the Pivot, and its navy is separated from the
+          CTA band's navy by the mist client marquee. */}
+      <FeaturedArticle />
 
       {/* "Our clients" marquee — same section as What We Do, right after the Pivot. */}
       <Section bg="mist">

@@ -205,7 +205,8 @@ Functional aliases (`--ink`, `--muted`, `--paper`, `--hero-bg`, `--mist`) will b
 - `IndustryTiles` — 12 sector tiles (What We Do).
 - `IconCardGrid` — 4-up / 2-up icon cards (Careers; 4 sections).
 - `PracticeAccordion` — **[client]** one-open-at-a-time (What We Do "Seven integrated practices"). Seeded with 7 verbatim titles from Home; **descriptions = TODO(content)**.
-- `InsightCardGrid` — external-article link cards, 4 topic sections (Knowledge; 16 cards).
+- `InsightCardGrid` — external-article link cards, 4 topic sections (Knowledge; 19 cards). `tile` cycles `g2 → navy → g1 → light` across the **flattened** card list so every row of four shows one of each treatment; inserting a card anywhere but the end re-rotates the rest.
+- `FeaturedArticle` — navy "Insights & ideas" band (Home): one hand-picked article as a white card (uncropped portrait + masthead + headline + byline) beside a "The brief" summary column.
 
 ---
 
@@ -214,6 +215,7 @@ Functional aliases (`--ink`, `--muted`, `--paper`, `--hero-bg`, `--mist`) will b
 Concise outlines; **verbatim copy lives in `content-extraction/<page>.md`**.
 
 **`/` Home** (`home.md`): SplitMediaHero → PillarGrid "The SucStrat Standard" (4) → StatBand "…in outcomes" (6) → WorldMap + SectorCloud "Global impact" → PracticeList "Seven integrated practices…" (7) → CaseCards "Proof, not promises." (4) → FounderBio "Vinay Maheshwari" → CtaBand "Ready to scale…".
+> **Update (2026-08-11):** `FeaturedArticle` ("Insights & ideas") inserted after the Pivot (`FounderBio`) and before the client marquee — its navy is deliberately separated from the CTA band's navy by the mist marquee.
 
 **`/what-we-do`** (`what-we-do.md`): PageHero "What we do." → FirmBand "Our approach" → StatBand (127+/8/30/21) → PracticeAccordion "Seven integrated practices" *(heading+lead present; 7 items = TODO(content))* → DeliverCards "What stays constant" (5) → IndustryTiles "Industries we serve" (12) → CtaBand "Ready to transform?".
 
@@ -225,6 +227,7 @@ Concise outlines; **verbatim copy lives in `content-extraction/<page>.md`**.
 > **Update (2026-06-28):** the "Why SucStrat" value-card section (Ownership / Outcomes over tenure / Coached to scale / Built to last) was removed; the page now flows PageHero → Life at SucStrat → Advance your career → Jobs with our clients → CTA. Its `why` content object was dropped from `careers.ts`.
 
 **`/knowledge`** (`knowledge.md`): PageHero "Insights & ideas." → InsightCardGrid ×4 [Education & Skills 7 · Media & Broadcast 3 · Academic Partnerships 3 · Research & Innovation 3] → CtaBand "Have a brief worth solving?". 16 external article links (one is `http://` — flagged; keep verbatim).
+> **Update (2026-08-11):** now **19** links. Added Strategy & Execution "How global trends are reshaping overseas education decisions" (India Today, 5 Aug 2026) and Education & Skills "Preparing students for two chances at the CBSE boards" (ETEducation, 29 Jul 2026) — both bylined Vinay Maheshwari. The page renders one flat grid (topic headings hidden since v4.0), so the topic arrays only set order.
 
 ---
 
@@ -302,7 +305,9 @@ The only backend. Progressive-enhancement form (works without JS).
 6. **`TODO(content)` — Careers apply flow:** currently `mailto:careers@sucstrat.com` (kept verbatim); confirm whether to route to `/pitch-us`.
 7. **`TODO(content)` — `/case-studies` index + 4 detail bodies:** out of scope (stubs only).
 8. **`TODO(seo-copy)` — meta descriptions (all routes), OG image art, Organization `sameAs`/social, `/pitch-us` + case-study titles.** Drafts in §7 for human review.
-9. **Observations (carry verbatim, do NOT reconcile):** stat figures differ by page (Home founder "225+ Industry Awards" vs Know Us "300+ Brand solutions"; "21 sectors" vs 12 industry tiles vs 21 cloud chips vs 20 India sectors). One Knowledge link is `http://` (Card 3, Media & Broadcast).
+9. **`TODO(content)` — Knowledge article tags (`tag` = authorship, not topic).** Convention recorded in `content/knowledge.ts`: `Op-ed` = a column bylined by Vinay; `Interview` = Vinay interviewed; `Feature` = the publication writing about MBU/SucStrat. Deccan Herald "Union Budget 2025" was retagged `Op-ed` → `Feature` (bylined "DH Web Desk"). Two remain unverified: **ET "Making strategy work"** (credited to *Spotlight Wire*, ET's branded-content desk — if placed rather than commissioned it should be `Feature`, and it is also the Home featured article) and **EducationWorld "Preparing Indian graduates…"** (byline unreadable; page renders its body client-side).
+10. **✅ Resolved — Home featured-article photo** `static/vinay-v3-consultants.jpg` (1199×1448), owner-supplied. The image column derives its width from the photo's native ratio so `cover` never crops it.
+11. **Observations (carry verbatim, do NOT reconcile):** stat figures differ by page (Home founder "225+ Industry Awards" vs Know Us "300+ Brand solutions"; "21 sectors" vs 12 industry tiles vs 21 cloud chips vs 20 India sectors). One Knowledge link is `http://` (Card 3, Media & Broadcast).
 
 **No copy, stat, testimonial, award, or job listing will be fabricated.** Where missing, a flagged placeholder is rendered and logged here.
 

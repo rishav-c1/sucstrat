@@ -84,6 +84,32 @@ export const HOME = {
     ],
   },
 
+  /**
+   * "Insights & ideas" — the featured-article band (navy) between the founder teaser and
+   * the client marquee. One hand-picked article; `brief` is an editorial summary of it,
+   * not an extract from the publication.
+   */
+  featured: {
+    eyebrow: "Knowledge",
+    titleBefore: "Insights & ",
+    titleEmphasis: "ideas",
+    allLink: { label: "All insights", href: "/knowledge" } satisfies Cta,
+    briefLabel: "The brief",
+    article: {
+      source: "The Economic Times",
+      title: "Making strategy work: why execution is the real differentiator",
+      byline: "Vinay Maheshwari",
+      role: "Founder & Principal Consultant, SucStrat",
+      href: "https://economictimes.indiatimes.com/news/company/corporate-trends/making-strategy-work-why-execution-is-the-real-differentiator/articleshow/132532866.cms",
+      imageAlt:
+        "Vinay Maheshwari standing beside the V3 Consultants sign at his office, next to his ET Industry Leaders North 2026 award",
+      brief: [
+        "Strategy is no longer scarce. Every leadership team now has the same market intelligence, the same analytics, the same AI-assisted planning. What remains rare is the ability to deliver on what has been decided, which is why roughly seventy per cent of large transformations still miss their original objectives.",
+        "The piece argues that execution should be treated as a strategic capability rather than the last stage of planning: institutional governance, clear ownership, and measurement that survives growth. AI raises the stakes rather than lowering them, since automating a fragmented process only makes it fragment faster.",
+      ],
+    },
+  },
+
   ctaBand: {
     titleBefore: "Your success. ",
     titleEmphasis: "Our strategy.",
