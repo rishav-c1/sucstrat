@@ -5,6 +5,7 @@ import { CtaBand } from "@/components/sections/CtaBand";
 import { JsonLd } from "@/components/primitives/JsonLd";
 import { breadcrumbJsonLd } from "@/lib/jsonld";
 import { KNOWLEDGE } from "@/content/knowledge";
+import type { InsightCard } from "@/content/types";
 
 export const metadata: Metadata = {
   title: "Knowledge",
@@ -14,9 +15,16 @@ export const metadata: Metadata = {
 
 export default function KnowledgePage() {
   const k = KNOWLEDGE;
-  // v4.0: one free-flowing grid of all article tiles (topic-row headers removed),
-  // in content order (newest first).
-  const articles = k.topics.flatMap((topic) => topic.cards);
+  // v4.0: one free-flowing grid of all article tiles (topic-row headers removed). Order is
+  // curated, not computed: `pinned` articles lead, then each topic's cards in content order.
+  // It is deliberately not sorted by date — most of these publications don't expose a
+  // machine-readable publish date (see the TODO(content) in PLAN.md §11), and a half-known
+  // sort would read worse than the curated order.
+  // Annotated rather than inferred: `satisfies InsightCard[]` keeps each topic's literal card
+  // type, and only the topics that hold a pinned card carry the key at all.
+  const articles: InsightCard[] = k.topics.flatMap((topic) => topic.cards);
+  // Stable sort, so everything that isn't pinned keeps its content order.
+  articles.sort((a, b) => Number(b.pinned ?? false) - Number(a.pinned ?? false));
   return (
     <>
       <PageHero
