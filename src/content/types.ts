@@ -188,4 +188,10 @@ export interface InsightCard {
   desc: string;
   source: string;
   href: string;
+  /**
+   * Leads the flattened Knowledge grid, ahead of the topic order. Lets an article sit in the
+   * topic it actually belongs to while still taking a front tile, so the topic buckets stay a
+   * subject taxonomy rather than doubling as the grid's running order.
+   */
+  pinned?: true;
 }

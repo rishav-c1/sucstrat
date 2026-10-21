@@ -18,23 +18,10 @@ export const KNOWLEDGE = {
       title: "Strategy & Execution",
       bg: "paper" as const,
       cards: [
-        // Grid order note: the Knowledge page flattens every topic's cards into one grid, so this
-        // array's head is the grid's first tile. Tile treatments are assigned by position in
-        // InsightCardGrid (no two neighbours match), so cards carry no colour of their own.
-        {
-          tag: "Interview",
-          title: "Skills must complement degrees",
-          desc: "On AI, employability, and building applied learning into the degree itself so graduates are industry-ready.",
-          source: "BW Education",
-          href: "https://www.bweducation.com/article/skills-must-complement-degrees-629271",
-        },
-        {
-          tag: "Op-ed",
-          title: "Beyond the lab: how innovation spaces are shaping school education",
-          desc: "Why open-ended innovation spaces, in the spirit of NEP 2020, build creativity and problem-solving across every discipline.",
-          source: "The Week",
-          href: "https://www.theweek.in/news/education/2026/09/10/guest-opinion-nep-2020-student-creativity.html",
-        },
+        // Grid order note: the Knowledge page flattens every topic's cards into one grid, so the
+        // topic order is the grid order — except for cards marked `pinned`, which lead it. Tile
+        // treatments are assigned by position in InsightCardGrid (no two neighbours match), so
+        // cards carry no colour of their own.
         {
           tag: "Op-ed",
           title: "How global trends are reshaping overseas education decisions",
@@ -59,6 +46,25 @@ export const KNOWLEDGE = {
       title: "Education & Skills",
       bg: "mist" as const,
       cards: [
+        // The two newest pieces (19 Oct and 10 Sep 2026). Both are education articles, so they
+        // live here rather than under Strategy & Execution; `pinned` is what puts them in the
+        // grid's lead tiles.
+        {
+          pinned: true,
+          tag: "Interview",
+          title: "Skills must complement degrees",
+          desc: "On AI, employability, and building applied learning into the degree itself so graduates are industry-ready.",
+          source: "BW Education",
+          href: "https://www.bweducation.com/article/skills-must-complement-degrees-629271",
+        },
+        {
+          pinned: true,
+          tag: "Op-ed",
+          title: "Beyond the lab: how innovation spaces are shaping school education",
+          desc: "Why open-ended innovation spaces, in the spirit of NEP 2020, build creativity and problem-solving across every discipline.",
+          source: "The Week",
+          href: "https://www.theweek.in/news/education/2026/09/10/guest-opinion-nep-2020-student-creativity.html",
+        },
         {
           tag: "Op-ed",
           title: "Preparing students for two chances at the CBSE boards",

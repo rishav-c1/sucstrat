@@ -17,13 +17,34 @@ const TILE_CLASS: Record<Tile, string | undefined> = {
 const TILE_CYCLE: readonly Tile[] = ["g2", "navy", "g1", "light"];
 
 /**
+ * Widest column count the grid is ever laid out at — must stay in step with the first
+ * `grid-template-columns` in InsightCardGrid.module.css, since `tileAt` shifts the cycle
+ * once per row of this width.
+ */
+export const GRID_MAX_COLUMNS = 4;
+
+/**
+ * Every column count the CSS actually renders at (`GRID_MAX_COLUMNS`, then each
+ * `grid-template-columns` override, widest first). `tileAt` is only guaranteed
+ * stripe-free at these widths; InsightCardGrid.test.ts pins that.
+ */
+export const GRID_COLUMN_STEPS: readonly number[] = [GRID_MAX_COLUMNS, 2, 1];
+
+/**
  * Tile treatment by grid position: each row of four holds one of each, and every row shifts
  * the cycle by one. That keeps neighbours distinct side-by-side and top-to-bottom at every
  * breakpoint (4-up, 2-up and the 1-up stack). A plain i % 4 would stripe each 4-up column
  * in a single colour.
+ *
+ * The guarantee is specific to `GRID_COLUMN_STEPS`, not universal: a tile must differ from
+ * the one before it and from the one a row above it, so covering a column count of `c` costs
+ * one treatment per distinct neighbour distance. Four treatments cover distances 1, 2 and 4;
+ * adding a 3-up breakpoint would need a fifth (at 3 columns this cycle puts navy directly
+ * above navy). Change the breakpoints and you change this function — the test will say so.
  */
-function tileAt(index: number): Tile {
-  return TILE_CYCLE[(index + Math.floor(index / 4)) % TILE_CYCLE.length] ?? "light";
+export function tileAt(index: number): Tile {
+  const shifted = index + Math.floor(index / GRID_MAX_COLUMNS);
+  return TILE_CYCLE[shifted % TILE_CYCLE.length] ?? "light";
 }
 
 function Motif() {

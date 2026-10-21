@@ -9,6 +9,9 @@
 .grid {
   list-style: none;
   display: grid;
+  /* Column count is mirrored by GRID_MAX_COLUMNS in InsightCardGrid.tsx (tile cycle shifts
+     once per row of this width). Changing it, or adding a breakpoint below, means updating
+     GRID_COLUMN_STEPS there too. */
   grid-template-columns: repeat(4, 1fr);
   gap: 18px;
 }
@@ -127,6 +130,7 @@
   gap: 11px;
 }
 
+/* 2-up and 1-up: both listed in GRID_COLUMN_STEPS (InsightCardGrid.tsx). */
 @media (max-width: 980px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
