@@ -5,12 +5,26 @@ import { Reveal } from "@/components/primitives/Reveal";
 import type { InsightCard } from "@/content/types";
 import styles from "./InsightCardGrid.module.css";
 
-const TILE_CLASS: Record<InsightCard["tile"], string | undefined> = {
+type Tile = "navy" | "g1" | "g2" | "light";
+
+const TILE_CLASS: Record<Tile, string | undefined> = {
   navy: styles.tileNavy,
   g1: styles.tileG1,
   g2: styles.tileG2,
   light: styles.tileLight,
 };
+
+const TILE_CYCLE: readonly Tile[] = ["g2", "navy", "g1", "light"];
+
+/**
+ * Tile treatment by grid position: each row of four holds one of each, and every row shifts
+ * the cycle by one. That keeps neighbours distinct side-by-side and top-to-bottom at every
+ * breakpoint (4-up, 2-up and the 1-up stack). A plain i % 4 would stripe each 4-up column
+ * in a single colour.
+ */
+function tileAt(index: number): Tile {
+  return TILE_CYCLE[(index + Math.floor(index / 4)) % TILE_CYCLE.length] ?? "light";
+}
 
 function Motif() {
   return (
@@ -55,25 +69,28 @@ export function InsightCardGrid({
         )}
         <Reveal>
           <ul className={styles.grid}>
-            {cards.map((card) => (
-              <li key={card.href} className={styles.cell}>
-                <a
-                  className={clsx(styles.card, TILE_CLASS[card.tile])}
-                  href={card.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Read ${card.title} on ${card.source} (opens in a new tab)`}
-                >
-                  {card.tile === "navy" ? <Motif /> : null}
-                  <span className={styles.tag}>{card.tag}</span>
-                  <h3 className={styles.cardTitle}>{card.title}</h3>
-                  <p className={styles.desc}>{card.desc}</p>
-                  <span className={styles.more}>
-                    Read on {card.source} <span aria-hidden="true">↗</span>
-                  </span>
-                </a>
-              </li>
-            ))}
+            {cards.map((card, i) => {
+              const tile = tileAt(i);
+              return (
+                <li key={card.href} className={styles.cell}>
+                  <a
+                    className={clsx(styles.card, TILE_CLASS[tile])}
+                    href={card.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Read ${card.title} on ${card.source} (opens in a new tab)`}
+                  >
+                    {tile === "navy" ? <Motif /> : null}
+                    <span className={styles.tag}>{card.tag}</span>
+                    <h3 className={styles.cardTitle}>{card.title}</h3>
+                    <p className={styles.desc}>{card.desc}</p>
+                    <span className={styles.more}>
+                      Read on {card.source} <span aria-hidden="true">↗</span>
+                    </span>
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </Reveal>
       </Container>

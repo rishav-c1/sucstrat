@@ -188,5 +188,4 @@ export interface InsightCard {
   desc: string;
   source: string;
   href: string;
-  tile: "navy" | "g1" | "g2" | "light";
 }
