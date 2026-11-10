@@ -20,5 +20,18 @@ export default defineConfig({
     reuseExistingServer: !process.env.CI,
     timeout: 180_000,
   },
-  projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
+  projects: [
+    { name: "chromium", use: { ...devices["Desktop Chrome"] } },
+    // iPhone duo: the narrowest and widest current iPhone viewports, so every spec
+    // also runs at both ends of the phone range. Viewport, DPR, touch, isMobile and
+    // UA come from the device descriptor; the engine is Chromium (no WebKit download).
+    {
+      name: "iphone-se",
+      use: { ...devices["iPhone SE (3rd gen)"], defaultBrowserType: "chromium" },
+    },
+    {
+      name: "iphone-pro-max",
+      use: { ...devices["iPhone 15 Pro Max"], defaultBrowserType: "chromium" },
+    },
+  ],
 });
