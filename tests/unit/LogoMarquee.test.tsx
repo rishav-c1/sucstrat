@@ -18,14 +18,20 @@ const LOGOS = [
 ];
 
 describe("LogoMarquee", () => {
-  it("duplicates the group but hides the copy from the a11y tree (each brand announced once)", () => {
+  it("repeats a short roster to fill both halves, announcing only the first group", () => {
     const { container } = render(<LogoMarquee logos={LOGOS} />);
-    const groups = container.querySelectorAll("ul");
-    // Two identical groups for the seamless loop.
-    expect(groups).toHaveLength(2);
-    // The first is announced; the decorative duplicate is aria-hidden.
+    const groups = [...container.querySelectorAll("ul")];
+    // 3 logos → ceil(16 / 3) = 6 groups per half, 12 in all (two identical halves for the loop).
+    expect(groups).toHaveLength(12);
+    // Only the first is announced; every repeat is aria-hidden.
     expect(groups[0]).not.toHaveAttribute("aria-hidden");
-    expect(groups[1]).toHaveAttribute("aria-hidden", "true");
+    for (const g of groups.slice(1)) expect(g).toHaveAttribute("aria-hidden", "true");
+  });
+
+  it("uses exactly two groups when the roster already overfills a half", () => {
+    const many = Array.from({ length: 20 }, (_, i) => ({ src: `/logos/${i}.jpg`, alt: `Logo ${i}` }));
+    const { container } = render(<LogoMarquee logos={many} />);
+    expect(container.querySelectorAll("ul")).toHaveLength(2);
   });
 
   it("gives each brand an accessible name exactly once", () => {
@@ -36,9 +42,12 @@ describe("LogoMarquee", () => {
     }
   });
 
-  it("labels the marquee region", () => {
-    render(<LogoMarquee logos={LOGOS} />);
+  it("labels the marquee region (default and custom)", () => {
+    const { unmount } = render(<LogoMarquee logos={LOGOS} />);
     expect(screen.getByRole("group", { name: "Client logos" })).toBeInTheDocument();
+    unmount();
+    render(<LogoMarquee logos={LOGOS} label="Bank logos" />);
+    expect(screen.getByRole("group", { name: "Bank logos" })).toBeInTheDocument();
   });
 
   it("pauses the scroll on hover and resumes on leave", () => {

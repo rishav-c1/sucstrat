@@ -1,4 +1,4 @@
-import type { Metric, Practice } from "./types";
+import type { LogoItem, Metric, Practice } from "./types";
 import { CLIENTS } from "./clients";
 
 // Eight practices, each with an italic description and its "the work" list.
@@ -169,11 +169,28 @@ export const WHAT_WE_DO = {
     ],
     footer: "The behaviour beneath every framework, small, relentless, daily execution compounds into scale.",
   },
-  // Replaces the former "Industries we serve" sector grid with a full-width scrolling marquee
-  // of the client logos from the (now-removed) Clients page. Section copy + logo roster carried
-  // verbatim from the old Clients page LogoWall.
-  // "Our clients" marquee — shared with Home (see src/content/clients.ts).
-  marquee: CLIENTS,
+  // "Our clients" — the shared roster (src/content/clients.ts). Laid out open as a LogoGrid on
+  // this page (Nov 2026, owner request); Home keeps it as a scrolling marquee.
+  clients: CLIENTS,
+  // Nov 2026 (owner-supplied list): banking & financial institutions SucStrat has collaborated
+  // with, as a scrolling marquee after the client grid. Logos pulled from each institution's
+  // own site into /public/logos/banks/. Bank of Baroda and Axis Finance only publish white
+  // logos, so they sit on the brand colour their own sites use.
+  // TODO(content): no section lead — add one only with owner-approved copy.
+  banking: {
+    eyebrow: "Banking & finance",
+    title: "Collaboration with banking and financial institutions",
+    logos: [
+      { name: "Union Bank of India", logo: "banks/union-bank-of-india.jpg" },
+      { name: "Kotak Mahindra Bank", logo: "banks/kotak-mahindra-bank.jpg" },
+      { name: "Bank of Baroda", logo: "banks/bank-of-baroda.jpg" },
+      { name: "HDFC Bank", logo: "banks/hdfc-bank.jpg" },
+      { name: "Axis Finance", logo: "banks/axis-finance.jpg" },
+      { name: "UTI Alternatives", logo: "banks/uti-alternatives.jpg" },
+      { name: "Punjab National Bank", logo: "banks/punjab-national-bank.jpg" },
+      { name: "IndusInd Bank", logo: "banks/indusind-bank.jpg" },
+    ] satisfies LogoItem[],
+  },
   cta: {
     primaryCta: { label: "Book a discovery call", href: "/get-in-touch" },
   },

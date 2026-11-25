@@ -38,36 +38,47 @@ function LogoGroup({ logos, decorative }: { logos: MarqueeLogo[]; decorative?: b
   return (
     <ul className={styles.group} aria-hidden={decorative || undefined}>
       {logos.map((logo, i) => (
-        <Chip key={`${decorative ? "b" : "a"}-${logo.alt}-${i}`} logo={logo} decorative={decorative} />
+        <Chip key={`${logo.alt}-${i}`} logo={logo} decorative={decorative} />
       ))}
     </ul>
   );
 }
 
+/** Minimum chips per half-track, so a short roster still overfills the widest viewports
+ *  (16 × 220px ≈ 3500px) and the -50% loop never shows a gap. */
+const MIN_CHIPS_PER_HALF = 16;
+
 /**
- * A full-width, continuously scrolling, seamless-looping band of client logos with gradient
- * edge masks. Presentational only.
+ * A full-width, continuously scrolling, seamless-looping band of logos with gradient edge masks.
+ * Presentational only.
  *
- * The track renders the logo group twice and translates by -50%; the second copy is
- * `aria-hidden` so each brand is announced once. Motion pauses while the band is hovered (so a
- * logo can be read) and is disabled entirely under `prefers-reduced-motion` (CSS).
+ * The track is two identical halves and translates by -50%. A short roster is repeated within
+ * each half until it overfills the viewport. Only the very first group is announced; every
+ * repeat is `aria-hidden` so each brand is announced once. Motion pauses while the band is
+ * hovered (so a logo can be read) and is disabled entirely under `prefers-reduced-motion` (CSS),
+ * which also hides the repeats.
  */
 export function LogoMarquee({
   logos,
+  label = "Client logos",
   speedSeconds = 60,
   direction = "left",
 }: {
   logos: MarqueeLogo[];
+  /** Accessible name for the band. */
+  label?: string;
   speedSeconds?: number;
   direction?: "left" | "right";
 }) {
   const [hoverPaused, setHoverPaused] = useState(false);
+  const perHalf = Math.max(1, Math.ceil(MIN_CHIPS_PER_HALF / Math.max(1, logos.length)));
+  const groupCount = perHalf * 2;
 
   return (
     <div
       className={styles.root}
       role="group"
-      aria-label="Client logos"
+      aria-label={label}
       onMouseEnter={() => setHoverPaused(true)}
       onMouseLeave={() => setHoverPaused(false)}
     >
@@ -76,8 +87,9 @@ export function LogoMarquee({
         data-paused={hoverPaused}
         style={{ "--marquee-duration": `${speedSeconds}s` } as CSSProperties}
       >
-        <LogoGroup logos={logos} />
-        <LogoGroup logos={logos} decorative />
+        {Array.from({ length: groupCount }, (_, i) => (
+          <LogoGroup key={i} logos={logos} decorative={i > 0} />
+        ))}
       </div>
 
       <div className={`${styles.mask} ${styles.maskLeft}`} aria-hidden="true" />

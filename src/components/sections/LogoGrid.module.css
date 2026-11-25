@@ -1,0 +1,77 @@
+/*
+ * LogoGrid — the full client roster laid out open, as a wall of identical chips. Same chip as
+ * LogoMarquee (white card, hairline border, soft shadow, grayscale logo that colours in on
+ * hover) at the same size, so the grid and the Home marquee read as one system.
+ *
+ * Flex-wrap + centred rows (rather than a fixed-column grid) keeps the wall symmetrical for any
+ * roster length: every chip is the same size and a short last row sits centred, never flush-left.
+ */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  list-style: none;
+  margin-top: 40px;
+}
+
+.chip {
+  position: relative;
+  flex: 0 0 200px;
+  height: 96px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 14px rgba(38, 66, 89, 0.05);
+}
+.imgWrap {
+  position: absolute;
+  inset: 4px 8px;
+}
+.img {
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.85;
+  transition:
+    filter 0.3s,
+    opacity 0.3s;
+}
+.chip:hover .img {
+  filter: grayscale(0);
+  opacity: 1;
+}
+
+/* Tablet / unfolded foldable (iPad, iPhone Duo open): three equal chips per row that flex to
+   fill the width (capped at 220px), so the wall doesn't sit as a narrow 2-up column with wide
+   empty margins. */
+@media (min-width: 601px) and (max-width: 900px) {
+  .chip {
+    flex-basis: calc((100% - 40px) / 3);
+    max-width: 220px;
+    height: auto;
+    aspect-ratio: 200 / 96;
+  }
+}
+
+/* Mobile: two equal chips per row (same 200:96 shape), matching the marquee's smaller chips. */
+@media (max-width: 600px) {
+  .grid {
+    gap: 14px;
+    margin-top: 28px;
+  }
+  .chip {
+    flex-basis: calc(50% - 7px);
+    max-width: 220px; /* large phones / small tablets: never balloon past the tablet chip */
+    height: auto;
+    aspect-ratio: 200 / 96;
+  }
+  .imgWrap {
+    inset: 3px 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .img {
+    transition: none;
+  }
+}

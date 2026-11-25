@@ -201,6 +201,8 @@ export const REGIONS: Region[] = [
       "Real Estate & Urban Development",
       "Textile & Home Furnishing",
       "Aviation & Aerospace",
+      // Nov 2026: Dubai F&B / restaurants work (owner-confirmed).
+      "Food Services & QSR",
     ],
   },
   {

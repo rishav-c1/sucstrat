@@ -46,8 +46,9 @@
   }
 }
 
-/* The track is duplicated exactly twice, so each group hugs a trailing margin and the seam
-   at -50% is invisible. (24 logos ⇒ each group far exceeds any viewport width.) */
+/* The track is two identical halves (a short roster is repeated within each half until it
+   overfills the viewport), so each group hugs a trailing margin and the seam at -50% is
+   invisible. */
 .group {
   display: flex;
   flex-shrink: 0;
@@ -71,8 +72,9 @@
 .imgWrap {
   display: block;
   position: absolute;
-  /* Inset = padding around the contained logo; smaller inset ⇒ larger logo in the same chip. */
-  inset: 12px 18px;
+  /* Thin inset: the logo artwork already carries its own even padding (every file is
+     area-normalised on a 612×330 canvas), so the chip only needs a hairline gutter. */
+  inset: 4px 8px;
 }
 .img {
   object-fit: contain;
@@ -114,7 +116,7 @@
     height: 80px;
   }
   .imgWrap {
-    inset: 10px 14px;
+    inset: 3px 6px;
   }
   .item {
     margin-right: 14px;
