@@ -30,7 +30,9 @@ for (const route of ROUTES) {
   });
 }
 
-test("mobile menu opens, navigates and closes", async ({ page }) => {
+test("mobile menu opens, navigates and closes", async ({ page, viewport }) => {
+  // The hamburger only exists at ≤900px; wider touch devices (iPad landscape) get the desktop nav.
+  test.skip((viewport?.width ?? 0) > 900, "desktop nav above the 900px breakpoint");
   await page.goto("/");
   const toggle = page.getByRole("button", { name: "Open menu" });
   await expect(toggle).toBeVisible();

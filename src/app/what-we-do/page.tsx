@@ -6,6 +6,7 @@ import { StatBand } from "@/components/sections/StatBand";
 import { PracticeShowcase } from "@/components/sections/PracticeShowcase";
 import { EdgeBlock } from "@/components/sections/EdgeBlock";
 import { LogoMarquee } from "@/components/sections/LogoMarquee";
+import { LogoGrid } from "@/components/sections/LogoGrid";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { SectionHead } from "@/components/primitives/SectionHead";
 import { Reveal } from "@/components/primitives/Reveal";
@@ -63,15 +64,35 @@ export default function WhatWeDoPage() {
         footer={w.edge.footer}
       />
 
-      <Section bg="mist">
+      {/* Our clients — the full roster laid out open here (Home carries it as a marquee). */}
+      <Section id="clients" bg="paper">
         <Container>
           <Reveal>
-            <SectionHead eyebrow={w.marquee.eyebrow} title={w.marquee.title} lead={w.marquee.lead} />
+            <SectionHead eyebrow={w.clients.eyebrow} title={w.clients.title} lead={w.clients.lead} />
+          </Reveal>
+          <Reveal>
+            <LogoGrid
+              label="Client logos"
+              logos={w.clients.logos.flatMap((l) =>
+                l.logo ? [{ src: `${LOGO_PATH}/${l.logo}`, alt: l.name }] : [],
+              )}
+            />
+          </Reveal>
+        </Container>
+      </Section>
+
+      <Section id="banking" bg="mist">
+        <Container>
+          <Reveal>
+            <SectionHead eyebrow={w.banking.eyebrow} title={w.banking.title} />
           </Reveal>
           <Reveal>
             <LogoMarquee
-              speedSeconds={80}
-              logos={w.marquee.logos.map((l) => ({ src: `${LOGO_PATH}/${l.logo}`, alt: l.name }))}
+              label="Banking and financial institution logos"
+              speedSeconds={40}
+              logos={w.banking.logos.flatMap((l) =>
+                l.logo ? [{ src: `${LOGO_PATH}/${l.logo}`, alt: l.name }] : [],
+              )}
             />
           </Reveal>
         </Container>

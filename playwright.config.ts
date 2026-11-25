@@ -55,5 +55,17 @@ export default defineConfig({
       name: "iphone-duo-unfolded-portrait",
       use: { ...iphoneDuo, viewport: { width: 626, height: 890 } },
     },
+    // Android: a current mid-size phone plus a narrow 320px one (the tightest width we support).
+    { name: "android-pixel-7", use: { ...devices["Pixel 7"] } },
+    { name: "android-narrow", use: { ...devices["Galaxy S9+"] } },
+    // iPad: smallest portrait (768, just under the 900px nav breakpoint) and a large landscape.
+    { name: "ipad-mini", use: { ...devices["iPad Mini"], defaultBrowserType: "chromium" } },
+    {
+      name: "ipad-pro-landscape",
+      use: { ...devices["iPad Pro 11 landscape"], defaultBrowserType: "chromium" },
+    },
+    // Laptop + large desktop, beyond the default 1280x720 Desktop Chrome project.
+    { name: "laptop", use: { ...devices["Desktop Chrome"], viewport: { width: 1366, height: 768 } } },
+    { name: "desktop-xl", use: { ...devices["Desktop Chrome"], viewport: { width: 1920, height: 1080 } } },
   ],
 });
